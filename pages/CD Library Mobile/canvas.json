@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 76,
+          "version": 77,
           "minHeight": 900,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -824,6 +824,7 @@
               },
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "originalBottomRow": 64,
+              "columnUpdatedAt": 1677785490915,
               "defaultSelectedRowIndices": [
                 0
               ],
@@ -907,7 +908,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "album_id": {
                   "allowCellWrapping": false,
@@ -935,7 +937,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_id\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "url": {
                   "allowCellWrapping": false,
@@ -963,7 +966,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"url\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "album_art": {
                   "allowCellWrapping": false,
@@ -991,7 +995,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_art\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "play": {
                   "allowCellWrapping": false,
@@ -1019,7 +1024,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"play\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "track_id": {
                   "allowCellWrapping": false,
@@ -1047,7 +1053,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_id\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "artist": {
                   "allowCellWrapping": false,
@@ -1075,7 +1082,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "album": {
                   "allowCellWrapping": false,
@@ -1103,7 +1111,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "Artist": {
                   "allowCellWrapping": false,
@@ -1131,7 +1140,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Artist\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "_Albums": {
                   "allowCellWrapping": false,
@@ -1159,7 +1169,8 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Albums\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 },
                 "_Playable": {
                   "allowCellWrapping": false,
@@ -1187,12 +1198,14 @@
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Playable\"]))}}",
                   "validation": {},
-                  "cellBackground": ""
+                  "cellBackground": "",
+                  "sticky": ""
                 }
               },
               "onRowSelected": "{{JS_global_mobile.row_selected()}}",
               "defaultSearchText": "{{JS_global_mobile.search()}}",
               "key": "ire06k6enz",
+              "canFreezeColumn": false,
               "isDeprecated": false,
               "rightColumn": 64,
               "textSize": "1rem",
