@@ -164,7 +164,7 @@ export default {
 	},
 	scale_font: (string_length) => {
     if (string_length <=12 | !string_length) return appsmith.store.font_sizes.large
-	  else if (string_length >12 & string_length <=18) return appsmith.store.font_sizes.medium
+	  else if (string_length >12 & string_length <=17) return appsmith.store.font_sizes.medium
 	  else return appsmith.store.font_sizes.small 
 	},
 	toggle_favourite: () => {

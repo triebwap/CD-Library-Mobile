@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "scale_font",
-    "fullyQualifiedName": "JS_global_mobile.scale_font",
+    "name": "row_num",
+    "fullyQualifiedName": "JS_global_mobile.row_num",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -19,11 +19,8 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "string_length => {\n  if (string_length <= 12 | !string_length) return appsmith.store.font_sizes.large; else if (string_length > 12 & string_length <= 18) return appsmith.store.font_sizes.medium; else return appsmith.store.font_sizes.small;\n}",
       "selfReferencingDataPaths": [],
-      "jsArguments": [
-        {}
-      ],
+      "jsArguments": [],
       "isAsync": false
     },
     "executeOnLoad": false,
@@ -35,15 +32,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "string_length => {\n  if (string_length <= 12 | !string_length) return appsmith.store.font_sizes.large; else if (string_length > 12 & string_length <= 18) return appsmith.store.font_sizes.medium; else return appsmith.store.font_sizes.small;\n}"
-    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.scale_font",
+  "id": "CD Library Mobile_JS_global_mobile.row_num",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bff9"
+  "gitSyncId": "6363b42e956dd31e95b0b466_638c8e9f2913ba43778b7bcb"
 }

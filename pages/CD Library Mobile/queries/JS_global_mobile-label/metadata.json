@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "play",
-    "fullyQualifiedName": "JS_global_mobile.play",
+    "name": "label",
+    "fullyQualifiedName": "JS_global_mobile.label",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -19,9 +19,10 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "() => {\n  if (dynamic_table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal'); else navigateTo(dynamic_table.selectedRow.play, {}, 'NEW_WINDOW');\n}",
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
+      "jsArguments": [
+        {}
+      ],
       "isAsync": false
     },
     "executeOnLoad": false,
@@ -33,15 +34,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "() => {\n  if (dynamic_table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal'); else navigateTo(dynamic_table.selectedRow.play, {}, 'NEW_WINDOW');\n}"
-    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.play",
+  "id": "CD Library Mobile_JS_global_mobile.label",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bff5"
+  "gitSyncId": "6363b42e956dd31e95b0b466_63a45884bc0e8334c7298977"
 }

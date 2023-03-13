@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "get_artist",
-    "fullyQualifiedName": "JS_global_mobile.get_artist",
+    "name": "query_artists",
+    "fullyQualifiedName": "JS_global_mobile.query_artists",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -19,10 +19,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "() => {\n  return !!dynamic_table.selectedRow.artist ? dynamic_table.selectedRow.artist : dynamic_table.tableData[0].artist;\n}",
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": false
+      "jsArguments": [
+        {}
+      ],
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -33,15 +34,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "() => {\n  return !!dynamic_table.selectedRow.artist ? dynamic_table.selectedRow.artist : dynamic_table.tableData[0].artist;\n}"
-    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.get_artist",
+  "id": "CD Library Mobile_JS_global_mobile.query_artists",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_63dc17b5b0d2236f6f1f9c27"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bff3"
 }
