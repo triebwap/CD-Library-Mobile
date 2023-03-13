@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "get_album",
-    "fullyQualifiedName": "JS_global_mobile.get_album",
+    "name": "row_num",
+    "fullyQualifiedName": "JS_global_mobile.row_num",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -19,7 +19,6 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "() => {\n  return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album;\n}",
       "selfReferencingDataPaths": [],
       "jsArguments": [],
       "isAsync": false
@@ -33,15 +32,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "() => {\n  return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album;\n}"
-    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.get_album",
+  "id": "CD Library Mobile_JS_global_mobile.row_num",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_63dc17b5b0d2236f6f1f9c29"
+  "gitSyncId": "6363b42e956dd31e95b0b466_638c8e9f2913ba43778b7bcb"
 }

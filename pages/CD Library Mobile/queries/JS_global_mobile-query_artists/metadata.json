@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "row_num",
-    "fullyQualifiedName": "JS_global_mobile.row_num",
+    "name": "query_artists",
+    "fullyQualifiedName": "JS_global_mobile.query_artists",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -19,10 +19,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "() => {\n  switch (appsmith.store.level) {\n    case 'artist':\n      return appsmith.store.artist_rownum;\n      break;\n    case 'album':\n      return appsmith.store.album_rownum;\n      break;\n    case 'track':\n      return appsmith.store.track_rownum;\n      break;\n  }\n}",
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": false
+      "jsArguments": [
+        {}
+      ],
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -33,15 +34,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "() => {\n  switch (appsmith.store.level) {\n    case 'artist':\n      return appsmith.store.artist_rownum;\n      break;\n    case 'album':\n      return appsmith.store.album_rownum;\n      break;\n    case 'track':\n      return appsmith.store.track_rownum;\n      break;\n  }\n}"
-    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.row_num",
+  "id": "CD Library Mobile_JS_global_mobile.query_artists",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_638c8e9f2913ba43778b7bcb"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bff3"
 }

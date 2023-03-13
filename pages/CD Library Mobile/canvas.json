@@ -824,7 +824,7 @@
               },
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "originalBottomRow": 64,
-              "columnUpdatedAt": 1677785490915,
+              "columnUpdatedAt": 1678721051943,
               "defaultSelectedRowIndices": [
                 0
               ],
@@ -1139,9 +1139,9 @@
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Artist\"]))}}",
+                  "sticky": "",
                   "validation": {},
-                  "cellBackground": "",
-                  "sticky": ""
+                  "cellBackground": ""
                 },
                 "_Albums": {
                   "allowCellWrapping": false,
@@ -1168,9 +1168,9 @@
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Albums\"]))}}",
+                  "sticky": "",
                   "validation": {},
-                  "cellBackground": "",
-                  "sticky": ""
+                  "cellBackground": ""
                 },
                 "_Playable": {
                   "allowCellWrapping": false,
@@ -1197,9 +1197,9 @@
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
                   "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Playable\"]))}}",
+                  "sticky": "",
                   "validation": {},
-                  "cellBackground": "",
-                  "sticky": ""
+                  "cellBackground": ""
                 }
               },
               "onRowSelected": "{{JS_global_mobile.row_selected()}}",
@@ -1914,22 +1914,9 @@
               "confirmBeforeExecute": false,
               "pluginType": "API",
               "jsonPathKeys": [
-                "'SELECT get_owner_name(p_collection_id =>\\''+(!appsmith.store.collection_id ? 0 : appsmith.store.collection_id)+'\\')'"
+                "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
               ],
               "timeoutInMillisecond": 100000
-            }
-          ],
-          [
-            {
-              "id": "CD Library Mobile_JS_global_mobile.startup",
-              "name": "JS_global_mobile.startup",
-              "collectionId": "CD Library Mobile_JS_global_mobile",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "() => {\n  storeValue('response', undefined).then(() => storeValue('button_colours', {\n    artists: '#16a34a',\n    albums: '#eab308',\n    tracks: '#ef4444'\n  })).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('level', 'artist')).then(() => storeValue('up_button', appsmith.store.button_colours.artists)).then(() => storeValue('down_button', appsmith.store.button_colours.albums)).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ]
         ],
