@@ -132,7 +132,7 @@ export default {
 		}	
 	},
 	get_artist: () => {return !!dynamic_table.selectedRow.artist ? dynamic_table.selectedRow.artist : dynamic_table.tableData[0].artist},
-	get_album: () => {if (!query_api.isLoading) return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album},
+	get_album: () => {return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album},
 	query_artists: (collection_id) => {
 		showAlert('Loading artists...')
 		.then(() => storeValue('response',undefined))
@@ -158,7 +158,7 @@ export default {
 			  showAlert('No tracks found','warning')
 				}
 	    else 
-		    storeValue('response',JSON.parse(query_api.data).data.map((row) =>row.get_tracks_mobile))
+		    storeValue('response',JSON.parse(query_api.data).data.map((row) =>row.get_tracks_mobile))			
 		})
 	},
 	scale_font: (string_length) => {

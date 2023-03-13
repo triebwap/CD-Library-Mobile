@@ -1,1 +1,1 @@
-{"query_string":{{'SELECT get_owner_name(p_collection_id =>\''+(!appsmith.store.collection_id ? 0 : appsmith.store.collection_id)+'\')'}}, "database_name":"triebwap/myDB"}
+{"query_string":'SELECT get_owner_name(p_collection_id => {{!appsmith.store.collection_id ? 0 : appsmith.store.collection_id}})', "database_name":"triebwap/myDB"}
