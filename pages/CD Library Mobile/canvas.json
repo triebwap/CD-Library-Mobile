@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 640,
+          "bottomRow": 650,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -729,7 +729,7 @@
               "borderColor": "#E0DEDE",
               "isVisibleDownload": false,
               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-              "topRow": 12,
+              "topRow": 13,
               "isSortable": false,
               "type": "TABLE_WIDGET_V2",
               "inlineEditingSaveOption": "ROW_LEVEL",
@@ -778,13 +778,10 @@
                   "key": "primaryColumns.album.computedValue"
                 },
                 {
-                  "key": "primaryColumns.Artist.computedValue"
+                  "key": "primaryColumns.Track.computedValue"
                 },
                 {
-                  "key": "primaryColumns._Albums.computedValue"
-                },
-                {
-                  "key": "primaryColumns._Playable.computedValue"
+                  "key": "primaryColumns.Duration.computedValue"
                 }
               ],
               "leftColumn": 0,
@@ -824,7 +821,7 @@
               },
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "originalBottomRow": 64,
-              "columnUpdatedAt": 1678721051943,
+              "columnUpdatedAt": 1680268666206,
               "defaultSelectedRowIndices": [
                 0
               ],
@@ -839,9 +836,8 @@
                 "track_id",
                 "artist",
                 "album",
-                "Artist",
-                "_Albums",
-                "_Playable"
+                "Track",
+                "Duration"
               ],
               "dynamicPropertyPathList": [
                 {
@@ -856,7 +852,7 @@
               ],
               "compactMode": "SHORT",
               "displayName": "Table",
-              "bottomRow": 64,
+              "bottomRow": 65,
               "columnWidthMap": {
                 "task": 245,
                 "step": 62,
@@ -867,7 +863,8 @@
                 "Track": 259,
                 "Album": 243,
                 "Tracks": 68,
-                "Shelf": 68
+                "Shelf": 68,
+                "_Albums": 95
               },
               "parentRowSpace": 10,
               "hideCard": false,
@@ -1114,13 +1111,13 @@
                   "cellBackground": "",
                   "sticky": ""
                 },
-                "Artist": {
+                "Track": {
                   "allowCellWrapping": false,
                   "index": 0,
                   "width": 150,
-                  "originalId": "Artist",
-                  "id": "Artist",
-                  "alias": "Artist",
+                  "originalId": "Track",
+                  "id": "Track",
+                  "alias": "Track",
                   "horizontalAlignment": "LEFT",
                   "verticalAlignment": "CENTER",
                   "columnType": "text",
@@ -1135,50 +1132,21 @@
                   "isEditable": false,
                   "isCellVisible": true,
                   "isDerived": false,
-                  "label": "Artist",
+                  "label": "Track",
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Artist\"]))}}",
+                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Track\"]))}}",
                   "sticky": "",
                   "validation": {},
                   "cellBackground": ""
                 },
-                "_Albums": {
+                "Duration": {
                   "allowCellWrapping": false,
-                  "index": 2,
+                  "index": 1,
                   "width": 150,
-                  "originalId": "#Albums",
-                  "id": "_Albums",
-                  "alias": "#Albums",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "number",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": true,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "#Albums",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Albums\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "_Playable": {
-                  "allowCellWrapping": false,
-                  "index": 7,
-                  "width": 150,
-                  "originalId": "#Playable",
-                  "id": "_Playable",
-                  "alias": "#Playable",
+                  "originalId": "Duration",
+                  "id": "Duration",
+                  "alias": "Duration",
                   "horizontalAlignment": "LEFT",
                   "verticalAlignment": "CENTER",
                   "columnType": "text",
@@ -1193,10 +1161,10 @@
                   "isEditable": false,
                   "isCellVisible": true,
                   "isDerived": false,
-                  "label": "#Playable",
+                  "label": "Duration",
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Playable\"]))}}",
+                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Duration\"]))}}",
                   "sticky": "",
                   "validation": {},
                   "cellBackground": ""
