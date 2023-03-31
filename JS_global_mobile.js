@@ -1,6 +1,5 @@
 export default {
-	startup: () => {
-		              storeValue('response',undefined)
+	startup: () => {storeValue('response',undefined)
 		              .then(() => storeValue('button_colours',{artists: '#16a34a', albums: '#eab308', tracks: '#ef4444'}))
 		              .then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1.25rem', small: '0.875rem'}))
 		              .then(() => storeValue('level','artist'))
@@ -164,7 +163,7 @@ export default {
 	},
 	scale_font: (string_length) => {
     if (string_length <=12 | !string_length) return appsmith.store.font_sizes.large
-	  else if (string_length >12 & string_length <=18) return appsmith.store.font_sizes.medium
+	  else if (string_length >12 & string_length <=16) return appsmith.store.font_sizes.medium
 	  else return appsmith.store.font_sizes.small 
 	},
 	toggle_favourite: () => {
