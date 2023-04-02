@@ -63,7 +63,7 @@ RETURNS SETOF album_type_mobile AS $$
   SELECT CASE WHEN favourite(p_collection_id,alb.album_id,'album') THEN '⭐' ELSE '' END||album "Album"
         ,shelf  "Shelf"
         ,tracks "Tracks"
-        ,time   "Time"
+        ,interval_to_duration(p_interval => alb.time) "Time" 
         ,year   "Year"
         ,url
         ,album_art
@@ -106,7 +106,7 @@ CREATE OR REPLACE FUNCTION get_tracks_mobile(p_album_id        albums.album_id%t
                                             ) 
 RETURNS SETOF track_type_mobile AS $$
   SELECT track_number||'. '||CASE WHEN favourite(p_collection_id,tra.track_id,'track') THEN '⭐' ELSE '' END||track "Track"
-        ,Duration "Duration"
+        ,interval_to_duration(p_interval => tra.duration) "Duration" 
         ,play
         ,art.artist_id  
         ,art.artist
