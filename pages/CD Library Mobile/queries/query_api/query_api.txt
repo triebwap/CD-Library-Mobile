@@ -1,1 +1,1 @@
-{"query_string":{{appsmith.store.query_input}}, "database_name":"triebwap/myDB"}
+{"query_string":{{this.params.query}}, "database_name":"triebwap/myDB"}
