@@ -108,7 +108,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 50,
+              "leftColumn": 47,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -1436,7 +1436,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 39,
+              "leftColumn": 29,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -1449,7 +1449,7 @@
               "isDisabled": false,
               "key": "le8q1w199d",
               "isDeprecated": false,
-              "rightColumn": 50,
+              "rightColumn": 45,
               "isDefaultClickDisabled": true,
               "widgetId": "dc896uyp62",
               "isVisible": true,
@@ -2063,6 +2063,19 @@
                 "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
               ],
               "timeoutInMillisecond": 100000
+            }
+          ],
+          [
+            {
+              "id": "CD Library Mobile_JS_global_mobile.startup",
+              "name": "JS_global_mobile.startup",
+              "collectionId": "CD Library Mobile_JS_global_mobile",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#3b82f6'\n  }).then(() => storeValue('button_colours', {\n    artists: appsmith.store.colours.green,\n    albums: appsmith.store.colours.amber,\n    tracks: appsmith.store.colours.red\n  })).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('level', 'artist')).then(() => storeValue('up_button', appsmith.store.button_colours.artists)).then(() => storeValue('down_button', appsmith.store.button_colours.albums)).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ]
         ],
