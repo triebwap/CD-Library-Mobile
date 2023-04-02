@@ -11,7 +11,7 @@ export default {
 		},
 	select_data: () => {
 		closeModal('collection_modal')
-		storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : (!!appsmith.store.collection_id ? appsmith.store.collection_id : 1))
+		.then(() =>storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : (!!appsmith.store.collection_id ? appsmith.store.collection_id : 1)))
 		.then(() => storeValue('level','artist'))
 		.then(() => storeValue('artist_rownum',0))
 		.then(() => storeValue('album_rownum',0))
