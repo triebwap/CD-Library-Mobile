@@ -1,6 +1,6 @@
 export default {
 	startup: () => {
-		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#3b82f6'})
+		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'})
 		.then(() => storeValue('button_colours',{artists: appsmith.store.colours.green, albums: appsmith.store.colours.amber, tracks: appsmith.store.colours.red}))
 		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1.25rem', small: '0.875rem'}))
 		.then(() => storeValue('level','artist'))
@@ -66,7 +66,6 @@ export default {
 				storeValue('response',undefined)
 				this.query_artists(appsmith.store.collection_id)
 			}
-		  break;
     }
 	},
 	label: (direction) => {
@@ -82,7 +81,6 @@ export default {
 	  case 'track':
 			if (direction == 'up') return 'Albums'
 			else if (direction == 'down') return 'Artists'
-		  break;
 		}
 	},
   row_selected: () => {
@@ -100,7 +98,6 @@ export default {
 		  break;
 	  case 'track':
 			storeValue('track_rownum',dynamic_table.selectedRowIndex)
-		  break;
 		}
 	},
 	row_num: () => {
@@ -123,12 +120,10 @@ export default {
 		showAlert('Loading artists...')
 		.then(() => storeValue('response',undefined))
 		.then(() => query_api.run({query: 'SELECT get_artists_mobile(p_collection_id =>'+collection_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}))
-		.then(() => this.get_data())
 	},
   query_albums: (collection_id, artist_id) => {
 		showAlert('Loading albums...')
 	  .then(() => query_api.run({query: 'SELECT get_albums_mobile(p_collection_id =>'+collection_id+',p_artist_id =>'+artist_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}))
-		.then(() => this.get_data())
 	},
   query_tracks: (collection_id, album_id) => {
 		showAlert('Loading tracks...')
@@ -138,8 +133,6 @@ export default {
 				storeValue('level','album')
 			  showAlert('No tracks found','warning')
 				}
-	    else 
-			this.get_data()
 		})
 	},
 	scale_font: (string_length) => {
@@ -162,8 +155,7 @@ export default {
 	  case 'track':
 			storeValue('object_id',dynamic_table.selectedRow.track_id)
 			.then(toggle_favourite.run())
-			.then(() => this.query_tracks(appsmith.store.collection_id,dynamic_table.selectedRow.album_id))
-		  break;		
+			.then(() => this.query_tracks(appsmith.store.collection_id,dynamic_table.selectedRow.album_id))	
 		}
 	},
 	switch_favourites: () => {
@@ -176,7 +168,6 @@ export default {
 		  break;
 	  case 'track':
 			this.query_tracks(appsmith.store.collection_id,dynamic_table.selectedRow.album_id)
-		  break;		
 		}
 	},
 	get_data: () => {
