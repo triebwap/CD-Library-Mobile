@@ -1,6 +1,7 @@
 export default {
 	startup: () => {
-		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'})
+		clearStore()
+		.then(() => storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'}))
 		.then(() => storeValue('button_colours',{artists: appsmith.store.colours.green, albums: appsmith.store.colours.amber, tracks: appsmith.store.colours.red}))
 		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1.25rem', small: '0.875rem'}))
 		.then(() => storeValue('level','artist'))
@@ -190,7 +191,6 @@ export default {
     case 'artist': return JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile)
     case 'album': return JSON.parse(query_api.data).data.map((row) => row.get_albums_mobile)
 	  case 'track': return JSON.parse(query_api.data).data.map((row) => row.get_tracks_mobile)
-		default: return JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile)
 		}										
 	},
 	default_selected_row: () => {
