@@ -9,6 +9,9 @@ export default {
 		.then(() => storeValue('down_button',appsmith.store.button_colours.albums))
 		.then(() => storeValue('artist_rownum',0))
 		.then(() => this.select_data())
+		.then(() => artists_api.run())
+		.then(() => albums_api.run({artist_id: artists_Table.selectedRow.artist_id}))
+		.then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))
 		},
 	select_data: () => {
 		closeModal('collection_modal')
@@ -132,13 +135,19 @@ drill: (direction) => {
 	get_album: () => {return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album},
 	query_artists: (collection_id) => {
 		query_api.run({query: 'SELECT get_artists_mobile(p_collection_id =>'+collection_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
-		.then(() => storeValue('response',JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile)))
+		.then(() => {
+			storeValue('response',JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile))
+		  .then(() => storeValue('artists',appsmith.store.response))
+		})
 		.catch(() => showAlert('Error getting artists','error'))
 		.then(() => showAlert('Found '+appsmith.store.response.length+' artist'+(appsmith.store.response.length >1 ? 's' : ''),'success'))
 	},
   query_albums: (collection_id, artist_id) => {
 		query_api.run({query: 'SELECT get_albums_mobile(p_collection_id =>'+collection_id+',p_artist_id =>'+artist_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
-		.then(() => storeValue('response',JSON.parse(query_api.data).data.map((row) => row.get_albums_mobile)))
+		.then(() => {
+		  storeValue('response',JSON.parse(query_api.data).data.map((row) => row.get_albums_mobile))
+		  .then(() => storeValue('albums',appsmith.store.response))
+		})
 		.catch(() => showAlert('Error getting albums','error'))
 		.then(() => showAlert('Found '+appsmith.store.response.length+' album'+(appsmith.store.response.length >1 ? 's' : ''),'success'))
 	},
@@ -146,6 +155,7 @@ drill: (direction) => {
 		query_api.run({query: 'SELECT get_tracks_mobile(p_collection_id =>'+collection_id+',p_album_id =>'+album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
 		.then(() => {
 			storeValue('response',JSON.parse(query_api.data).data.map((row) => row.get_tracks_mobile))
+			.then(() => storeValue('tracks',appsmith.store.response))
       .then(() => {if (appsmith.store.response.length == 0) {
 				storeValue('level','album')
 			  showAlert('No tracks found','warning')
@@ -195,5 +205,12 @@ drill: (direction) => {
     case 'album': return appsmith.store.album_rownum
     case 'track': return appsmith.store.track_rownum
     }
+	},
+	tab_accent_colour: () => {
+switch(Tabs.selectedTab) {
+    case 'Artists': return appsmith.store.colours.green
+    case 'Albums': return appsmith.store.colours.amber
+    case 'Tracks': return appsmith.store.colours.red
+    }		
 	}
 }
