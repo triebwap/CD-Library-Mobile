@@ -1,0 +1,1 @@
+{"query_string":{{'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+this.params.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}}, "database_name":"triebwap/myDB"}

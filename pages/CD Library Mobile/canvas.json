@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 640,
+          "bottomRow": 680,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -32,6 +32,9 @@
               "dynamicPropertyPathList": [
                 {
                   "key": "onChange"
+                },
+                {
+                  "key": "accentColor"
                 }
               ],
               "displayName": "Switch",
@@ -53,16 +56,20 @@
                 }
               ],
               "leftColumn": 0,
-              "dynamicBindingPathList": [],
+              "dynamicBindingPathList": [
+                {
+                  "key": "accentColor"
+                }
+              ],
               "labelPosition": "Left",
               "isDisabled": false,
               "key": "816zl827dl",
               "isDeprecated": false,
               "rightColumn": 19,
-              "onChange": "{{JS_global_mobile.switch_favourites()}}",
+              "onChange": "{{JS_global_mobile.select_data()}}",
               "dynamicHeight": "AUTO_HEIGHT",
               "widgetId": "xizp1kx3zq",
-              "accentColor": "#1e40af",
+              "accentColor": "{{appsmith.store.colours.blue}}",
               "isVisible": true,
               "label": "Only ⭐",
               "defaultSwitchState": false,
@@ -160,9 +167,9 @@
                 "click",
                 "submit"
               ],
-              "topRow": 8,
-              "bottomRow": 12,
-              "tooltip": "{{!!dynamic_table.selectedRow.play ? 'Play \"'+dynamic_table.selectedRow.Track+'\" on '+(!!dynamic_table.selectedRow.play.match('/.*youtube.*/') ? 'YouTube' : 'OneDrive') : ''}}",
+              "topRow": 4,
+              "bottomRow": 8,
+              "tooltip": "{{!!tracks_Table.selectedRow.play ? 'Play '+tracks_Table.selectedRow.Track.match(/[^0-9\\.\\s].*/)[0]+' on '+(!!tracks_Table.selectedRow.play.match('/.*youtube.*/') ? 'YouTube' : 'OneDrive') : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -173,7 +180,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 51,
+              "leftColumn": 50,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -189,10 +196,10 @@
                 }
               ],
               "text": "Play",
-              "isDisabled": "{{dynamic_table.selectedRowIndex ==-1 || !dynamic_table.selectedRow.play}}",
+              "isDisabled": "{{tracks_Table.selectedRowIndex ==-1 || !tracks_Table.selectedRow.play}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
-              "rightColumn": 64,
+              "rightColumn": 63,
               "isDefaultClickDisabled": true,
               "widgetId": "l5ki9nk9ag",
               "isVisible": true,
@@ -204,81 +211,6 @@
               "disabledWhenInvalid": false,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "buttonVariant": "PRIMARY",
-              "placement": "CENTER"
-            },
-            {
-              "resetFormOnClick": false,
-              "boxShadow": "none",
-              "widgetName": "down_button",
-              "onClick": "{{JS_global_mobile.drill('down')}}",
-              "buttonColor": "{{appsmith.store.down_button}}",
-              "dynamicPropertyPathList": [
-                {
-                  "key": "onClick"
-                },
-                {
-                  "key": "isDisabled"
-                },
-                {
-                  "key": "buttonColor"
-                }
-              ],
-              "displayName": "Button",
-              "iconSVG": "/static/media/icon.cca026338f1c8eb6df8ba03d084c2fca.svg",
-              "searchTags": [
-                "click",
-                "submit"
-              ],
-              "topRow": 8,
-              "bottomRow": 12,
-              "tooltip": "Show {{JS_global_mobile.label('down')}}",
-              "parentRowSpace": 10,
-              "type": "BUTTON_WIDGET",
-              "hideCard": false,
-              "animateLoading": true,
-              "parentColumnSpace": 19.8125,
-              "dynamicTriggerPathList": [
-                {
-                  "key": "onClick"
-                }
-              ],
-              "leftColumn": 15,
-              "dynamicBindingPathList": [
-                {
-                  "key": "borderRadius"
-                },
-                {
-                  "key": "text"
-                },
-                {
-                  "key": "isDisabled"
-                },
-                {
-                  "key": "buttonColor"
-                },
-                {
-                  "key": "tooltip"
-                }
-              ],
-              "text": "{{JS_global_mobile.label('down')}}",
-              "isDisabled": "{{dynamic_table.selectedRowIndex == -1}}",
-              "key": "oh7ne740gz",
-              "isDeprecated": false,
-              "rightColumn": 30,
-              "isDefaultClickDisabled": true,
-              "widgetId": "l7s7e0k2qz",
-              "isVisible": true,
-              "recaptchaType": "V3",
-              "version": 1,
-              "parentId": "0",
-              "renderMode": "CANVAS",
-              "isLoading": false,
-              "originalTopRow": 8,
-              "disabledWhenInvalid": false,
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "originalBottomRow": 12,
-              "buttonVariant": "PRIMARY",
-              "iconAlign": "left",
               "placement": "CENTER"
             },
             {
@@ -304,9 +236,9 @@
                 "click",
                 "submit"
               ],
-              "topRow": 8,
-              "bottomRow": 12,
-              "tooltip": "{{!!dynamic_table.selectedRow.album_art ? 'Show \"'+dynamic_table.selectedRow.Album+'\" Cover Art' : ''}}",
+              "topRow": 4,
+              "bottomRow": 8,
+              "tooltip": "{{!!albums_Table.selectedRow.album_art ? 'Show '+albums_Table.selectedRow.Album+'\\'s Cover Art' : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -317,7 +249,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 41,
+              "leftColumn": 40,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -333,10 +265,10 @@
                 }
               ],
               "text": "Art",
-              "isDisabled": "{{!dynamic_table.selectedRow.album_art}}",
+              "isDisabled": "{{!albums_Table.selectedRow.album_art}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
-              "rightColumn": 51,
+              "rightColumn": 50,
               "isDefaultClickDisabled": true,
               "widgetId": "32qopqr4wz",
               "isVisible": true,
@@ -472,7 +404,7 @@
                       ],
                       "defaultImage": "",
                       "key": "wudu7x0306",
-                      "image": "{{dynamic_table.selectedRow.album_art}}",
+                      "image": "{{albums_Table.selectedRow.album_art}}",
                       "isDeprecated": false,
                       "rightColumn": 63,
                       "objectFit": "cover",
@@ -541,9 +473,9 @@
                 "click",
                 "submit"
               ],
-              "topRow": 8,
-              "bottomRow": 12,
-              "tooltip": "{{\n!!dynamic_table.selectedRow.url ? 'Show \"'+dynamic_table.selectedRow.Album+'\" Wikipedia Page' : ''\n}}",
+              "topRow": 4,
+              "bottomRow": 8,
+              "tooltip": "{{\n!!albums_Table.selectedRow.url ? 'Show '+albums_Table.selectedRow.Album+'\\'s Wikipedia Page' : ''\n}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -554,7 +486,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 30,
+              "leftColumn": 29,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -570,10 +502,10 @@
                 }
               ],
               "text": "Wiki",
-              "isDisabled": "{{!dynamic_table.selectedRow.url}}",
+              "isDisabled": "{{!albums_Table.selectedRow.url}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
-              "rightColumn": 41,
+              "rightColumn": 40,
               "isDefaultClickDisabled": true,
               "widgetId": "jxxnn1238m",
               "isVisible": true,
@@ -697,7 +629,7 @@
                       "topRow": 5,
                       "bottomRow": 69,
                       "parentRowSpace": 10,
-                      "source": "{{!!dynamic_table.selectedRow.url ? dynamic_table.selectedRow.url : ''}}",
+                      "source": "{{!!albums_Table.selectedRow.url ? albums_Table.selectedRow.url : ''}}",
                       "type": "IFRAME_WIDGET",
                       "hideCard": false,
                       "borderOpacity": 100,
@@ -765,209 +697,6 @@
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
               "width": 427.5,
-              "minDynamicHeight": 4
-            },
-            {
-              "resetFormOnClick": false,
-              "boxShadow": "none",
-              "widgetName": "up_button",
-              "onClick": "{{JS_global_mobile.drill('up')}}",
-              "buttonColor": "{{appsmith.store.up_button}}",
-              "dynamicPropertyPathList": [
-                {
-                  "key": "onClick"
-                },
-                {
-                  "key": "isDisabled"
-                },
-                {
-                  "key": "buttonColor"
-                }
-              ],
-              "displayName": "Button",
-              "iconSVG": "/static/media/icon.cca026338f1c8eb6df8ba03d084c2fca.svg",
-              "searchTags": [
-                "click",
-                "submit"
-              ],
-              "topRow": 8,
-              "bottomRow": 12,
-              "tooltip": "Show {{JS_global_mobile.label('up')}}",
-              "parentRowSpace": 10,
-              "type": "BUTTON_WIDGET",
-              "hideCard": false,
-              "animateLoading": true,
-              "parentColumnSpace": 19.8125,
-              "dynamicTriggerPathList": [
-                {
-                  "key": "onClick"
-                }
-              ],
-              "leftColumn": 0,
-              "dynamicBindingPathList": [
-                {
-                  "key": "borderRadius"
-                },
-                {
-                  "key": "text"
-                },
-                {
-                  "key": "isDisabled"
-                },
-                {
-                  "key": "buttonColor"
-                },
-                {
-                  "key": "tooltip"
-                }
-              ],
-              "text": "{{JS_global_mobile.label('up')}}",
-              "isDisabled": "{{appsmith.store.level == 'artist'}}",
-              "key": "oh7ne740gz",
-              "isDeprecated": false,
-              "rightColumn": 15,
-              "isDefaultClickDisabled": true,
-              "widgetId": "a8shbdfs8h",
-              "isVisible": true,
-              "recaptchaType": "V3",
-              "version": 1,
-              "parentId": "0",
-              "renderMode": "CANVAS",
-              "isLoading": false,
-              "originalTopRow": 8,
-              "disabledWhenInvalid": false,
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "originalBottomRow": 12,
-              "buttonVariant": "PRIMARY",
-              "iconAlign": "left",
-              "placement": "CENTER"
-            },
-            {
-              "widgetName": "artist_text",
-              "dynamicPropertyPathList": [
-                {
-                  "key": "fontSize"
-                }
-              ],
-              "displayName": "Text",
-              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
-              "searchTags": [
-                "typography",
-                "paragraph",
-                "label"
-              ],
-              "topRow": 4,
-              "bottomRow": 8,
-              "parentRowSpace": 10,
-              "type": "TEXT_WIDGET",
-              "hideCard": false,
-              "animateLoading": true,
-              "overflow": "SCROLL",
-              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-              "parentColumnSpace": 20.0625,
-              "dynamicTriggerPathList": [],
-              "leftColumn": 0,
-              "dynamicBindingPathList": [
-                {
-                  "key": "truncateButtonColor"
-                },
-                {
-                  "key": "fontFamily"
-                },
-                {
-                  "key": "borderRadius"
-                },
-                {
-                  "key": "fontSize"
-                },
-                {
-                  "key": "text"
-                }
-              ],
-              "shouldTruncate": false,
-              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{JS_global_mobile.get_artist()}}",
-              "key": "ykgijalkar",
-              "isDeprecated": false,
-              "rightColumn": 31,
-              "textAlign": "LEFT",
-              "dynamicHeight": "FIXED",
-              "widgetId": "6dybel370b",
-              "isVisible": true,
-              "fontStyle": "BOLD",
-              "textColor": "black",
-              "version": 1,
-              "parentId": "0",
-              "renderMode": "CANVAS",
-              "isLoading": false,
-              "originalTopRow": 4,
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "maxDynamicHeight": 9000,
-              "originalBottomRow": 8,
-              "fontSize": "{{JS_global_mobile.scale_font(JS_global_mobile.get_artist().length)}}",
-              "minDynamicHeight": 4
-            },
-            {
-              "widgetName": "album_text",
-              "dynamicPropertyPathList": [
-                {
-                  "key": "fontSize"
-                }
-              ],
-              "displayName": "Text",
-              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
-              "searchTags": [
-                "typography",
-                "paragraph",
-                "label"
-              ],
-              "topRow": 4,
-              "bottomRow": 8,
-              "parentRowSpace": 10,
-              "type": "TEXT_WIDGET",
-              "hideCard": false,
-              "animateLoading": true,
-              "overflow": "SCROLL",
-              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-              "parentColumnSpace": 20.0625,
-              "dynamicTriggerPathList": [],
-              "leftColumn": 31,
-              "dynamicBindingPathList": [
-                {
-                  "key": "truncateButtonColor"
-                },
-                {
-                  "key": "fontFamily"
-                },
-                {
-                  "key": "borderRadius"
-                },
-                {
-                  "key": "text"
-                },
-                {
-                  "key": "fontSize"
-                }
-              ],
-              "shouldTruncate": false,
-              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{JS_global_mobile.get_album()}}",
-              "key": "ykgijalkar",
-              "isDeprecated": false,
-              "rightColumn": 64,
-              "textAlign": "LEFT",
-              "dynamicHeight": "FIXED",
-              "widgetId": "70vw1gw92i",
-              "isVisible": true,
-              "fontStyle": "BOLD",
-              "textColor": "black",
-              "version": 1,
-              "parentId": "0",
-              "renderMode": "CANVAS",
-              "isLoading": false,
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "maxDynamicHeight": 9000,
-              "fontSize": "{{JS_global_mobile.scale_font(JS_global_mobile.get_album().length )}}",
               "minDynamicHeight": 4
             },
             {
@@ -1105,7 +834,7 @@
                       "widgetId": "1jlxw5v3pk",
                       "isVisible": true,
                       "version": 1,
-                      "url": "{{dynamic_table.selectedRow.play}}",
+                      "url": "{{tracks_Table.selectedRow.play}}",
                       "parentId": "iw6bt3mggi",
                       "renderMode": "CANVAS",
                       "isLoading": false,
@@ -1257,7 +986,7 @@
                       "isLoading": false,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "onOptionChange": "{{JS_global_mobile.select_data()}}",
+                      "onOptionChange": "{{\nshowAlert('Owner changed to '+owner_name_select.selectedOptionLabel,'success')\nJS_global_mobile.select_data()}}",
                       "minDynamicHeight": 4
                     },
                     {
@@ -1303,7 +1032,7 @@
                         }
                       ],
                       "iconSize": 24,
-                      "isDisabled": "{{!dynamic_table.tableData}}",
+                      "isDisabled": "{{!artists_Table.tableData}}",
                       "key": "2bmtwnes3m",
                       "isDeprecated": false,
                       "rightColumn": 64,
@@ -1406,8 +1135,8 @@
             {
               "resetFormOnClick": false,
               "boxShadow": "none",
-              "widgetName": "toggle_favourite_button",
-              "onClick": "{{JS_global_mobile.toggle_favourite()}}",
+              "widgetName": "toggle_favourites_button",
+              "onClick": "{{JS_global_mobile.toggle_favourites()}}",
               "buttonColor": "{{appsmith.store.colours.blue}}",
               "dynamicPropertyPathList": [
                 {
@@ -1465,14 +1194,33 @@
             },
             {
               "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+              "widgetName": "Tabs",
               "borderColor": "#E0DEDE",
-              "isVisibleDownload": false,
-              "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
+              "isCanvas": true,
+              "dynamicPropertyPathList": [
+                {
+                  "key": "onTabSelected"
+                },
+                {
+                  "key": "accentColor"
+                }
+              ],
+              "displayName": "Tabs",
+              "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
               "topRow": 12,
-              "isSortable": true,
-              "type": "TABLE_WIDGET_V2",
-              "inlineEditingSaveOption": "ROW_LEVEL",
+              "bottomRow": 68,
+              "parentRowSpace": 10,
+              "type": "TABS_WIDGET",
+              "hideCard": false,
+              "shouldScrollContents": true,
               "animateLoading": true,
+              "parentColumnSpace": 6.84375,
+              "dynamicTriggerPathList": [
+                {
+                  "key": "onTabSelected"
+                }
+              ],
+              "leftColumn": 0,
               "dynamicBindingPathList": [
                 {
                   "key": "accentColor"
@@ -1482,441 +1230,1718 @@
                 },
                 {
                   "key": "boxShadow"
-                },
-                {
-                  "key": "tableData"
-                },
-                {
-                  "key": "primaryColumns.artist.computedValue"
-                },
-                {
-                  "key": "primaryColumns.artist_id.computedValue"
-                },
-                {
-                  "key": "primaryColumns.album_id.computedValue"
-                },
-                {
-                  "key": "primaryColumns.album.computedValue"
-                },
-                {
-                  "key": "primaryColumns.track_id.computedValue"
-                },
-                {
-                  "key": "primaryColumns.url.computedValue"
-                },
-                {
-                  "key": "primaryColumns.album_art.computedValue"
-                },
-                {
-                  "key": "primaryColumns.play.computedValue"
-                },
-                {
-                  "key": "defaultSearchText"
-                },
-                {
-                  "key": "defaultSelectedRowIndex"
-                },
-                {
-                  "key": "primaryColumns.Track.computedValue"
-                },
-                {
-                  "key": "primaryColumns.Duration.computedValue"
                 }
               ],
-              "needsHeightForContent": true,
-              "leftColumn": 0,
-              "delimiter": ",",
-              "defaultSelectedRowIndex": "{{JS_global_mobile.default_selected_row()}}",
-              "accentColor": "{{appsmith.theme.colors.primaryColor}}",
-              "isVisibleFilters": false,
-              "isVisible": true,
-              "enableClientSideSearch": true,
-              "version": 1,
-              "totalRecordsCount": 0,
-              "isLoading": false,
-              "childStylesheet": {
-                "button": {
-                  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-                  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                  "boxShadow": "none"
-                },
-                "menuButton": {
-                  "menuColor": "{{appsmith.theme.colors.primaryColor}}",
-                  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                  "boxShadow": "none"
-                },
-                "iconButton": {
-                  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-                  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                  "boxShadow": "none"
-                },
-                "editActions": {
-                  "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                  "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                  "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                  "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}"
-                }
-              },
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "columnUpdatedAt": 1680541314709,
-              "defaultSelectedRowIndices": [
-                0
-              ],
-              "widgetName": "dynamic_table",
-              "defaultPageSize": 0,
-              "columnOrder": [
-                "artist",
-                "artist_id",
-                "album_id",
-                "album",
-                "track_id",
-                "url",
-                "album_art",
-                "play",
-                "Track",
-                "Duration"
-              ],
-              "dynamicPropertyPathList": [
+              "children": [
                 {
-                  "key": "onRowSelected"
-                }
-              ],
-              "compactMode": "SHORT",
-              "displayName": "Table",
-              "bottomRow": 64,
-              "columnWidthMap": {
-                "task": 245,
-                "step": 70,
-                "status": 85,
-                "Track": 331,
-                "Album": 176,
-                "Shelf": 73,
-                "Tracks": 85,
-                "Artist": 211,
-                "_Albums": 111,
-                "_Playable": 107
-              },
-              "parentRowSpace": 10,
-              "hideCard": false,
-              "parentColumnSpace": 6.84375,
-              "dynamicTriggerPathList": [
-                {
-                  "key": "onRowSelected"
-                }
-              ],
-              "borderWidth": "1",
-              "primaryColumns": {
-                "artist": {
-                  "allowCellWrapping": false,
-                  "index": 1,
-                  "width": 150,
-                  "originalId": "artist",
-                  "id": "artist",
-                  "alias": "artist",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
+                  "tabId": "tab1",
+                  "widgetName": "Canvas7",
+                  "displayName": "Canvas",
+                  "bottomRow": 520,
+                  "topRow": 0,
+                  "parentRowSpace": 1,
+                  "type": "CANVAS_WIDGET",
+                  "canExtend": true,
+                  "hideCard": true,
+                  "shouldScrollContents": false,
+                  "minHeight": 150,
+                  "parentColumnSpace": 1,
+                  "dynamicTriggerPathList": [],
+                  "leftColumn": 0,
+                  "dynamicBindingPathList": [],
+                  "children": [
+                    {
+                      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+                      "borderColor": "#E0DEDE",
+                      "isVisibleDownload": false,
+                      "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
+                      "topRow": 0,
+                      "isSortable": false,
+                      "type": "TABLE_WIDGET_V2",
+                      "inlineEditingSaveOption": "ROW_LEVEL",
+                      "animateLoading": true,
+                      "dynamicBindingPathList": [
+                        {
+                          "key": "accentColor"
+                        },
+                        {
+                          "key": "borderRadius"
+                        },
+                        {
+                          "key": "boxShadow"
+                        },
+                        {
+                          "key": "tableData"
+                        },
+                        {
+                          "key": "primaryColumns.url.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album_art.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.artist_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.artist.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.track_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.play.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Artist.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns._Albums.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns._Playable.computedValue"
+                        },
+                        {
+                          "key": "defaultSelectedRowIndex"
+                        }
+                      ],
+                      "needsHeightForContent": true,
+                      "leftColumn": 0,
+                      "delimiter": ",",
+                      "defaultSelectedRowIndex": "{{appsmith.store.artist_rownum}}",
+                      "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+                      "isVisibleFilters": false,
+                      "isVisible": true,
+                      "enableClientSideSearch": false,
+                      "version": 1,
+                      "totalRecordsCount": 0,
+                      "isLoading": false,
+                      "childStylesheet": {
+                        "button": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "menuButton": {
+                          "menuColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "iconButton": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "editActions": {
+                          "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}"
+                        }
+                      },
+                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                      "columnUpdatedAt": 1681041808497,
+                      "defaultSelectedRowIndices": [
+                        0
+                      ],
+                      "widgetName": "artists_Table",
+                      "defaultPageSize": 0,
+                      "columnOrder": [
+                        "url",
+                        "album_art",
+                        "artist_id",
+                        "artist",
+                        "album_id",
+                        "album",
+                        "track_id",
+                        "play",
+                        "Artist",
+                        "_Albums",
+                        "_Playable"
+                      ],
+                      "dynamicPropertyPathList": [
+                        {
+                          "key": "onRowSelected"
+                        }
+                      ],
+                      "compactMode": "SHORT",
+                      "displayName": "Table",
+                      "bottomRow": 52,
+                      "columnWidthMap": {
+                        "task": 245,
+                        "step": 70,
+                        "status": 85,
+                        "_Albums": 102,
+                        "Artist": 199
+                      },
+                      "parentRowSpace": 10,
+                      "hideCard": false,
+                      "parentColumnSpace": 2.25390625,
+                      "dynamicTriggerPathList": [
+                        {
+                          "key": "onRowSelected"
+                        }
+                      ],
+                      "borderWidth": "1",
+                      "primaryColumns": {
+                        "url": {
+                          "allowCellWrapping": false,
+                          "index": 5,
+                          "width": 150,
+                          "originalId": "url",
+                          "id": "url",
+                          "alias": "url",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "url",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"url\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album_art": {
+                          "allowCellWrapping": false,
+                          "index": 6,
+                          "width": 150,
+                          "originalId": "album_art",
+                          "id": "album_art",
+                          "alias": "album_art",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album_art",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_art\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "artist_id": {
+                          "allowCellWrapping": false,
+                          "index": 7,
+                          "width": 150,
+                          "originalId": "artist_id",
+                          "id": "artist_id",
+                          "alias": "artist_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "artist_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "artist": {
+                          "allowCellWrapping": false,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "artist",
+                          "id": "artist",
+                          "alias": "artist",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "artist",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album_id": {
+                          "allowCellWrapping": false,
+                          "index": 9,
+                          "width": 150,
+                          "originalId": "album_id",
+                          "id": "album_id",
+                          "alias": "album_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album": {
+                          "allowCellWrapping": false,
+                          "index": 10,
+                          "width": 150,
+                          "originalId": "album",
+                          "id": "album",
+                          "alias": "album",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "track_id": {
+                          "allowCellWrapping": false,
+                          "index": 11,
+                          "width": 150,
+                          "originalId": "track_id",
+                          "id": "track_id",
+                          "alias": "track_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "track_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "play": {
+                          "allowCellWrapping": false,
+                          "index": 13,
+                          "width": 150,
+                          "originalId": "play",
+                          "id": "play",
+                          "alias": "play",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "play",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"play\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Artist": {
+                          "allowCellWrapping": false,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "Artist",
+                          "id": "Artist",
+                          "alias": "Artist",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Artist",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Artist\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "_Albums": {
+                          "allowCellWrapping": false,
+                          "index": 9,
+                          "width": 150,
+                          "originalId": "#Albums",
+                          "id": "_Albums",
+                          "alias": "#Albums",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "#Albums",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Albums\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "_Playable": {
+                          "allowCellWrapping": false,
+                          "index": 10,
+                          "width": 150,
+                          "originalId": "#Playable",
+                          "id": "_Playable",
+                          "alias": "#Playable",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "#Playable",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Playable\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        }
+                      },
+                      "onRowSelected": "{{JS_global_mobile.artists_on_row_selected()\n}}",
+                      "key": "uolbup18nq",
+                      "canFreezeColumn": true,
+                      "isDeprecated": false,
+                      "rightColumn": 64,
+                      "textSize": "1rem",
+                      "widgetId": "7s8linnv6j",
+                      "minWidth": 450,
+                      "tableData": "{{JSON.parse(artists_api.data).data.map((row) => row.get_artists_mobile)}}",
+                      "label": "Data",
+                      "searchKey": "",
+                      "parentId": "3mw6vz3kgy",
+                      "serverSidePaginationEnabled": true,
+                      "renderMode": "CANVAS",
+                      "horizontalAlignment": "LEFT",
+                      "isVisibleSearch": true,
+                      "responsiveBehavior": "fill",
+                      "isVisiblePagination": false,
+                      "verticalAlignment": "CENTER"
+                    }
+                  ],
                   "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "artist",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "artist_id": {
-                  "allowCellWrapping": false,
-                  "index": 3,
-                  "width": 150,
-                  "originalId": "artist_id",
-                  "id": "artist_id",
-                  "alias": "artist_id",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "number",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "artist_id",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "album_id": {
-                  "allowCellWrapping": false,
-                  "index": 4,
-                  "width": 150,
-                  "originalId": "album_id",
-                  "id": "album_id",
-                  "alias": "album_id",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "number",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "album_id",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_id\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "album": {
-                  "allowCellWrapping": false,
-                  "index": 5,
-                  "width": 150,
-                  "originalId": "album",
-                  "id": "album",
-                  "alias": "album",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "album",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "track_id": {
-                  "allowCellWrapping": false,
-                  "index": 6,
-                  "width": 150,
-                  "originalId": "track_id",
-                  "id": "track_id",
-                  "alias": "track_id",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "number",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "track_id",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_id\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "url": {
-                  "allowCellWrapping": false,
-                  "index": 8,
-                  "width": 150,
-                  "originalId": "url",
-                  "id": "url",
-                  "alias": "url",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "url",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"url\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "album_art": {
-                  "allowCellWrapping": false,
-                  "index": 9,
-                  "width": 150,
-                  "originalId": "album_art",
-                  "id": "album_art",
-                  "alias": "album_art",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "album_art",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_art\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "play": {
-                  "allowCellWrapping": false,
-                  "index": 10,
-                  "width": 150,
-                  "originalId": "play",
-                  "id": "play",
-                  "alias": "play",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": false,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "play",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"play\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
-                },
-                "Track": {
-                  "allowCellWrapping": false,
-                  "index": 0,
-                  "width": 150,
-                  "originalId": "Track",
-                  "id": "Track",
-                  "alias": "Track",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
+                  "key": "pbaqafwwgq",
+                  "isDeprecated": false,
+                  "tabName": "Artists",
+                  "rightColumn": 164.25,
+                  "detachFromLayout": true,
+                  "widgetId": "3mw6vz3kgy",
+                  "minWidth": 450,
                   "isVisible": true,
-                  "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "Track",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Track\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
+                  "version": 1,
+                  "parentId": "syc4l4g3jx",
+                  "renderMode": "CANVAS",
+                  "isLoading": false,
+                  "responsiveBehavior": "fill",
+                  "flexLayers": []
                 },
-                "Duration": {
-                  "allowCellWrapping": false,
-                  "index": 1,
-                  "width": 150,
-                  "originalId": "Duration",
-                  "id": "Duration",
-                  "alias": "Duration",
-                  "horizontalAlignment": "LEFT",
-                  "verticalAlignment": "CENTER",
-                  "columnType": "text",
-                  "textColor": "",
-                  "textSize": "1rem",
-                  "fontStyle": "",
-                  "enableFilter": true,
-                  "enableSort": true,
-                  "isVisible": true,
+                {
+                  "tabId": "tab2",
+                  "widgetName": "Canvas8",
+                  "displayName": "Canvas",
+                  "bottomRow": 520,
+                  "topRow": 0,
+                  "parentRowSpace": 1,
+                  "type": "CANVAS_WIDGET",
+                  "canExtend": true,
+                  "hideCard": true,
+                  "shouldScrollContents": false,
+                  "minHeight": 150,
+                  "parentColumnSpace": 1,
+                  "dynamicTriggerPathList": [],
+                  "leftColumn": 0,
+                  "dynamicBindingPathList": [],
+                  "children": [
+                    {
+                      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+                      "borderColor": "#E0DEDE",
+                      "isVisibleDownload": false,
+                      "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
+                      "topRow": 0,
+                      "isSortable": false,
+                      "type": "TABLE_WIDGET_V2",
+                      "inlineEditingSaveOption": "ROW_LEVEL",
+                      "animateLoading": true,
+                      "dynamicBindingPathList": [
+                        {
+                          "key": "accentColor"
+                        },
+                        {
+                          "key": "borderRadius"
+                        },
+                        {
+                          "key": "boxShadow"
+                        },
+                        {
+                          "key": "tableData"
+                        },
+                        {
+                          "key": "primaryColumns.url.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album_art.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.artist_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.artist.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.track_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.play.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Album.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Shelf.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Tracks.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Time.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Year.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.__Playable.computedValue"
+                        },
+                        {
+                          "key": "defaultSelectedRowIndex"
+                        }
+                      ],
+                      "needsHeightForContent": true,
+                      "leftColumn": 0,
+                      "delimiter": ",",
+                      "defaultSelectedRowIndex": "{{appsmith.store.album_rownum}}",
+                      "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+                      "isVisibleFilters": false,
+                      "isVisible": true,
+                      "enableClientSideSearch": true,
+                      "version": 1,
+                      "totalRecordsCount": 0,
+                      "isLoading": false,
+                      "childStylesheet": {
+                        "button": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "menuButton": {
+                          "menuColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "iconButton": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "editActions": {
+                          "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}"
+                        }
+                      },
+                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                      "columnUpdatedAt": 1681041959317,
+                      "defaultSelectedRowIndices": [
+                        0
+                      ],
+                      "widgetName": "albums_Table",
+                      "defaultPageSize": 0,
+                      "columnOrder": [
+                        "url",
+                        "album_art",
+                        "artist_id",
+                        "artist",
+                        "album_id",
+                        "album",
+                        "track_id",
+                        "play",
+                        "Album",
+                        "Shelf",
+                        "Tracks",
+                        "Time",
+                        "Year",
+                        "__Playable"
+                      ],
+                      "dynamicPropertyPathList": [
+                        {
+                          "key": "onRowSelected"
+                        }
+                      ],
+                      "compactMode": "SHORT",
+                      "displayName": "Table",
+                      "bottomRow": 52,
+                      "columnWidthMap": {
+                        "task": 245,
+                        "step": 70,
+                        "status": 85,
+                        "Shelf": 73,
+                        "Tracks": 85,
+                        "Album": 197
+                      },
+                      "parentRowSpace": 10,
+                      "hideCard": false,
+                      "parentColumnSpace": 2.25390625,
+                      "dynamicTriggerPathList": [
+                        {
+                          "key": "onRowSelected"
+                        }
+                      ],
+                      "borderWidth": "1",
+                      "primaryColumns": {
+                        "url": {
+                          "allowCellWrapping": false,
+                          "index": 5,
+                          "width": 150,
+                          "originalId": "url",
+                          "id": "url",
+                          "alias": "url",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "url",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"url\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album_art": {
+                          "allowCellWrapping": false,
+                          "index": 6,
+                          "width": 150,
+                          "originalId": "album_art",
+                          "id": "album_art",
+                          "alias": "album_art",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album_art",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_art\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "artist_id": {
+                          "allowCellWrapping": false,
+                          "index": 7,
+                          "width": 150,
+                          "originalId": "artist_id",
+                          "id": "artist_id",
+                          "alias": "artist_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "artist_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "artist": {
+                          "allowCellWrapping": false,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "artist",
+                          "id": "artist",
+                          "alias": "artist",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "artist",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album_id": {
+                          "allowCellWrapping": false,
+                          "index": 9,
+                          "width": 150,
+                          "originalId": "album_id",
+                          "id": "album_id",
+                          "alias": "album_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album": {
+                          "allowCellWrapping": false,
+                          "index": 10,
+                          "width": 150,
+                          "originalId": "album",
+                          "id": "album",
+                          "alias": "album",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "track_id": {
+                          "allowCellWrapping": false,
+                          "index": 11,
+                          "width": 150,
+                          "originalId": "track_id",
+                          "id": "track_id",
+                          "alias": "track_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "track_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "play": {
+                          "allowCellWrapping": false,
+                          "index": 13,
+                          "width": 150,
+                          "originalId": "play",
+                          "id": "play",
+                          "alias": "play",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "play",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"play\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Album": {
+                          "allowCellWrapping": false,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "Album",
+                          "id": "Album",
+                          "alias": "Album",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Album",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Album\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "Shelf": {
+                          "allowCellWrapping": false,
+                          "index": 9,
+                          "width": 150,
+                          "originalId": "Shelf",
+                          "id": "Shelf",
+                          "alias": "Shelf",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Shelf",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Shelf\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "Tracks": {
+                          "allowCellWrapping": false,
+                          "index": 10,
+                          "width": 150,
+                          "originalId": "Tracks",
+                          "id": "Tracks",
+                          "alias": "Tracks",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Tracks",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Tracks\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "Time": {
+                          "allowCellWrapping": false,
+                          "index": 11,
+                          "width": 150,
+                          "originalId": "Time",
+                          "id": "Time",
+                          "alias": "Time",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Time",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Time\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "Year": {
+                          "allowCellWrapping": false,
+                          "index": 12,
+                          "width": 150,
+                          "originalId": "Year",
+                          "id": "Year",
+                          "alias": "Year",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Year",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Year\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "__Playable": {
+                          "allowCellWrapping": false,
+                          "index": 13,
+                          "width": 150,
+                          "originalId": "# Playable",
+                          "id": "__Playable",
+                          "alias": "# Playable",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "# Playable",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"# Playable\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        }
+                      },
+                      "onRowSelected": "{{JS_global_mobile.albums_on_row_selected()\n}}",
+                      "key": "uolbup18nq",
+                      "canFreezeColumn": true,
+                      "isDeprecated": false,
+                      "rightColumn": 64,
+                      "textSize": "1rem",
+                      "widgetId": "y2imewk4if",
+                      "minWidth": 450,
+                      "tableData": "{{JSON.parse(albums_api.data).data.map((row) => row.get_albums_mobile)}}",
+                      "label": "Data",
+                      "searchKey": "",
+                      "parentId": "g797enqhu4",
+                      "serverSidePaginationEnabled": true,
+                      "renderMode": "CANVAS",
+                      "horizontalAlignment": "LEFT",
+                      "isVisibleSearch": true,
+                      "responsiveBehavior": "fill",
+                      "isVisiblePagination": false,
+                      "verticalAlignment": "CENTER"
+                    }
+                  ],
                   "isDisabled": false,
-                  "isCellEditable": false,
-                  "isEditable": false,
-                  "isCellVisible": true,
-                  "isDerived": false,
-                  "label": "Duration",
-                  "isSaveVisible": true,
-                  "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Duration\"]))}}",
-                  "sticky": "",
-                  "validation": {},
-                  "cellBackground": ""
+                  "key": "pbaqafwwgq",
+                  "isDeprecated": false,
+                  "tabName": "Albums",
+                  "rightColumn": 164.25,
+                  "detachFromLayout": true,
+                  "widgetId": "g797enqhu4",
+                  "minWidth": 450,
+                  "isVisible": true,
+                  "version": 1,
+                  "parentId": "syc4l4g3jx",
+                  "renderMode": "CANVAS",
+                  "isLoading": false,
+                  "responsiveBehavior": "fill",
+                  "flexLayers": []
+                },
+                {
+                  "tabId": "tabsfedcxu7gx",
+                  "widgetName": "Canvas9",
+                  "displayName": "Canvas",
+                  "topRow": 1,
+                  "bottomRow": 520,
+                  "parentRowSpace": 1,
+                  "type": "CANVAS_WIDGET",
+                  "canExtend": false,
+                  "hideCard": true,
+                  "minHeight": 190,
+                  "parentColumnSpace": 1,
+                  "dynamicTriggerPathList": [],
+                  "leftColumn": 0,
+                  "dynamicBindingPathList": [],
+                  "children": [
+                    {
+                      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+                      "borderColor": "#E0DEDE",
+                      "isVisibleDownload": false,
+                      "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
+                      "topRow": 0,
+                      "isSortable": false,
+                      "type": "TABLE_WIDGET_V2",
+                      "inlineEditingSaveOption": "ROW_LEVEL",
+                      "animateLoading": true,
+                      "dynamicBindingPathList": [
+                        {
+                          "key": "accentColor"
+                        },
+                        {
+                          "key": "borderRadius"
+                        },
+                        {
+                          "key": "boxShadow"
+                        },
+                        {
+                          "key": "tableData"
+                        },
+                        {
+                          "key": "primaryColumns.url.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album_art.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.artist_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.artist.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.track_id.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.play.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Track.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Duration.computedValue"
+                        },
+                        {
+                          "key": "defaultSelectedRowIndex"
+                        }
+                      ],
+                      "needsHeightForContent": true,
+                      "leftColumn": 0,
+                      "delimiter": ",",
+                      "defaultSelectedRowIndex": "{{appsmith.store.track_rownum}}",
+                      "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+                      "isVisibleFilters": false,
+                      "isVisible": true,
+                      "enableClientSideSearch": true,
+                      "version": 1,
+                      "totalRecordsCount": 0,
+                      "isLoading": false,
+                      "childStylesheet": {
+                        "button": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "menuButton": {
+                          "menuColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "iconButton": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "editActions": {
+                          "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}"
+                        }
+                      },
+                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                      "columnUpdatedAt": 1681041996982,
+                      "defaultSelectedRowIndices": [
+                        0
+                      ],
+                      "widgetName": "tracks_Table",
+                      "defaultPageSize": 0,
+                      "columnOrder": [
+                        "url",
+                        "album_art",
+                        "artist_id",
+                        "artist",
+                        "album_id",
+                        "album",
+                        "track_id",
+                        "play",
+                        "Track",
+                        "Duration"
+                      ],
+                      "dynamicPropertyPathList": [
+                        {
+                          "key": "onRowSelected"
+                        }
+                      ],
+                      "compactMode": "SHORT",
+                      "displayName": "Table",
+                      "bottomRow": 50,
+                      "columnWidthMap": {
+                        "task": 245,
+                        "step": 70,
+                        "status": 85,
+                        "Track": 309
+                      },
+                      "parentRowSpace": 10,
+                      "hideCard": false,
+                      "parentColumnSpace": 2.25390625,
+                      "dynamicTriggerPathList": [
+                        {
+                          "key": "onRowSelected"
+                        }
+                      ],
+                      "borderWidth": "1",
+                      "primaryColumns": {
+                        "url": {
+                          "allowCellWrapping": false,
+                          "index": 5,
+                          "width": 150,
+                          "originalId": "url",
+                          "id": "url",
+                          "alias": "url",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "url",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"url\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album_art": {
+                          "allowCellWrapping": false,
+                          "index": 6,
+                          "width": 150,
+                          "originalId": "album_art",
+                          "id": "album_art",
+                          "alias": "album_art",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album_art",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_art\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "artist_id": {
+                          "allowCellWrapping": false,
+                          "index": 7,
+                          "width": 150,
+                          "originalId": "artist_id",
+                          "id": "artist_id",
+                          "alias": "artist_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "artist_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "artist": {
+                          "allowCellWrapping": false,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "artist",
+                          "id": "artist",
+                          "alias": "artist",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "artist",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album_id": {
+                          "allowCellWrapping": false,
+                          "index": 9,
+                          "width": 150,
+                          "originalId": "album_id",
+                          "id": "album_id",
+                          "alias": "album_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "album": {
+                          "allowCellWrapping": false,
+                          "index": 10,
+                          "width": 150,
+                          "originalId": "album",
+                          "id": "album",
+                          "alias": "album",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "album",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "track_id": {
+                          "allowCellWrapping": false,
+                          "index": 11,
+                          "width": 150,
+                          "originalId": "track_id",
+                          "id": "track_id",
+                          "alias": "track_id",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "track_id",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_id\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "play": {
+                          "allowCellWrapping": false,
+                          "index": 13,
+                          "width": 150,
+                          "originalId": "play",
+                          "id": "play",
+                          "alias": "play",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "1rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "play",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"play\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Track": {
+                          "allowCellWrapping": false,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "Track",
+                          "id": "Track",
+                          "alias": "Track",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Track",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Track\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "Duration": {
+                          "allowCellWrapping": false,
+                          "index": 9,
+                          "width": 150,
+                          "originalId": "Duration",
+                          "id": "Duration",
+                          "alias": "Duration",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Duration",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Duration\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        }
+                      },
+                      "onRowSelected": "{{storeValue('track_rownum',tracks_Table.selectedRowIndex)}}",
+                      "key": "uolbup18nq",
+                      "canFreezeColumn": true,
+                      "isDeprecated": false,
+                      "rightColumn": 64,
+                      "textSize": "1rem",
+                      "widgetId": "17we4f0482",
+                      "minWidth": 450,
+                      "tableData": "{{JSON.parse(tracks_api.data).data.map((row) => row.get_tracks_mobile)}}",
+                      "label": "Data",
+                      "searchKey": "",
+                      "parentId": "xbyicda7o1",
+                      "serverSidePaginationEnabled": true,
+                      "renderMode": "CANVAS",
+                      "horizontalAlignment": "LEFT",
+                      "isVisibleSearch": true,
+                      "responsiveBehavior": "fill",
+                      "isVisiblePagination": false,
+                      "verticalAlignment": "CENTER"
+                    }
+                  ],
+                  "key": "pbaqafwwgq",
+                  "isDeprecated": false,
+                  "tabName": "Tracks",
+                  "rightColumn": 164.25,
+                  "detachFromLayout": true,
+                  "widgetId": "xbyicda7o1",
+                  "containerStyle": "none",
+                  "minWidth": 450,
+                  "isVisible": true,
+                  "version": 1,
+                  "parentId": "syc4l4g3jx",
+                  "renderMode": "CANVAS",
+                  "isLoading": false,
+                  "responsiveBehavior": "fill",
+                  "flexLayers": []
                 }
-              },
-              "onRowSelected": "{{JS_global_mobile.row_selected()}}",
-              "defaultSearchText": "{{JS_global_mobile.search()}}",
-              "key": "z1yv7wqdjv",
-              "canFreezeColumn": true,
+              ],
+              "borderWidth": 1,
+              "key": "3zq68vbmhg",
+              "backgroundColor": "#FFFFFF",
               "isDeprecated": false,
               "rightColumn": 64,
-              "textSize": "1rem",
-              "widgetId": "fgeukar82l",
+              "dynamicHeight": "AUTO_HEIGHT",
+              "widgetId": "syc4l4g3jx",
+              "accentColor": "{{JS_global_mobile.tab_accent_colour()}}",
+              "defaultTab": "Artists",
+              "onTabSelected": "",
+              "shouldShowTabs": true,
               "minWidth": 450,
-              "tableData": "{{JS_global_mobile.get_data()}}",
-              "label": "Data",
-              "searchKey": "",
+              "tabsObj": {
+                "tab1": {
+                  "label": "Artists",
+                  "id": "tab1",
+                  "widgetId": "3mw6vz3kgy",
+                  "isVisible": true,
+                  "index": 0,
+                  "positioning": "vertical"
+                },
+                "tab2": {
+                  "label": "Albums",
+                  "id": "tab2",
+                  "widgetId": "g797enqhu4",
+                  "isVisible": true,
+                  "index": 1,
+                  "positioning": "vertical"
+                },
+                "tabsfedcxu7gx": {
+                  "id": "tabsfedcxu7gx",
+                  "index": 2,
+                  "label": "Tracks",
+                  "widgetId": "xbyicda7o1",
+                  "isVisible": true
+                }
+              },
+              "isVisible": true,
+              "version": 3,
               "parentId": "0",
-              "serverSidePaginationEnabled": true,
               "renderMode": "CANVAS",
-              "horizontalAlignment": "LEFT",
-              "isVisibleSearch": true,
+              "isLoading": false,
               "responsiveBehavior": "fill",
-              "isVisiblePagination": false,
-              "verticalAlignment": "CENTER"
+              "originalTopRow": 12,
+              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+              "maxDynamicHeight": 9000,
+              "originalBottomRow": 68,
+              "minDynamicHeight": 15
+            },
+            {
+              "widgetName": "artist_text",
+              "dynamicPropertyPathList": [
+                {
+                  "key": "fontSize"
+                }
+              ],
+              "displayName": "Text",
+              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
+              "searchTags": [
+                "typography",
+                "paragraph",
+                "label"
+              ],
+              "topRow": 8,
+              "bottomRow": 12,
+              "parentRowSpace": 10,
+              "type": "TEXT_WIDGET",
+              "hideCard": false,
+              "animateLoading": true,
+              "overflow": "SCROLL",
+              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+              "parentColumnSpace": 20.0625,
+              "dynamicTriggerPathList": [],
+              "leftColumn": 0,
+              "dynamicBindingPathList": [
+                {
+                  "key": "truncateButtonColor"
+                },
+                {
+                  "key": "fontFamily"
+                },
+                {
+                  "key": "borderRadius"
+                },
+                {
+                  "key": "fontSize"
+                },
+                {
+                  "key": "text"
+                }
+              ],
+              "shouldTruncate": false,
+              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+              "text": "{{artists_Table.selectedRow.Artist.match(/[A-Za-z].*/)[0]}}",
+              "key": "ykgijalkar",
+              "isDeprecated": false,
+              "rightColumn": 29,
+              "textAlign": "LEFT",
+              "dynamicHeight": "FIXED",
+              "widgetId": "6dybel370b",
+              "isVisible": true,
+              "fontStyle": "BOLD",
+              "textColor": "black",
+              "version": 1,
+              "parentId": "0",
+              "renderMode": "CANVAS",
+              "isLoading": false,
+              "originalTopRow": 4,
+              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+              "maxDynamicHeight": 9000,
+              "originalBottomRow": 8,
+              "fontSize": "{{JS_global_mobile.scale_font(artists_Table.selectedRow.Artist.length)}}",
+              "minDynamicHeight": 4
+            },
+            {
+              "widgetName": "album_text",
+              "dynamicPropertyPathList": [
+                {
+                  "key": "fontSize"
+                }
+              ],
+              "displayName": "Text",
+              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
+              "searchTags": [
+                "typography",
+                "paragraph",
+                "label"
+              ],
+              "topRow": 8,
+              "bottomRow": 12,
+              "parentRowSpace": 10,
+              "type": "TEXT_WIDGET",
+              "hideCard": false,
+              "animateLoading": true,
+              "overflow": "SCROLL",
+              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+              "parentColumnSpace": 20.0625,
+              "dynamicTriggerPathList": [],
+              "leftColumn": 29,
+              "dynamicBindingPathList": [
+                {
+                  "key": "truncateButtonColor"
+                },
+                {
+                  "key": "fontFamily"
+                },
+                {
+                  "key": "borderRadius"
+                },
+                {
+                  "key": "text"
+                },
+                {
+                  "key": "fontSize"
+                }
+              ],
+              "shouldTruncate": false,
+              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+              "text": "{{albums_Table.selectedRow.Album.match(/[A-Za-z].*/)[0]}}",
+              "key": "ykgijalkar",
+              "isDeprecated": false,
+              "rightColumn": 64,
+              "textAlign": "LEFT",
+              "dynamicHeight": "FIXED",
+              "widgetId": "70vw1gw92i",
+              "isVisible": true,
+              "fontStyle": "BOLD",
+              "textColor": "black",
+              "version": 1,
+              "parentId": "0",
+              "renderMode": "CANVAS",
+              "isLoading": false,
+              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+              "maxDynamicHeight": 9000,
+              "fontSize": "{{JS_global_mobile.scale_font(albums_Table.selectedRow.Album.length )}}",
+              "minDynamicHeight": 4
             }
           ]
         },
@@ -1941,7 +2966,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('button_colours', {\n    artists: appsmith.store.colours.green,\n    albums: appsmith.store.colours.amber,\n    tracks: appsmith.store.colours.red\n  })).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('level', 'artist')).then(() => storeValue('up_button', appsmith.store.button_colours.artists)).then(() => storeValue('down_button', appsmith.store.button_colours.albums)).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
+                "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
               ],
               "timeoutInMillisecond": 10000
             }

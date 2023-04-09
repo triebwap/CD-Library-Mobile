@@ -1,4 +1,0 @@
-CALL toggle_favourites (p_object_id     => {{appsmith.store.object_id}}
-                       ,p_object_type   => {{appsmith.store.level}}
-											 ,p_collection_id => {{appsmith.store.collection_id}}
-                       )
