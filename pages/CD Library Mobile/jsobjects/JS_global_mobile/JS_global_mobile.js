@@ -9,81 +9,18 @@ export default {
 		.then(() => storeValue('down_button',appsmith.store.button_colours.albums))
 		.then(() => storeValue('artist_rownum',0))
 		.then(() => this.select_data())
-		.then(() => artists_api.run())
-		.then(() => albums_api.run({artist_id: artists_Table.selectedRow.artist_id}))
-		.then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))
+		
 		},
 	select_data: () => {
 		closeModal('collection_modal')
 		.then(() =>storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : (!!appsmith.store.collection_id ? appsmith.store.collection_id : 1)))
-		.then(() => storeValue('level','artist'))
-		.then(() => storeValue('artist_rownum',0))
-		.then(() => storeValue('album_rownum',0))
-		.then(() => storeValue('track_rownum',0))
-		.then(() => storeValue('artist_search',''))
-		.then(() => storeValue('album_search',''))
-		.then(() => storeValue('track_search',''))
-		.then(() => this.query_artists(appsmith.store.collection_id))
+.then(() => artists_api.run())
+		.then(() => albums_api.run({artist_id: artists_Table.selectedRow.artist_id}))
+		.then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))
 	},
 	play: () => {
-	  if (dynamic_table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal')
-		else navigateTo(dynamic_table.selectedRow.play, {}, 'NEW_WINDOW')
-	},
-drill: (direction) => {
-		switch(appsmith.store.level) {
-    case 'artist':
-			if (direction == 'down') {
-				this.query_albums(appsmith.store.collection_id,dynamic_table.selectedRow.artist_id)
-				storeValue('down_button',appsmith.store.button_colours.tracks)
-				storeValue('level','album')
-				storeValue('album_search','')
-				}
-      break;
-    case 'album':
-			if (direction == 'up') {
-				storeValue('up_button',appsmith.store.button_colours.artists)
-				storeValue('down_button',appsmith.store.button_colours.albums)
-				storeValue('level','artist')
-				storeValue('album',null)
-				this.query_artists(appsmith.store.collection_id)
-				}
-		  else if (direction == 'down') {
-			  storeValue('up_button',appsmith.store.button_colours.albums)
-				storeValue('down_button',appsmith.store.button_colours.artists)
-				storeValue('level','track')
-				storeValue('track_search','')
-				this.query_tracks(appsmith.store.collection_id, dynamic_table.selectedRow.album_id)
-			  }
-		  break;
-	  case 'track':
-			if (direction == 'up') {
-				storeValue('up_button',appsmith.store.button_colours.artists)
-				storeValue('down_button',appsmith.store.button_colours.tracks)
-				storeValue('level','album')
-				this.query_albums(appsmith.store.collection_id, dynamic_table.selectedRow.artist_id)
-			}
-			else if (direction == 'down') {
-				storeValue('up_button',appsmith.store.button_colours.artists)
-				storeValue('down_button',appsmith.store.button_colours.albums)
-				storeValue('level','artist')
-				this.query_artists(appsmith.store.collection_id)
-			}
-    }
-	},
-	label: (direction) => {
-		switch(appsmith.store.level) {
-    case 'artist':
-      if (direction == 'up') return 'Artists'
-		  else if (direction == 'down') return 'Albums'
-		  break;
-    case 'album':
-			if (direction == 'up') return 'Artists'
-		  else if (direction == 'down') return 'Tracks'
-		  break;
-	  case 'track':
-			if (direction == 'up') return 'Albums'
-			else if (direction == 'down') return 'Artists'
-		}
+	  if (tracks_Table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal')
+		else navigateTo(tracks_Table.selectedRow.play, {}, 'NEW_WINDOW')
 	},
 	tooltip: (direction) => {
 		switch(appsmith.store.level) {
@@ -100,23 +37,6 @@ drill: (direction) => {
 			else if (direction == 'down') return 'all artists'
 		}
 	},
-  row_selected: () => {
-		storeValue(`${appsmith.store.level}_search`,dynamic_table.searchText)
-    storeValue('level',!!dynamic_table.selectedRow.Artist ? 'artist' : !!dynamic_table.selectedRow.Album ? 'album' : !!dynamic_table.selectedRow.Track ? 'track' : null)
-	  switch(appsmith.store.level) {
-    case 'artist':
-      storeValue('artist_rownum',dynamic_table.selectedRowIndex)
-			storeValue('album_rownum',0)
-			storeValue('track_rownum',0)
-		  break;
-    case 'album':
-      storeValue('album_rownum',dynamic_table.selectedRowIndex)
-			storeValue('track_rownum',0)
-		  break;
-	  case 'track':
-			storeValue('track_rownum',dynamic_table.selectedRowIndex)
-		}
-	},
 	row_num: () => {
 		switch(appsmith.store.level) {
     case 'artist': return appsmith.store.artist_rownum
@@ -131,8 +51,6 @@ drill: (direction) => {
 	  case 'track': return appsmith.store.track_search
 		}	
 	},
-	get_artist: () => {return !!dynamic_table.selectedRow.artist ? dynamic_table.selectedRow.artist : dynamic_table.tableData[0].artist},
-	get_album: () => {return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album},
 	query_artists: (collection_id) => {
 		query_api.run({query: 'SELECT get_artists_mobile(p_collection_id =>'+collection_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
 		.then(() => {
