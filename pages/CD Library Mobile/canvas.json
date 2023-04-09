@@ -1517,10 +1517,13 @@
                   "key": "defaultSelectedRowIndex"
                 },
                 {
-                  "key": "primaryColumns.Track.computedValue"
+                  "key": "primaryColumns.Artist.computedValue"
                 },
                 {
-                  "key": "primaryColumns.Duration.computedValue"
+                  "key": "primaryColumns._Albums.computedValue"
+                },
+                {
+                  "key": "primaryColumns._Playable.computedValue"
                 }
               ],
               "needsHeightForContent": true,
@@ -1558,7 +1561,7 @@
                 }
               },
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "columnUpdatedAt": 1680541314709,
+              "columnUpdatedAt": 1681027323486,
               "defaultSelectedRowIndices": [
                 0
               ],
@@ -1573,8 +1576,9 @@
                 "url",
                 "album_art",
                 "play",
-                "Track",
-                "Duration"
+                "Artist",
+                "_Albums",
+                "_Playable"
               ],
               "dynamicPropertyPathList": [
                 {
@@ -1838,13 +1842,13 @@
                   "validation": {},
                   "cellBackground": ""
                 },
-                "Track": {
+                "Artist": {
                   "allowCellWrapping": false,
                   "index": 0,
                   "width": 150,
-                  "originalId": "Track",
-                  "id": "Track",
-                  "alias": "Track",
+                  "originalId": "Artist",
+                  "id": "Artist",
+                  "alias": "Artist",
                   "horizontalAlignment": "LEFT",
                   "verticalAlignment": "CENTER",
                   "columnType": "text",
@@ -1859,21 +1863,50 @@
                   "isEditable": false,
                   "isCellVisible": true,
                   "isDerived": false,
-                  "label": "Track",
+                  "label": "Artist",
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Track\"]))}}",
+                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Artist\"]))}}",
                   "sticky": "",
                   "validation": {},
                   "cellBackground": ""
                 },
-                "Duration": {
+                "_Albums": {
                   "allowCellWrapping": false,
-                  "index": 1,
+                  "index": 2,
                   "width": 150,
-                  "originalId": "Duration",
-                  "id": "Duration",
-                  "alias": "Duration",
+                  "originalId": "#Albums",
+                  "id": "_Albums",
+                  "alias": "#Albums",
+                  "horizontalAlignment": "LEFT",
+                  "verticalAlignment": "CENTER",
+                  "columnType": "number",
+                  "textColor": "",
+                  "textSize": "1rem",
+                  "fontStyle": "",
+                  "enableFilter": true,
+                  "enableSort": true,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "isCellEditable": false,
+                  "isEditable": false,
+                  "isCellVisible": true,
+                  "isDerived": false,
+                  "label": "#Albums",
+                  "isSaveVisible": true,
+                  "isDiscardVisible": true,
+                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Albums\"]))}}",
+                  "sticky": "",
+                  "validation": {},
+                  "cellBackground": ""
+                },
+                "_Playable": {
+                  "allowCellWrapping": false,
+                  "index": 7,
+                  "width": 150,
+                  "originalId": "#Playable",
+                  "id": "_Playable",
+                  "alias": "#Playable",
                   "horizontalAlignment": "LEFT",
                   "verticalAlignment": "CENTER",
                   "columnType": "text",
@@ -1888,10 +1921,10 @@
                   "isEditable": false,
                   "isCellVisible": true,
                   "isDerived": false,
-                  "label": "Duration",
+                  "label": "#Playable",
                   "isSaveVisible": true,
                   "isDiscardVisible": true,
-                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Duration\"]))}}",
+                  "computedValue": "{{dynamic_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"#Playable\"]))}}",
                   "sticky": "",
                   "validation": {},
                   "cellBackground": ""
@@ -1923,18 +1956,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "CD Library Mobile_owner_name_api",
-              "name": "owner_name_api",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 100000
-            }
-          ],
-          [
-            {
               "id": "CD Library Mobile_JS_global_mobile.startup",
               "name": "JS_global_mobile.startup",
               "collectionId": "CD Library Mobile_JS_global_mobile",
@@ -1944,6 +1965,16 @@
                 "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('button_colours', {\n    artists: appsmith.store.colours.green,\n    albums: appsmith.store.colours.amber,\n    tracks: appsmith.store.colours.red\n  })).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('level', 'artist')).then(() => storeValue('up_button', appsmith.store.button_colours.artists)).then(() => storeValue('down_button', appsmith.store.button_colours.albums)).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "CD Library Mobile_owner_name_api",
+              "name": "owner_name_api",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
+              ],
+              "timeoutInMillisecond": 100000
             }
           ]
         ],
