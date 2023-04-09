@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 730,
+          "bottomRow": 680,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -167,8 +167,8 @@
                 "click",
                 "submit"
               ],
-              "topRow": 8,
-              "bottomRow": 12,
+              "topRow": 4,
+              "bottomRow": 8,
               "tooltip": "{{!!tracks_Table.selectedRow.play ? 'Play '+tracks_Table.selectedRow.Track.match(/[^0-9\\.\\s].*/)[0]+' on '+(!!tracks_Table.selectedRow.play.match('/.*youtube.*/') ? 'YouTube' : 'OneDrive') : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
@@ -180,7 +180,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 51,
+              "leftColumn": 50,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -199,7 +199,7 @@
               "isDisabled": "{{tracks_Table.selectedRowIndex ==-1 || !tracks_Table.selectedRow.play}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
-              "rightColumn": 64,
+              "rightColumn": 63,
               "isDefaultClickDisabled": true,
               "widgetId": "l5ki9nk9ag",
               "isVisible": true,
@@ -236,8 +236,8 @@
                 "click",
                 "submit"
               ],
-              "topRow": 8,
-              "bottomRow": 12,
+              "topRow": 4,
+              "bottomRow": 8,
               "tooltip": "{{!!albums_Table.selectedRow.album_art ? 'Show '+albums_Table.selectedRow.Album+'\\'s Cover Art' : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
@@ -249,7 +249,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 41,
+              "leftColumn": 40,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -268,7 +268,7 @@
               "isDisabled": "{{!albums_Table.selectedRow.album_art}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
-              "rightColumn": 51,
+              "rightColumn": 50,
               "isDefaultClickDisabled": true,
               "widgetId": "32qopqr4wz",
               "isVisible": true,
@@ -473,8 +473,8 @@
                 "click",
                 "submit"
               ],
-              "topRow": 8,
-              "bottomRow": 12,
+              "topRow": 4,
+              "bottomRow": 8,
               "tooltip": "{{\n!!albums_Table.selectedRow.url ? 'Show '+albums_Table.selectedRow.Album+'\\'s Wikipedia Page' : ''\n}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
@@ -486,7 +486,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 30,
+              "leftColumn": 29,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -505,7 +505,7 @@
               "isDisabled": "{{!albums_Table.selectedRow.url}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
-              "rightColumn": 41,
+              "rightColumn": 40,
               "isDefaultClickDisabled": true,
               "widgetId": "jxxnn1238m",
               "isVisible": true,
@@ -697,134 +697,6 @@
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
               "width": 427.5,
-              "minDynamicHeight": 4
-            },
-            {
-              "widgetName": "artist_text",
-              "dynamicPropertyPathList": [
-                {
-                  "key": "fontSize"
-                }
-              ],
-              "displayName": "Text",
-              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
-              "searchTags": [
-                "typography",
-                "paragraph",
-                "label"
-              ],
-              "topRow": 4,
-              "bottomRow": 8,
-              "parentRowSpace": 10,
-              "type": "TEXT_WIDGET",
-              "hideCard": false,
-              "animateLoading": true,
-              "overflow": "SCROLL",
-              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-              "parentColumnSpace": 20.0625,
-              "dynamicTriggerPathList": [],
-              "leftColumn": 0,
-              "dynamicBindingPathList": [
-                {
-                  "key": "truncateButtonColor"
-                },
-                {
-                  "key": "fontFamily"
-                },
-                {
-                  "key": "borderRadius"
-                },
-                {
-                  "key": "fontSize"
-                },
-                {
-                  "key": "text"
-                }
-              ],
-              "shouldTruncate": false,
-              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{artists_Table.selectedRow.Artist}}",
-              "key": "ykgijalkar",
-              "isDeprecated": false,
-              "rightColumn": 31,
-              "textAlign": "LEFT",
-              "dynamicHeight": "FIXED",
-              "widgetId": "6dybel370b",
-              "isVisible": true,
-              "fontStyle": "BOLD",
-              "textColor": "black",
-              "version": 1,
-              "parentId": "0",
-              "renderMode": "CANVAS",
-              "isLoading": false,
-              "originalTopRow": 4,
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "maxDynamicHeight": 9000,
-              "originalBottomRow": 8,
-              "fontSize": "{{JS_global_mobile.scale_font(artists_Table.selectedRow.Artist.length)}}",
-              "minDynamicHeight": 4
-            },
-            {
-              "widgetName": "album_text",
-              "dynamicPropertyPathList": [
-                {
-                  "key": "fontSize"
-                }
-              ],
-              "displayName": "Text",
-              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
-              "searchTags": [
-                "typography",
-                "paragraph",
-                "label"
-              ],
-              "topRow": 4,
-              "bottomRow": 8,
-              "parentRowSpace": 10,
-              "type": "TEXT_WIDGET",
-              "hideCard": false,
-              "animateLoading": true,
-              "overflow": "SCROLL",
-              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-              "parentColumnSpace": 20.0625,
-              "dynamicTriggerPathList": [],
-              "leftColumn": 31,
-              "dynamicBindingPathList": [
-                {
-                  "key": "truncateButtonColor"
-                },
-                {
-                  "key": "fontFamily"
-                },
-                {
-                  "key": "borderRadius"
-                },
-                {
-                  "key": "text"
-                },
-                {
-                  "key": "fontSize"
-                }
-              ],
-              "shouldTruncate": false,
-              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{albums_Table.selectedRow.Album}}",
-              "key": "ykgijalkar",
-              "isDeprecated": false,
-              "rightColumn": 64,
-              "textAlign": "LEFT",
-              "dynamicHeight": "FIXED",
-              "widgetId": "70vw1gw92i",
-              "isVisible": true,
-              "fontStyle": "BOLD",
-              "textColor": "black",
-              "version": 1,
-              "parentId": "0",
-              "renderMode": "CANVAS",
-              "isLoading": false,
-              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-              "maxDynamicHeight": 9000,
-              "fontSize": "{{JS_global_mobile.scale_font(albums_Table.selectedRow.Album.length )}}",
               "minDynamicHeight": 4
             },
             {
@@ -1263,9 +1135,9 @@
             {
               "resetFormOnClick": false,
               "boxShadow": "none",
-              "widgetName": "toggle_favourite_button",
-              "onClick": "{{JS_global_mobile.toggle_favourite()}}",
-              "buttonColor": "{{appsmith.store.colours.light_blue}}",
+              "widgetName": "toggle_favourites_button",
+              "onClick": "{{JS_global_mobile.toggle_favourites()}}",
+              "buttonColor": "{{appsmith.store.colours.blue}}",
               "dynamicPropertyPathList": [
                 {
                   "key": "onClick"
@@ -1336,7 +1208,7 @@
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
               "topRow": 12,
-              "bottomRow": 73,
+              "bottomRow": 68,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -1365,7 +1237,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas7",
                   "displayName": "Canvas",
-                  "bottomRow": 570,
+                  "bottomRow": 520,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -1813,7 +1685,7 @@
                           "cellBackground": ""
                         }
                       },
-                      "onRowSelected": "{{albums_api.run({artist_id: artists_Table.selectedRow.artist_id})\n.then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))\nstoreValue('artist_rownum',artists_Table.selectedRowIndex)\nstoreValue('album_rownum',0)\nstoreValue('track_rownum',0)\n}}",
+                      "onRowSelected": "{{JS_global_mobile.artists_on_row_selected()\n}}",
                       "key": "uolbup18nq",
                       "canFreezeColumn": true,
                       "isDeprecated": false,
@@ -1854,7 +1726,7 @@
                   "tabId": "tab2",
                   "widgetName": "Canvas8",
                   "displayName": "Canvas",
-                  "bottomRow": 570,
+                  "bottomRow": 520,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -2000,7 +1872,7 @@
                       ],
                       "compactMode": "SHORT",
                       "displayName": "Table",
-                      "bottomRow": 28,
+                      "bottomRow": 52,
                       "columnWidthMap": {
                         "task": 245,
                         "step": 70,
@@ -2402,7 +2274,7 @@
                           "cellBackground": ""
                         }
                       },
-                      "onRowSelected": "{{tracks_api.run({album_id: albums_Table.selectedRow.album_id})\nstoreValue('album_rownum',albums_Table.selectedRowIndex)\nstoreValue('track_rownum',0)\n}}",
+                      "onRowSelected": "{{JS_global_mobile.albums_on_row_selected()\n}}",
                       "key": "uolbup18nq",
                       "canFreezeColumn": true,
                       "isDeprecated": false,
@@ -2444,7 +2316,7 @@
                   "widgetName": "Canvas9",
                   "displayName": "Canvas",
                   "topRow": 1,
-                  "bottomRow": 570,
+                  "bottomRow": 520,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
                   "canExtend": false,
@@ -2460,7 +2332,7 @@
                       "borderColor": "#E0DEDE",
                       "isVisibleDownload": false,
                       "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                      "topRow": 4,
+                      "topRow": 0,
                       "isSortable": false,
                       "type": "TABLE_WIDGET_V2",
                       "inlineEditingSaveOption": "ROW_LEVEL",
@@ -2572,7 +2444,7 @@
                       ],
                       "compactMode": "SHORT",
                       "displayName": "Table",
-                      "bottomRow": 32,
+                      "bottomRow": 50,
                       "columnWidthMap": {
                         "task": 245,
                         "step": 70,
@@ -2940,24 +2812,141 @@
               "originalTopRow": 12,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 73,
+              "originalBottomRow": 68,
               "minDynamicHeight": 15
+            },
+            {
+              "widgetName": "artist_text",
+              "dynamicPropertyPathList": [
+                {
+                  "key": "fontSize"
+                }
+              ],
+              "displayName": "Text",
+              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
+              "searchTags": [
+                "typography",
+                "paragraph",
+                "label"
+              ],
+              "topRow": 8,
+              "bottomRow": 12,
+              "parentRowSpace": 10,
+              "type": "TEXT_WIDGET",
+              "hideCard": false,
+              "animateLoading": true,
+              "overflow": "SCROLL",
+              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+              "parentColumnSpace": 20.0625,
+              "dynamicTriggerPathList": [],
+              "leftColumn": 0,
+              "dynamicBindingPathList": [
+                {
+                  "key": "truncateButtonColor"
+                },
+                {
+                  "key": "fontFamily"
+                },
+                {
+                  "key": "borderRadius"
+                },
+                {
+                  "key": "fontSize"
+                },
+                {
+                  "key": "text"
+                }
+              ],
+              "shouldTruncate": false,
+              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+              "text": "{{artists_Table.selectedRow.Artist.match(/[A-Za-z].*/)[0]}}",
+              "key": "ykgijalkar",
+              "isDeprecated": false,
+              "rightColumn": 29,
+              "textAlign": "LEFT",
+              "dynamicHeight": "FIXED",
+              "widgetId": "6dybel370b",
+              "isVisible": true,
+              "fontStyle": "BOLD",
+              "textColor": "black",
+              "version": 1,
+              "parentId": "0",
+              "renderMode": "CANVAS",
+              "isLoading": false,
+              "originalTopRow": 4,
+              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+              "maxDynamicHeight": 9000,
+              "originalBottomRow": 8,
+              "fontSize": "{{JS_global_mobile.scale_font(artists_Table.selectedRow.Artist.length)}}",
+              "minDynamicHeight": 4
+            },
+            {
+              "widgetName": "album_text",
+              "dynamicPropertyPathList": [
+                {
+                  "key": "fontSize"
+                }
+              ],
+              "displayName": "Text",
+              "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
+              "searchTags": [
+                "typography",
+                "paragraph",
+                "label"
+              ],
+              "topRow": 8,
+              "bottomRow": 12,
+              "parentRowSpace": 10,
+              "type": "TEXT_WIDGET",
+              "hideCard": false,
+              "animateLoading": true,
+              "overflow": "SCROLL",
+              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+              "parentColumnSpace": 20.0625,
+              "dynamicTriggerPathList": [],
+              "leftColumn": 29,
+              "dynamicBindingPathList": [
+                {
+                  "key": "truncateButtonColor"
+                },
+                {
+                  "key": "fontFamily"
+                },
+                {
+                  "key": "borderRadius"
+                },
+                {
+                  "key": "text"
+                },
+                {
+                  "key": "fontSize"
+                }
+              ],
+              "shouldTruncate": false,
+              "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+              "text": "{{albums_Table.selectedRow.Album.match(/[A-Za-z].*/)[0]}}",
+              "key": "ykgijalkar",
+              "isDeprecated": false,
+              "rightColumn": 64,
+              "textAlign": "LEFT",
+              "dynamicHeight": "FIXED",
+              "widgetId": "70vw1gw92i",
+              "isVisible": true,
+              "fontStyle": "BOLD",
+              "textColor": "black",
+              "version": 1,
+              "parentId": "0",
+              "renderMode": "CANVAS",
+              "isLoading": false,
+              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+              "maxDynamicHeight": 9000,
+              "fontSize": "{{JS_global_mobile.scale_font(albums_Table.selectedRow.Album.length )}}",
+              "minDynamicHeight": 4
             }
           ]
         },
         "layoutOnLoadActions": [
           [
-            {
-              "id": "CD Library Mobile_JS_global_mobile.startup",
-              "name": "JS_global_mobile.startup",
-              "collectionId": "CD Library Mobile_JS_global_mobile",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "() => {\n  storeValue('response', null).then(() => storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  })).then(() => storeValue('button_colours', {\n    artists: appsmith.store.colours.green,\n    albums: appsmith.store.colours.amber,\n    tracks: appsmith.store.colours.red\n  })).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('level', 'artist')).then(() => storeValue('up_button', appsmith.store.button_colours.artists)).then(() => storeValue('down_button', appsmith.store.button_colours.albums)).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
             {
               "id": "CD Library Mobile_owner_name_api",
               "name": "owner_name_api",
@@ -2967,6 +2956,19 @@
                 "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
               ],
               "timeoutInMillisecond": 100000
+            }
+          ],
+          [
+            {
+              "id": "CD Library Mobile_JS_global_mobile.startup",
+              "name": "JS_global_mobile.startup",
+              "collectionId": "CD Library Mobile_JS_global_mobile",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ]
         ],

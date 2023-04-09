@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "query_albums",
-    "fullyQualifiedName": "JS_global_mobile.query_albums",
+    "name": "toggle_favourites",
+    "fullyQualifiedName": "JS_global_mobile.toggle_favourites",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,11 +20,8 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [
-        {},
-        {}
-      ],
-      "isAsync": true
+      "jsArguments": [],
+      "isAsync": false
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -40,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.query_albums",
+  "id": "CD Library Mobile_JS_global_mobile.toggle_favourites",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bfed"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6432d4f47c81ad7697463917"
 }

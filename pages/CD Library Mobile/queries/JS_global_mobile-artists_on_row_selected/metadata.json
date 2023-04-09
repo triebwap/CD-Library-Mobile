@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "row_num",
-    "fullyQualifiedName": "JS_global_mobile.row_num",
+    "name": "artists_on_row_selected",
+    "fullyQualifiedName": "JS_global_mobile.artists_on_row_selected",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -21,7 +21,7 @@
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [],
-      "isAsync": false
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.row_num",
+  "id": "CD Library Mobile_JS_global_mobile.artists_on_row_selected",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_638c8e9f2913ba43778b7bcb"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6432d3221e9ff4059b03fbeb"
 }

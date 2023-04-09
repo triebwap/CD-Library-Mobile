@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "toggle_favourite",
+    "name": "toggle_favourites",
     "datasource": {
       "name": "bit.io",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "CALL toggle_favourites (p_object_id     => {{appsmith.store.object_id}}\n                       ,p_object_type   => {{appsmith.store.level}}\n\t\t\t\t\t\t\t\t\t\t\t ,p_collection_id => {{appsmith.store.collection_id}}\n                       )",
+      "body": "CALL toggle_favourites (p_object_id     => {{this.params.object_id}}\n                       ,p_object_type   => {{this.params.object_type}}\n\t\t\t\t\t\t\t\t\t\t\t ,p_collection_id => {{appsmith.store.collection_id}}\n                       )",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -37,15 +37,15 @@
     "messages": [],
     "jsonPathKeys": [
       "appsmith.store.collection_id",
-      "appsmith.store.level",
-      "appsmith.store.object_id"
+      "this.params.object_id",
+      "this.params.object_type"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_toggle_favourite",
+  "id": "CD Library Mobile_toggle_favourites",
   "deleted": false,
   "gitSyncId": "6363b42e956dd31e95b0b466_6399b0914b95806da2dabeb8"
 }
