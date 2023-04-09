@@ -56,14 +56,12 @@ export default {
 				storeValue('up_button',appsmith.store.button_colours.artists)
 				storeValue('down_button',appsmith.store.button_colours.tracks)
 				storeValue('level','album')
-				storeValue('response',undefined)
 				this.query_albums(appsmith.store.collection_id, dynamic_table.selectedRow.artist_id)
 			}
 			else if (direction == 'down') {
 				storeValue('up_button',appsmith.store.button_colours.artists)
 				storeValue('down_button',appsmith.store.button_colours.albums)
 				storeValue('level','artist')
-				storeValue('response',undefined)
 				this.query_artists(appsmith.store.collection_id)
 			}
     }
@@ -81,6 +79,21 @@ export default {
 	  case 'track':
 			if (direction == 'up') return 'Albums'
 			else if (direction == 'down') return 'Artists'
+		}
+	},
+	tooltip: (direction) => {
+		switch(appsmith.store.level) {
+    case 'artist':
+      if (direction == 'up') return 'all artists'
+		  else if (direction == 'down') return JS_global_mobile.get_artist()+'\'s albums'
+		  break;
+    case 'album':
+			if (direction == 'up') return 'all artists'
+		  else if (direction == 'down') return JS_global_mobile.get_album()+'\'s tracks'
+		  break;
+	  case 'track':
+			if (direction == 'up') return JS_global_mobile.get_artist()+'\'s albums'
+			else if (direction == 'down') return 'all artists'
 		}
 	},
   row_selected: () => {
@@ -117,23 +130,25 @@ export default {
 	get_artist: () => {return !!dynamic_table.selectedRow.artist ? dynamic_table.selectedRow.artist : dynamic_table.tableData[0].artist},
 	get_album: () => {return !!dynamic_table.selectedRow.album ? dynamic_table.selectedRow.album : dynamic_table.tableData[0].album},
 	query_artists: (collection_id) => {
-		showAlert('Loading artists...')
-		.then(() => storeValue('response',undefined))
-		.then(() => query_api.run({query: 'SELECT get_artists_mobile(p_collection_id =>'+collection_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}))
+		query_api.run({query: 'SELECT get_artists_mobile(p_collection_id =>'+collection_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
+		.then(() => showAlert('Found '+dynamic_table.tableData.length+' artist'+(dynamic_table.tableData.length >1 ? 's' : ''),'success'))
+		.catch(() => showAlert('Error getting artists: '+query_api.data.match(/.*/)[0],'error'))
 	},
   query_albums: (collection_id, artist_id) => {
-		showAlert('Loading albums...')
-	  .then(() => query_api.run({query: 'SELECT get_albums_mobile(p_collection_id =>'+collection_id+',p_artist_id =>'+artist_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}))
+		query_api.run({query: 'SELECT get_albums_mobile(p_collection_id =>'+collection_id+',p_artist_id =>'+artist_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
+		.then(() => showAlert('Found '+dynamic_table.tableData.length+' album'+(dynamic_table.tableData.length >1 ? 's' : ''),'success'))
+		.catch(() => showAlert('Error getting albums: '+query_api.data.match(/.*/)[0],'error'))
 	},
   query_tracks: (collection_id, album_id) => {
-		showAlert('Loading tracks...')
-		.then(() => query_api.run({query: 'SELECT get_tracks_mobile(p_collection_id =>'+collection_id+',p_album_id =>'+album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}))
+		query_api.run({query: 'SELECT get_tracks_mobile(p_collection_id =>'+collection_id+',p_album_id =>'+album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'})
 		.then(() => {
       if (JSON.parse(query_api.data).data.length == 0) {
 				storeValue('level','album')
 			  showAlert('No tracks found','warning')
 				}
+			else showAlert('Found '+dynamic_table.tableData.length+' track'+(dynamic_table.tableData.length >1 ? 's' : ''),'success')
 		})
+		.catch(() => showAlert('Error getting tracks: '+query_api.data.match(/.*/)[0],'error'))
 	},
 	scale_font: (string_length) => {
     if (string_length <=12 | !string_length) return appsmith.store.font_sizes.large
@@ -175,6 +190,7 @@ export default {
     case 'artist': return JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile)
     case 'album': return JSON.parse(query_api.data).data.map((row) => row.get_albums_mobile)
 	  case 'track': return JSON.parse(query_api.data).data.map((row) => row.get_tracks_mobile)
+		default: return JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile)
 		}										
 	},
 	default_selected_row: () => {
