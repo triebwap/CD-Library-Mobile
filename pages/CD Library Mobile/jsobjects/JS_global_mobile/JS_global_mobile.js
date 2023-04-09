@@ -1,7 +1,6 @@
 export default {
 	startup: () => {
-		clearStore()
-		.then(() => storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'}))
+		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'})
 		.then(() => storeValue('button_colours',{artists: appsmith.store.colours.green, albums: appsmith.store.colours.amber, tracks: appsmith.store.colours.red}))
 		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1.25rem', small: '0.875rem'}))
 		.then(() => storeValue('level','artist'))
@@ -26,7 +25,7 @@ export default {
 	  if (dynamic_table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal')
 		else navigateTo(dynamic_table.selectedRow.play, {}, 'NEW_WINDOW')
 	},
-	drill: (direction) => {
+drill: (direction) => {
 		switch(appsmith.store.level) {
     case 'artist':
 			if (direction == 'down') {
@@ -187,6 +186,7 @@ export default {
 		}
 	},
 	get_data: () => {
+		if (!query_api.data) return null
 		switch(appsmith.store.level) {
     case 'artist': return JSON.parse(query_api.data).data.map((row) => row.get_artists_mobile)
     case 'album': return JSON.parse(query_api.data).data.map((row) => row.get_albums_mobile)
