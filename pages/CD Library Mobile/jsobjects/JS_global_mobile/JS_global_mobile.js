@@ -55,4 +55,11 @@ export default {
 		  .then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))
 		}
 	},
+	toggle_favourites_tooltip: () => {
+		switch(Tabs.selectedTab) {
+    case 'Artists': return (!artists_Table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+artists_Table.selectedRow.Artist.match(/[\w].*/)[0]+(!artists_Table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
+    case 'Albums': return (!albums_Table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+albums_Table.selectedRow.Album.match(/[\w].*/)[0]+(!albums_Table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
+    case 'Tracks': return (!tracks_Table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+tracks_Table.selectedRow.Track.match(/[^/d/.\W][\w].*/)[0]+(!tracks_Table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
+    }		
+	}
 }

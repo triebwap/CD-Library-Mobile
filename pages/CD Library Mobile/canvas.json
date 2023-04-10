@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 680,
+          "bottomRow": 700,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -65,7 +65,7 @@
               "isDisabled": false,
               "key": "816zl827dl",
               "isDeprecated": false,
-              "rightColumn": 19,
+              "rightColumn": 15,
               "onChange": "{{JS_global_mobile.select_data()}}",
               "dynamicHeight": "AUTO_HEIGHT",
               "widgetId": "xizp1kx3zq",
@@ -104,7 +104,7 @@
               ],
               "topRow": 0,
               "bottomRow": 4,
-              "tooltip": "Switch Collection Owner",
+              "tooltip": "Change Collection Owner",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -169,7 +169,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{!!tracks_Table.selectedRow.play ? 'Play '+tracks_Table.selectedRow.Track.match(/[^0-9\\.\\s].*/)[0]+' on '+(!!tracks_Table.selectedRow.play.match('/.*youtube.*/') ? 'YouTube' : 'OneDrive') : ''}}",
+              "tooltip": "{{!!tracks_Table.selectedRow.play ? 'Play \\''+tracks_Table.selectedRow.Track.match(/[^/d/.\\W][\\w].*/)[0]+'\\' on '+(!!tracks_Table.selectedRow.play.match('/.*youtube.*/') ? 'YouTube' : 'OneDrive') : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -238,7 +238,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{!!albums_Table.selectedRow.album_art ? 'Show '+albums_Table.selectedRow.Album+'\\'s Cover Art' : ''}}",
+              "tooltip": "{{!!albums_Table.selectedRow.album_art ? 'Show \\''+albums_Table.selectedRow.Album.match(/[\\w].*/)+'\\' Cover Art' : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -475,7 +475,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{\n!!albums_Table.selectedRow.url ? 'Show '+albums_Table.selectedRow.Album+'\\'s Wikipedia Page' : ''\n}}",
+              "tooltip": "{{\n!!albums_Table.selectedRow.url ? 'Show \\''+albums_Table.selectedRow.Album.match(/[\\w].*/)+'\\' Wikipedia Page' : ''\n}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -1154,7 +1154,7 @@
               ],
               "topRow": 0,
               "bottomRow": 4,
-              "tooltip": "Set/Unset Favourite",
+              "tooltip": "{{JS_global_mobile.toggle_favourites_tooltip()}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -1172,6 +1172,9 @@
                 },
                 {
                   "key": "buttonColor"
+                },
+                {
+                  "key": "tooltip"
                 }
               ],
               "text": "Set ⭐",
@@ -1208,7 +1211,7 @@
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
               "topRow": 12,
-              "bottomRow": 68,
+              "bottomRow": 70,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -1237,7 +1240,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas7",
                   "displayName": "Canvas",
-                  "bottomRow": 520,
+                  "bottomRow": 540,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -1308,6 +1311,9 @@
                         },
                         {
                           "key": "defaultSelectedRowIndex"
+                        },
+                        {
+                          "key": "primaryColumns.favourite.computedValue"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -1345,7 +1351,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1681041808497,
+                      "columnUpdatedAt": 1681121430360,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -1362,7 +1368,8 @@
                         "play",
                         "Artist",
                         "_Albums",
-                        "_Playable"
+                        "_Playable",
+                        "favourite"
                       ],
                       "dynamicPropertyPathList": [
                         {
@@ -1683,6 +1690,35 @@
                           "sticky": "",
                           "validation": {},
                           "cellBackground": ""
+                        },
+                        "favourite": {
+                          "allowCellWrapping": false,
+                          "index": 11,
+                          "width": 150,
+                          "originalId": "favourite",
+                          "id": "favourite",
+                          "alias": "favourite",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "checkbox",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "favourite",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{artists_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"favourite\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
                         }
                       },
                       "onRowSelected": "{{JS_global_mobile.artists_on_row_selected()\n}}",
@@ -1726,7 +1762,7 @@
                   "tabId": "tab2",
                   "widgetName": "Canvas8",
                   "displayName": "Canvas",
-                  "bottomRow": 520,
+                  "bottomRow": 540,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -1806,6 +1842,9 @@
                         },
                         {
                           "key": "defaultSelectedRowIndex"
+                        },
+                        {
+                          "key": "primaryColumns.favourite.computedValue"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -1843,7 +1882,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1681041959317,
+                      "columnUpdatedAt": 1681122060613,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -1863,7 +1902,8 @@
                         "Tracks",
                         "Time",
                         "Year",
-                        "__Playable"
+                        "__Playable",
+                        "favourite"
                       ],
                       "dynamicPropertyPathList": [
                         {
@@ -2272,6 +2312,35 @@
                           "sticky": "",
                           "validation": {},
                           "cellBackground": ""
+                        },
+                        "favourite": {
+                          "allowCellWrapping": false,
+                          "index": 14,
+                          "width": 150,
+                          "originalId": "favourite",
+                          "id": "favourite",
+                          "alias": "favourite",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "checkbox",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "favourite",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{albums_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"favourite\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
                         }
                       },
                       "onRowSelected": "{{JS_global_mobile.albums_on_row_selected()\n}}",
@@ -2316,7 +2385,7 @@
                   "widgetName": "Canvas9",
                   "displayName": "Canvas",
                   "topRow": 1,
-                  "bottomRow": 520,
+                  "bottomRow": 540,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
                   "canExtend": false,
@@ -2382,6 +2451,9 @@
                         },
                         {
                           "key": "defaultSelectedRowIndex"
+                        },
+                        {
+                          "key": "primaryColumns.favourite.computedValue"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -2419,7 +2491,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1681041996982,
+                      "columnUpdatedAt": 1681122105837,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -2435,7 +2507,8 @@
                         "track_id",
                         "play",
                         "Track",
-                        "Duration"
+                        "Duration",
+                        "favourite"
                       ],
                       "dynamicPropertyPathList": [
                         {
@@ -2726,6 +2799,35 @@
                           "sticky": "",
                           "validation": {},
                           "cellBackground": ""
+                        },
+                        "favourite": {
+                          "allowCellWrapping": false,
+                          "index": 10,
+                          "width": 150,
+                          "originalId": "favourite",
+                          "id": "favourite",
+                          "alias": "favourite",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "checkbox",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "favourite",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_Table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"favourite\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
                         }
                       },
                       "onRowSelected": "{{storeValue('track_rownum',tracks_Table.selectedRowIndex)}}",
@@ -2812,7 +2914,7 @@
               "originalTopRow": 12,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 68,
+              "originalBottomRow": 70,
               "minDynamicHeight": 15
             },
             {
@@ -2820,6 +2922,9 @@
               "dynamicPropertyPathList": [
                 {
                   "key": "fontSize"
+                },
+                {
+                  "key": "textColor"
                 }
               ],
               "displayName": "Text",
@@ -2855,11 +2960,14 @@
                 },
                 {
                   "key": "text"
+                },
+                {
+                  "key": "textColor"
                 }
               ],
               "shouldTruncate": false,
               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{artists_Table.selectedRow.Artist.match(/[A-Za-z].*/)[0]}}",
+              "text": "{{artists_Table.selectedRow.Artist.match(/[\\w].*/)[0]}}",
               "key": "ykgijalkar",
               "isDeprecated": false,
               "rightColumn": 29,
@@ -2868,15 +2976,15 @@
               "widgetId": "6dybel370b",
               "isVisible": true,
               "fontStyle": "BOLD",
-              "textColor": "black",
+              "textColor": "{{appsmith.store.colours.green}}",
               "version": 1,
               "parentId": "0",
               "renderMode": "CANVAS",
               "isLoading": false,
-              "originalTopRow": 4,
+              "originalTopRow": 8,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 8,
+              "originalBottomRow": 12,
               "fontSize": "{{JS_global_mobile.scale_font(artists_Table.selectedRow.Artist.length)}}",
               "minDynamicHeight": 4
             },
@@ -2885,6 +2993,9 @@
               "dynamicPropertyPathList": [
                 {
                   "key": "fontSize"
+                },
+                {
+                  "key": "textColor"
                 }
               ],
               "displayName": "Text",
@@ -2920,11 +3031,14 @@
                 },
                 {
                   "key": "fontSize"
+                },
+                {
+                  "key": "textColor"
                 }
               ],
               "shouldTruncate": false,
               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{albums_Table.selectedRow.Album.match(/[A-Za-z].*/)[0]}}",
+              "text": "{{albums_Table.selectedRow.Album.match(/[\\w].*/)[0]}}",
               "key": "ykgijalkar",
               "isDeprecated": false,
               "rightColumn": 64,
@@ -2933,7 +3047,7 @@
               "widgetId": "70vw1gw92i",
               "isVisible": true,
               "fontStyle": "BOLD",
-              "textColor": "black",
+              "textColor": "{{appsmith.store.colours.amber}}",
               "version": 1,
               "parentId": "0",
               "renderMode": "CANVAS",
@@ -2948,18 +3062,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "CD Library Mobile_owner_name_api",
-              "name": "owner_name_api",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 100000
-            }
-          ],
-          [
-            {
               "id": "CD Library Mobile_JS_global_mobile.startup",
               "name": "JS_global_mobile.startup",
               "collectionId": "CD Library Mobile_JS_global_mobile",
@@ -2969,6 +3071,16 @@
                 "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "CD Library Mobile_owner_name_api",
+              "name": "owner_name_api",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
+              ],
+              "timeoutInMillisecond": 100000
             }
           ]
         ],
