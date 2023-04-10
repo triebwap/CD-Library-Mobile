@@ -5,14 +5,14 @@ export default {
 		storeValue('artist_rownum',0)
 		storeValue('album_rownum',0)
     storeValue('track_rownum',0)
-		.then(() => artists_api.run())
-		.then(() => albums_api.run({artist_id: artists_Table.selectedRow.artist_id}))
-		.then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))
+    this.select_data()
 		},
 	select_data: () => {
 		closeModal('collection_modal')
 		.then(() => storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : (!!appsmith.store.collection_id ? appsmith.store.collection_id : 1)))
-    .then(() => this.startup())
+    .then(() => artists_api.run())
+		.then(() => albums_api.run())
+		.then(() => tracks_api.run())
 	},
 	play: () => {
 	  if (tracks_Table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal')

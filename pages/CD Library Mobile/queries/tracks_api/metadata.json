@@ -48,7 +48,7 @@
           "value": "objects"
         }
       ],
-      "body": "{\"query_string\":{{'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+this.params.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}}, \"database_name\":\"triebwap/myDB\"}",
+      "body": "{\"query_string\":{{'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+albums_Table.selectedRow.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}}, \"database_name\":\"triebwap/myDB\"}",
       "bodyFormData": [],
       "httpMethod": "POST",
       "selfReferencingDataPaths": [],
@@ -68,7 +68,7 @@
     ],
     "messages": [],
     "jsonPathKeys": [
-      "'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+this.params.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'"
+      "'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+albums_Table.selectedRow.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'"
     ],
     "userSetOnLoad": true,
     "confirmBeforeExecute": false,
