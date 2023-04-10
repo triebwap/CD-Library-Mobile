@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 700,
+          "bottomRow": 680,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -1211,7 +1211,7 @@
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
               "topRow": 12,
-              "bottomRow": 70,
+              "bottomRow": 68,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -1240,7 +1240,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas7",
                   "displayName": "Canvas",
-                  "bottomRow": 540,
+                  "bottomRow": 520,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -1762,7 +1762,7 @@
                   "tabId": "tab2",
                   "widgetName": "Canvas8",
                   "displayName": "Canvas",
-                  "bottomRow": 540,
+                  "bottomRow": 520,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -2385,7 +2385,7 @@
                   "widgetName": "Canvas9",
                   "displayName": "Canvas",
                   "topRow": 1,
-                  "bottomRow": 540,
+                  "bottomRow": 520,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
                   "canExtend": false,
@@ -2830,7 +2830,7 @@
                           "cellBackground": ""
                         }
                       },
-                      "onRowSelected": "{{storeValue('track_rownum',tracks_Table.selectedRowIndex)}}",
+                      "onRowSelected": "{{JS_global_mobile.tracks_on_row_selected()}}",
                       "key": "uolbup18nq",
                       "canFreezeColumn": true,
                       "isDeprecated": false,
@@ -3068,7 +3068,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
+                "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  });\n  storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  });\n  storeValue('artist_rownum', 0);\n  storeValue('album_rownum', 0);\n  storeValue('track_rownum', 0);\n  JS_global_mobile.select_data();\n}"
               ],
               "timeoutInMillisecond": 10000
             },
