@@ -1,6 +1,6 @@
 
  -- Artist Select Mobile Function ********************************************************************************************** 
-DROP FUNCTION get_artists_mobile;
+DROP              FUNCTION get_artists_mobile;
 CREATE OR REPLACE FUNCTION get_artists_mobile(p_collection_id   collections.collection_id%TYPE
                                              ,p_favourites_only BOOLEAN
 ) 
@@ -27,6 +27,7 @@ RETURNS SETOF artist_type_mobile AS $$
         ,NULL url
         ,NULL album_art
         ,NULL play
+        ,favourite(p_collection_id,artist_id,'artist') favourite
   FROM  artists 
   WHERE artist_id IN (SELECT artist_id 
                       FROM   albums 
@@ -54,7 +55,7 @@ RETURNS SETOF artist_type_mobile AS $$
 $$ LANGUAGE sql;
 
 -- Album Select Mobile Function ********************************************************************************************** 
-DROP FUNCTION get_albums_mobile;
+DROP              FUNCTION get_albums_mobile;
 CREATE OR REPLACE FUNCTION get_albums_mobile(p_collection_id   collections.collection_id%TYPE
                                             ,p_artist_id       artists.artist_id%TYPE
                                             ,p_favourites_only BOOLEAN
@@ -77,7 +78,8 @@ RETURNS SETOF album_type_mobile AS $$
           WHERE  tracks.album_id = alb.album_id 
           AND     play LIKE 'https%'
          )        "#Playable"
-        ,NULL    play 
+        ,NULL    play
+        ,favourite(p_collection_id,alb.album_id,'album') favourite
   FROM  albums  alb
        ,artists art
   WHERE  alb.artist_id = p_artist_id
@@ -99,7 +101,7 @@ RETURNS SETOF album_type_mobile AS $$
 $$ LANGUAGE sql;
 
  -- Track Select Mobile Function **********************************************************************************************
-DROP FUNCTION get_tracks_mobile;
+DROP              FUNCTION get_tracks_mobile;
 CREATE OR REPLACE FUNCTION get_tracks_mobile(p_album_id        albums.album_id%type
                                             ,p_favourites_only BOOLEAN
                                             ,p_collection_id   collections.collection_id%type
@@ -114,7 +116,8 @@ RETURNS SETOF track_type_mobile AS $$
         ,alb.album
         ,track_id
         ,NULL url
-        ,NULL album_art 
+        ,NULL album_art
+        ,favourite(p_collection_id,tra.track_id,'track') favourite
   FROM  tracks  tra
        ,albums  alb
        ,artists art
