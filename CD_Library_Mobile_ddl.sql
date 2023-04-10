@@ -1,42 +1,45 @@
 
-drop  type artist_type_mobile;
-create type artist_type_mobile as ("Artist" text
-                                  ,artist text
-                                  ,"#Albums" int
-                                  ,artist_id int
-                                  ,album_id int
-                                  ,album text
-                                  ,track_id int
-                                  ,"#Playable" int
-                                  ,url text
-                                  ,album_art text
-                                  ,play text
+DROP   TYPE artist_type_mobile CASCADE;
+CREATE TYPE artist_type_mobile AS ("Artist"    TEXT
+                                  ,artist      TEXT
+                                  ,"#Albums"   INTEGER
+                                  ,artist_id   INTEGER
+                                  ,album_id    INTEGER
+                                  ,album       TEXT
+                                  ,track_id    INTEGER
+                                  ,"#Playable" INTEGER
+                                  ,url         TEXT
+                                  ,album_art   TEXT
+                                  ,play        TEXT
+                                  ,favourite   BOOLEAN
                                  );
-drop type album_type_mobile;
-create type album_type_mobile as ("Album" text
-                                 ,"Shelf" text
-                                 ,"Tracks" int
-                                 ,"Time" text
-                                 ,"Year" int
-                                 ,url text
-                                 ,album_art text
-                                 ,artist_id int
-                                 ,artist text
-                                 ,album_id int
-                                 ,album text
-                                 ,track_id int
-                                 ,"# Playable" int
-                                 ,play text
+DROP TYPE   album_type_mobile CASCADE;
+CREATE TYPE album_type_mobile AS ("Album"      TEXT
+                                 ,"Shelf"      TEXT
+                                 ,"Tracks"     INTEGER
+                                 ,"Time"       TEXT
+                                 ,"Year"       INTEGER
+                                 ,url          TEXT
+                                 ,album_art    TEXT
+                                 ,artist_id    INTEGER
+                                 ,artist       TEXT
+                                 ,album_id     INTEGER
+                                 ,album        TEXT
+                                 ,track_id     INTEGER
+                                 ,"# Playable" INTEGER
+                                 ,play         TEXT
+                                 ,favourite    BOOLEAN
                                  );
-drop type track_type_mobile;
-create type track_type_mobile as ("Track" text
-                                 ,"Duration" text
-                                 ,play text
-                                 ,artist_id int
-                                 ,artist text
-                                 ,album_id int
-                                 ,album text
-                                 ,track_id int
-                                 ,url text
-                                 ,album_art text
+DROP TYPE   track_type_mobile CASCADE;
+CREATE TYPE track_type_mobile AS ("Track"    TEXT
+                                 ,"Duration" TEXT
+                                 ,play       TEXT
+                                 ,artist_id  INTEGER
+                                 ,artist     TEXT
+                                 ,album_id   INTEGER
+                                 ,album      TEXT
+                                 ,track_id   INTEGER
+                                 ,url        TEXT
+                                 ,album_art  TEXT
+                                 ,favourite  BOOLEAN
                                  );
