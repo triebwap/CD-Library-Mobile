@@ -20,7 +20,7 @@ export default {
 	},
 	scale_font: (string_length) => {
     if (string_length <=12 | !string_length) return appsmith.store.font_sizes.large
-	  else if (string_length >12 & string_length <=16) return appsmith.store.font_sizes.medium
+	  else if (string_length >12 & string_length <=15) return appsmith.store.font_sizes.medium
 	  else return appsmith.store.font_sizes.small 
 	},
 	tab_accent_colour: () => {
@@ -50,11 +50,11 @@ export default {
 		case 'Artists':
 			toggle_favourites.run({object_id: artists_Table.selectedRow.artist_id, object_type: 'artist'})
 		  .then(() => artists_api.run())
-		  break;
+		  break
     case 'Albums':
 			toggle_favourites.run({object_id: albums_Table.selectedRow.album_id, object_type: 'album'})
 		  .then(() => albums_api.run({artist_id: artists_Table.selectedRow.artist_id}))
-		  break;
+		  break
 	  case 'Tracks':
 			toggle_favourites.run({object_id: tracks_Table.selectedRow.track_id, object_type: 'track'})
 		  .then(() => tracks_api.run({album_id: albums_Table.selectedRow.album_id}))
