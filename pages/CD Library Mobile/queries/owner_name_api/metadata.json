@@ -48,7 +48,7 @@
           "value": "objects"
         }
       ],
-      "body": "{\"query_string\":'SELECT get_owner_name(p_collection_id => {{!appsmith.store.collection_id ? 0 : appsmith.store.collection_id}})', \"database_name\":\"triebwap/myDB\"}",
+      "body": "{\"query_string\":'SELECT get_owner_name(p_collection_id => {{!appsmith.store.collection_id ? null : appsmith.store.collection_id}})', \"database_name\":\"triebwap/myDB\"}",
       "bodyFormData": [],
       "httpMethod": "POST",
       "selfReferencingDataPaths": [],
@@ -68,7 +68,7 @@
     ],
     "messages": [],
     "jsonPathKeys": [
-      "!appsmith.store.collection_id ? 0 : appsmith.store.collection_id"
+      "!appsmith.store.collection_id ? null : appsmith.store.collection_id"
     ],
     "userSetOnLoad": true,
     "confirmBeforeExecute": false,
