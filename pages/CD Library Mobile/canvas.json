@@ -1382,7 +1382,7 @@
                       ],
                       "compactMode": "SHORT",
                       "displayName": "Table",
-                      "bottomRow": 52,
+                      "bottomRow": 49,
                       "columnWidthMap": {
                         "task": 245,
                         "step": 70,
@@ -3070,6 +3070,18 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "CD Library Mobile_owner_name_api",
+              "name": "owner_name_api",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "!appsmith.store.collection_id ? null : appsmith.store.collection_id"
+              ],
+              "timeoutInMillisecond": 100000
+            }
+          ],
+          [
+            {
               "id": "CD Library Mobile_JS_global_mobile.startup",
               "name": "JS_global_mobile.startup",
               "collectionId": "CD Library Mobile_JS_global_mobile",
@@ -3079,16 +3091,6 @@
                 "() => {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  });\n  storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  });\n  storeValue('artist_rownum', 0);\n  storeValue('album_rownum', 0);\n  storeValue('track_rownum', 0);\n  JS_global_mobile.select_data();\n}"
               ],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "CD Library Mobile_owner_name_api",
-              "name": "owner_name_api",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "!appsmith.store.collection_id ? null : appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 100000
             }
           ]
         ],
