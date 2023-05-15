@@ -57,8 +57,8 @@ $$ LANGUAGE sql;
 -- Album Select Mobile Function ********************************************************************************************** 
 DROP              FUNCTION get_albums_mobile;
 CREATE OR REPLACE FUNCTION get_albums_mobile(p_collection_id   collections.collection_id%TYPE
-                                            ,p_artist_id       artists.artist_id%TYPE
                                             ,p_favourites_only BOOLEAN
+                                            ,p_artist_id       artists.artist_id%TYPE DEFAULT NULL
                                             ) 
 RETURNS SETOF album_type_mobile AS $$
   SELECT CASE WHEN favourite(p_collection_id,alb.album_id,'album') THEN '⭐' ELSE '' END||album "Album"
@@ -82,7 +82,7 @@ RETURNS SETOF album_type_mobile AS $$
         ,favourite(p_collection_id,alb.album_id,'album') favourite
   FROM  albums  alb
        ,artists art
-  WHERE  alb.artist_id = p_artist_id
+  WHERE  alb.artist_id = COALESCE(p_artist_id,alb.artist_id) 
   AND    alb.artist_id = art.artist_id
   AND    alb.album_id  IN (SELECT album_id 
                            FROM   album_collections 
@@ -97,14 +97,14 @@ RETURNS SETOF album_type_mobile AS $$
 				  AND    favourite(p_collection_id,track_id,'track')) 
 	      AND p_favourites_only)
   )
-  ORDER BY year, album
+  ORDER BY UPPER(album)
 $$ LANGUAGE sql;
 
  -- Track Select Mobile Function **********************************************************************************************
 DROP              FUNCTION get_tracks_mobile;
-CREATE OR REPLACE FUNCTION get_tracks_mobile(p_album_id        albums.album_id%type
-                                            ,p_favourites_only BOOLEAN
-                                            ,p_collection_id   collections.collection_id%type
+CREATE OR REPLACE FUNCTION get_tracks_mobile(p_favourites_only BOOLEAN
+                                            ,p_collection_id   collections.collection_id%TYPE
+                                            ,p_album_id        albums.album_id%TYPE  DEFAULT NULL
                                             ) 
 RETURNS SETOF track_type_mobile AS $$
   SELECT track_number||'. '||CASE WHEN favourite(p_collection_id,tra.track_id,'track') THEN '⭐' ELSE '' END||track "Track"
@@ -121,7 +121,7 @@ RETURNS SETOF track_type_mobile AS $$
   FROM  tracks  tra
        ,albums  alb
        ,artists art
-  WHERE tra.album_id  = p_album_id
+  WHERE tra.album_id  = COALESCE(p_album_id,tra.album_id)
   AND   alb.album_id  = tra.album_id
   AND   alb.artist_id = art.artist_id
   AND    
@@ -129,7 +129,7 @@ RETURNS SETOF track_type_mobile AS $$
   OR ((favourite(p_collection_id,alb.album_id,'album')   AND p_favourites_only) OR NOT p_favourites_only) 
   OR ((favourite(p_collection_id,art.artist_id,'artist') AND p_favourites_only) OR NOT p_favourites_only) 
   )
-  ORDER BY tra.track_number
+  ORDER BY CASE WHEN p_album_id IS NULL THEN UPPER(tra.track) END, tra.track_number 
 $$ LANGUAGE sql;
 
  -- Toggle Favourites Mobile Procedure **********************************************************************************************
