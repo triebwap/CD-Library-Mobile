@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "scale_font",
-    "fullyQualifiedName": "JS_global_mobile.scale_font",
+    "name": "view_RadioGroup_accent_colour",
+    "fullyQualifiedName": "JS_global_mobile.view_RadioGroup_accent_colour",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,11 +20,7 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [
-        {
-          "name": "string_length"
-        }
-      ],
+      "jsArguments": [],
       "isAsync": false
     },
     "executeOnLoad": false,
@@ -41,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.scale_font",
+  "id": "CD Library Mobile_JS_global_mobile.view_RadioGroup_accent_colour",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bff9"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64623d244d66f968a16e6c3d"
 }

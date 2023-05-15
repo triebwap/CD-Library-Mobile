@@ -2,7 +2,7 @@
   "pluginType": "API",
   "pluginId": "restapi-plugin",
   "unpublishedAction": {
-    "name": "tracks_api",
+    "name": "album_api",
     "datasource": {
       "name": "https://api.bit.io",
       "pluginId": "restapi-plugin",
@@ -48,7 +48,7 @@
           "value": "objects"
         }
       ],
-      "body": "{\"query_string\":{{'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+albums_Table.selectedRow.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'}}, \"database_name\":\"triebwap/myDB\"}",
+      "body": "{\"query_string\":{{'SELECT get_albums_mobile(p_collection_id =>'+appsmith.store.collection_id+(view_RadioGroup.selectedOptionValue == 'album' ? '' : ', p_artist_id => '+artists_table.selectedRow.artist_id)+', p_favourites_only =>'+favourites_RadioGroup.selectedOptionValue+')'}}, \"database_name\":\"triebwap/myDB\"}",
       "bodyFormData": [],
       "httpMethod": "POST",
       "selfReferencingDataPaths": [],
@@ -68,14 +68,14 @@
     ],
     "messages": [],
     "jsonPathKeys": [
-      "'SELECT get_tracks_mobile(p_collection_id =>'+appsmith.store.collection_id+',p_album_id =>'+albums_Table.selectedRow.album_id+',p_favourites_only =>'+favourites_switch.isSwitchedOn+')'"
+      "'SELECT get_albums_mobile(p_collection_id =>'+appsmith.store.collection_id+(view_RadioGroup.selectedOptionValue == 'album' ? '' : ', p_artist_id => '+artists_table.selectedRow.artist_id)+', p_favourites_only =>'+favourites_RadioGroup.selectedOptionValue+')'"
     ],
     "userSetOnLoad": true,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_tracks_api",
+  "id": "CD Library Mobile_album_api",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6432bdc9e0735231ba67122c"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6432bd4de0735231ba671227"
 }
