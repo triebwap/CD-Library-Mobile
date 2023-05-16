@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 680,
+          "bottomRow": 670,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -107,7 +107,7 @@
               "boxShadow": "none",
               "iconSVG": "/static/media/icon.ba2b2ee006e51a5c681d7964d7777481.svg",
               "topRow": 4,
-              "labelWidth": "3",
+              "labelWidth": "0",
               "type": "RADIO_GROUP_WIDGET",
               "defaultOptionValue": "artist",
               "animateLoading": true,
@@ -236,9 +236,8 @@
               "isDisabled": false,
               "key": "eonruxonh6",
               "isDeprecated": false,
-              "rightColumn": 57,
+              "rightColumn": 55,
               "isDefaultClickDisabled": true,
-              "iconName": "person",
               "widgetId": "7rnztkd861",
               "isVisible": true,
               "recaptchaType": "V3",
@@ -1272,7 +1271,7 @@
                   "key": "onClick"
                 }
               ],
-              "leftColumn": 57,
+              "leftColumn": 55,
               "dynamicBindingPathList": [
                 {
                   "key": "borderRadius"
@@ -1281,13 +1280,12 @@
                   "key": "tooltip"
                 }
               ],
-              "text": "",
+              "text": "⭐",
               "isDisabled": false,
               "key": "le8q1w199d",
               "isDeprecated": false,
               "rightColumn": 64,
               "isDefaultClickDisabled": true,
-              "iconName": "star",
               "widgetId": "dc896uyp62",
               "isVisible": true,
               "recaptchaType": "V3",
@@ -1322,8 +1320,8 @@
               ],
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
-              "topRow": 13,
-              "bottomRow": 68,
+              "topRow": 12,
+              "bottomRow": 67,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -3033,10 +3031,10 @@
               "renderMode": "CANVAS",
               "isLoading": false,
               "responsiveBehavior": "fill",
-              "originalTopRow": 14,
+              "originalTopRow": 12,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 69,
+              "originalBottomRow": 67,
               "minDynamicHeight": 15
             },
             {
@@ -3090,7 +3088,7 @@
               ],
               "shouldTruncate": false,
               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{!!artists_table.selectedRow.Artist ?artists_table.selectedRow.Artist.match(/[\\w].*/)[0] : ''}}",
+              "text": "{{!!artists_table.selectedRow.Artist ?artists_table.selectedRow.Artist.match(/[\\w].*/)[0] : tracks_table.selectedRow.artist}}",
               "key": "ykgijalkar",
               "isDeprecated": false,
               "rightColumn": 34,
@@ -3129,7 +3127,7 @@
                 "label"
               ],
               "topRow": 8,
-              "bottomRow": 13,
+              "bottomRow": 12,
               "parentRowSpace": 10,
               "type": "TEXT_WIDGET",
               "hideCard": false,
@@ -3162,7 +3160,7 @@
               ],
               "shouldTruncate": false,
               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{!!albums_table.selectedRow.Album ?albums_table.selectedRow.Album.match(/[\\w].*/)[0] : ''}}",
+              "text": "{{!!albums_table.selectedRow.Album ?albums_table.selectedRow.Album.match(/[\\w].*/)[0] : tracks_table.selectedRow.album.match(/[\\w].*/)[0]}}",
               "key": "ykgijalkar",
               "isDeprecated": false,
               "rightColumn": 64,
@@ -3179,7 +3177,7 @@
               "originalTopRow": 8,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 14,
+              "originalBottomRow": 12,
               "fontSize": "{{JS_global_mobile.scale_font(!!albums_table.selectedRow.Album ?albums_table.selectedRow.Album.length : '')}}",
               "minDynamicHeight": 4
             }

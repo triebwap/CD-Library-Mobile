@@ -20,13 +20,15 @@ export default {
 			.then(() => showAlert('Found '+artists_table.tableData.length+' artist'+(artists_table.tableData.length >1 ? 's' : ''),'success'))
 			break;
 		case 'album': 
-			album_api.clear()
-			.then(()=> album_api.run())
+			artist_api.clear()
+			.then(() => album_api.clear())
+			.then(() => album_api.run())
 			.then(() => track_api.run())
 			.then(() => showAlert('Found '+albums_table.tableData.length+' album'+(albums_table.tableData.length >1 ? 's' : ''),'success'))
 			break;
     case 'track':
 			artist_api.clear()
+			.then(() => album_api.clear())
 			.then(() => track_api.clear())
 			.then(() => track_api.run())
 			.then(() => showAlert('Found '+tracks_table.tableData.length+' track'+(tracks_table.tableData.length >1 ? 's' : ''),'success'))
