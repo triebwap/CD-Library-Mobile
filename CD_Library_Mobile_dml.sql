@@ -16,14 +16,15 @@ RETURNS SETOF artist_type_mobile AS $$
         ,'' album
         ,0 track_id
         ,(SELECT CASE WHEN (COUNT(*) > 0)  THEN COUNT(*) ELSE NULL END 
-          FROM   albums 
-          WHERE  albums.artist_id = artists.artist_id
+          FROM   albums alb
+          WHERE  alb.artist_id = artists.artist_id
           AND EXISTS (SELECT 1 
-                      FROM albums 
-                      WHERE albums.artist_id = artists.artist_id 
-                      AND EXISTS (SELECT 1 
-                                  FROM   tracks 
-                                  WHERE  tracks.album_id = albums.album_id AND play LIKE 'https%'))) "#Playable"
+                      FROM   tracks trk
+                            ,(SELECT  JSONB_ARRAY_ELEMENTS_TEXT(play) play, track_id FROM tracks) ilv 
+                      WHERE  trk.album_id = alb.album_id 
+                      AND    ilv.play     LIKE '%https%'
+                      AND    ilv.track_id = trk.track_id                                        
+                      )) "#Playable"
         ,NULL url
         ,NULL album_art
         ,NULL play
@@ -74,10 +75,11 @@ RETURNS SETOF album_type_mobile AS $$
         ,alb.album
         ,0       track_id
         ,(SELECT CASE WHEN (COUNT(*) > 0) THEN COUNT(*) ELSE NULL END 
-          FROM   tracks 
-          WHERE  tracks.album_id = alb.album_id 
-          AND     play LIKE 'https%'
-         )        "#Playable"
+          FROM   tracks trk
+               ,(SELECT  JSONB_ARRAY_ELEMENTS_TEXT(play) play, track_id FROM tracks) ilv 
+          WHERE  trk.album_id = alb.album_id 
+          AND    ilv.play     LIKE '%https%'
+          AND    ilv.track_id = trk.track_id) "#Playable"
         ,NULL    play
         ,favourite(p_collection_id,alb.album_id,'album') favourite
   FROM  albums  alb
