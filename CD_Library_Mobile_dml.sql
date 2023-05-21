@@ -172,12 +172,15 @@ RETURNS BOOLEAN AS $$
 $$ LANGUAGE sql;
 
 -- get_owner_name *******************************************************************************************************
-DROP FUNCTION get_owner_name;
-CREATE OR REPLACE FUNCTION get_owner_name(p_collection_id collections.collection_id%TYPE) 
+DROP              FUNCTION get_owner_name;
+CREATE OR REPLACE FUNCTION get_owner_name(p_collection_id collections.collection_id%TYPE
+                                         ,p_exclude       BOOLEAN DEFAULT TRUE) 
 RETURNS SETOF owner_name_type AS $$
   SELECT owner_name    label
         ,collection_id value 
   FROM   collections
-  WHERE  collection_id != p_collection_id
+  WHERE  (collection_id != p_collection_id AND     p_exclude)
+          OR
+         (collection_id  = p_collection_id AND NOT p_exclude)
 ORDER BY collection_id;
 $$ LANGUAGE sql;
