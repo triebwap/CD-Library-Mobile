@@ -134,7 +134,7 @@ RETURNS SETOF track_type_mobile AS $$
   ORDER BY CASE WHEN p_album_id IS NULL THEN UPPER(tra.track) END, tra.track_number 
 $$ LANGUAGE sql;
 
- -- Toggle Favourites Mobile Procedure **********************************************************************************************
+ -- Toggle Favourites Mobile only Procedure **********************************************************************************************
 CREATE OR REPLACE PROCEDURE toggle_favourites (p_object_id     favourites.object_id%TYPE 
                                               ,p_object_type   favourites.object_type%TYPE 
                                               ,p_collection_id collections.collection_id%TYPE
@@ -158,29 +158,3 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql   
 
--- favourite *******************************************************************************************************
-CREATE OR REPLACE FUNCTION favourite(p_collection_id favourites.collection_id%TYPE
-                                    ,p_object_id     favourites.object_id%TYPE
-                                    ,p_object_type   favourites.object_type%TYPE
-                                    ) 
-RETURNS BOOLEAN AS $$
-  SELECT EXISTS (SELECT 1 
-                 FROM   favourites 
-                 WHERE  object_id     = p_object_id 
-                 AND    object_type   = p_object_type 
-                 AND    collection_id = p_collection_id)
-$$ LANGUAGE sql;
-
--- get_owner_name *******************************************************************************************************
-DROP              FUNCTION get_owner_name;
-CREATE OR REPLACE FUNCTION get_owner_name(p_collection_id collections.collection_id%TYPE
-                                         ,p_exclude       BOOLEAN DEFAULT TRUE) 
-RETURNS SETOF owner_name_type AS $$
-  SELECT owner_name    label
-        ,collection_id value 
-  FROM   collections
-  WHERE  (collection_id != p_collection_id AND     p_exclude)
-          OR
-         (collection_id  = p_collection_id AND NOT p_exclude)
-ORDER BY collection_id;
-$$ LANGUAGE sql;
