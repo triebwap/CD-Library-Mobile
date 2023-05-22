@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "view_RadioGroup",
-    "fullyQualifiedName": "JS_global_mobile.view_RadioGroup",
+    "name": "update_play",
+    "fullyQualifiedName": "JS_global_mobile.update_play",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,8 +20,15 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": false
+      "jsArguments": [
+        {
+          "name": "action"
+        },
+        {
+          "name": "array"
+        }
+      ],
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -37,7 +44,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.view_RadioGroup",
+  "id": "CD Library Mobile_JS_global_mobile.update_play",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64623ccbc50b670aac6d0cbb"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6469fa122ad9944d457ba3bd"
 }

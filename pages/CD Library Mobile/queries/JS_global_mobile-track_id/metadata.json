@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "view_RadioGroup",
-    "fullyQualifiedName": "JS_global_mobile.view_RadioGroup",
+    "name": "track_id",
+    "fullyQualifiedName": "JS_global_mobile.track_id",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.view_RadioGroup",
+  "id": "CD Library Mobile_JS_global_mobile.track_id",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64623ccbc50b670aac6d0cbb"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6469ff3a2ad9944d457ba3df"
 }

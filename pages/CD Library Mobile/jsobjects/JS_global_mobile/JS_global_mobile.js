@@ -8,9 +8,18 @@ export default {
     this.select_data()
 		},
 	select_data() {
-		closeModal('collection_modal')
-		.then(() => storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : (!!appsmith.store.collection_id ? appsmith.store.collection_id : 1)))
-    .then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : (!!appsmith.store.collection_name ? appsmith.store.collection_name : '')))
+		showAlert('Searching for 🎹...')
+		.then(() => closeModal('collection_modal'))
+		if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
+			storeValue('collection_id',1)
+			.then(() => owner_name_api.run({exclude: false}))
+			.then(() => storeValue('collection_name',JSON.parse(owner_name_api.data).data.map(row => row.get_owner_name.label)[0]))
+	  }
+		else {
+		  storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : appsmith.store.collection_id)
+      .then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
+			.then(() => owner_name_api.run({exclude: true}))
+	  }
 		switch (view_RadioGroup.selectedOptionValue) {
 		case 'artist':  
 			artist_api.clear()
@@ -34,9 +43,14 @@ export default {
 			.then(() => showAlert('Found '+tracks_table.tableData.length+' track'+(tracks_table.tableData.length >1 ? 's' : ''),'success'))
 		}
 	},
-	play() {
-	  if (tracks_table.selectedRow.play.match('/.*youtube.*/')) showModal('youtube_modal')
-		else navigateTo(tracks_table.selectedRow.play, {}, 'NEW_WINDOW')
+	play(play) {
+		storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index, url: play})
+	  if (play.match('/.*youtube.*/')) showModal('youtube_modal')
+		else navigateTo(play, {}, 'NEW_WINDOW')
+	},
+	play_button() {
+		storeValue('play',{track_index: tracks_table.selectedRowIndex, source_index: play_table.selectedRowIndex, url: null})
+    .then(() => this.play(play_table.selectedRow.play_url))
 	},
 	scale_font(string_length) {
     if (string_length <=12 | !string_length) return appsmith.store.font_sizes.large
@@ -89,7 +103,7 @@ export default {
 	},
 	change_collection_button() {
     showModal('collection_modal')
-    .then(() => owner_name_api.run())
+    .then(() => owner_name_api.run({exclude: true}))
   },
 	view_RadioGroup() {
 		showAlert(this.initcap(view_RadioGroup.selectedOptionValue)+' view selected','success')
@@ -111,5 +125,27 @@ export default {
     .then(() => album_api.run())
     .then(() => track_api.run())
     .then(() => showAlert((/true/).test(favourites_RadioGroup.selectedOptionValue) ? 'Favourites Only Selected' : 'All Selected','success'))
+	},
+	modal_close_button(modal) {
+    closeModal(modal)
+    .then(() => {if (appsmith.store.play_rec.origin == 'playlist_tracks_table') showModal('playlist_modal')})
+  },
+	update_play(action,array) {	
+		switch (action) {
+			case 'update':
+				array[play_table.updatedRowIndices[0]] = (play_table.updatedRows.map(row => row.allFields))[0]
+				break
+			case 'insert': 
+				array.push(play_table.newRow)
+				break
+			case 'delete':
+				array.splice(play_table.selectedRowIndex, 1)
+		}
+		update_track.run({play: array}) 
+    .then(() => track_api.run())
+		.then(() => storeValue('play_rec',{origin: appsmith.store.play_rec.origin, track: tracks_table.selectedRow.Track, play: tracks_table.selectedRow.play}))
+	},
+	track_id() {
+		return !tracks_table.selectedRow.track_id ? tracks_table.tableData[0].track_id : tracks_table.selectedRow.track_id
 	}
 }
