@@ -16,14 +16,15 @@ RETURNS SETOF artist_type_mobile AS $$
         ,'' album
         ,0 track_id
         ,(SELECT CASE WHEN (COUNT(*) > 0)  THEN COUNT(*) ELSE NULL END 
-          FROM   albums 
-          WHERE  albums.artist_id = artists.artist_id
+          FROM   albums alb
+          WHERE  alb.artist_id = artists.artist_id
           AND EXISTS (SELECT 1 
-                      FROM albums 
-                      WHERE albums.artist_id = artists.artist_id 
-                      AND EXISTS (SELECT 1 
-                                  FROM   tracks 
-                                  WHERE  tracks.album_id = albums.album_id AND play LIKE 'https%'))) "#Playable"
+                      FROM   tracks trk
+                            ,(SELECT  JSONB_ARRAY_ELEMENTS_TEXT(play) play, track_id FROM tracks) ilv 
+                      WHERE  trk.album_id = alb.album_id 
+                      AND    ilv.play     LIKE '%https%'
+                      AND    ilv.track_id = trk.track_id                                        
+                      )) "#Playable"
         ,NULL url
         ,NULL album_art
         ,NULL play
@@ -74,10 +75,11 @@ RETURNS SETOF album_type_mobile AS $$
         ,alb.album
         ,0       track_id
         ,(SELECT CASE WHEN (COUNT(*) > 0) THEN COUNT(*) ELSE NULL END 
-          FROM   tracks 
-          WHERE  tracks.album_id = alb.album_id 
-          AND     play LIKE 'https%'
-         )        "#Playable"
+          FROM   tracks trk
+               ,(SELECT  JSONB_ARRAY_ELEMENTS_TEXT(play) play, track_id FROM tracks) ilv 
+          WHERE  trk.album_id = alb.album_id 
+          AND    ilv.play     LIKE '%https%'
+          AND    ilv.track_id = trk.track_id) "#Playable"
         ,NULL    play
         ,favourite(p_collection_id,alb.album_id,'album') favourite
   FROM  albums  alb
@@ -132,7 +134,7 @@ RETURNS SETOF track_type_mobile AS $$
   ORDER BY CASE WHEN p_album_id IS NULL THEN UPPER(tra.track) END, tra.track_number 
 $$ LANGUAGE sql;
 
- -- Toggle Favourites Mobile Procedure **********************************************************************************************
+ -- Toggle Favourites Mobile only Procedure **********************************************************************************************
 CREATE OR REPLACE PROCEDURE toggle_favourites (p_object_id     favourites.object_id%TYPE 
                                               ,p_object_type   favourites.object_type%TYPE 
                                               ,p_collection_id collections.collection_id%TYPE
@@ -156,26 +158,3 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql   
 
--- favourite *******************************************************************************************************
-CREATE OR REPLACE FUNCTION favourite(p_collection_id favourites.collection_id%TYPE
-                                    ,p_object_id     favourites.object_id%TYPE
-                                    ,p_object_type   favourites.object_type%TYPE
-                                    ) 
-RETURNS BOOLEAN AS $$
-  SELECT EXISTS (SELECT 1 
-                 FROM   favourites 
-                 WHERE  object_id     = p_object_id 
-                 AND    object_type   = p_object_type 
-                 AND    collection_id = p_collection_id)
-$$ LANGUAGE sql;
-
--- get_owner_name *******************************************************************************************************
-DROP FUNCTION get_owner_name;
-CREATE OR REPLACE FUNCTION get_owner_name(p_collection_id collections.collection_id%TYPE) 
-RETURNS SETOF owner_name_type AS $$
-  SELECT owner_name    label
-        ,collection_id value 
-  FROM   collections
-  WHERE  collection_id != p_collection_id
-ORDER BY collection_id;
-$$ LANGUAGE sql;
