@@ -126,13 +126,7 @@
                           "key": "primaryColumns.customColumn1.isDisabled"
                         },
                         {
-                          "key": "primaryColumns.customColumn2.buttonColor"
-                        },
-                        {
                           "key": "primaryColumns.customColumn2.borderRadius"
-                        },
-                        {
-                          "key": "primaryColumns.customColumn2.boxShadow"
                         },
                         {
                           "key": "primaryColumns.EditActions1.saveButtonColor"
@@ -181,7 +175,7 @@
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "columnUpdatedAt": 1684666787479,
-                      "originalBottomRow": 34,
+                      "originalBottomRow": 35,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -440,12 +434,13 @@
                           "validation": {},
                           "buttonStyle": "rgb(3, 179, 101)",
                           "labelColor": "#FFFFFF",
-                          "buttonColor": "{{play_table.processedTableData.map((currentRow, currentIndex) => ( appsmith.store.colours.purple))}}",
+                          "buttonColor": "black",
                           "borderRadius": "{{play_table.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.borderRadius.appBorderRadius)))}}",
-                          "boxShadow": "{{play_table.processedTableData.map((currentRow, currentIndex) => ( \"none\"))}}",
+                          "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                           "customAlias": "",
                           "iconName": "play",
-                          "onClick": "{{JS_global_mobile.play_button()}}"
+                          "onClick": "{{JS_global_mobile.play_button()}}",
+                          "buttonVariant": "TERTIARY"
                         }
                       },
                       "key": "dzdd7pdnkc",
@@ -466,7 +461,7 @@
                       "horizontalAlignment": "LEFT",
                       "isVisibleSearch": false,
                       "responsiveBehavior": "fill",
-                      "originalTopRow": 4,
+                      "originalTopRow": 5,
                       "mobileLeftColumn": 11,
                       "isVisiblePagination": false,
                       "verticalAlignment": "CENTER"
@@ -589,7 +584,7 @@
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "mobileLeftColumn": 13,
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 4,
+                      "originalBottomRow": 5,
                       "fontSize": "1rem",
                       "minDynamicHeight": 4
                     }
@@ -1514,6 +1509,17 @@
                     {
                       "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
                       "widgetName": "youtube_video",
+                      "dynamicPropertyPathList": [
+                        {
+                          "key": "onPlay"
+                        },
+                        {
+                          "key": "onPause"
+                        },
+                        {
+                          "key": "onEnd"
+                        }
+                      ],
                       "displayName": "Video",
                       "iconSVG": "/static/media/icon.39c2d6968b6bb91bbe019646a9243566.svg",
                       "searchTags": [
@@ -1522,11 +1528,22 @@
                       "topRow": 4,
                       "bottomRow": 48,
                       "parentRowSpace": 10,
+                      "onPause": "{{showAlert('Track paused...')}}",
                       "type": "VIDEO_WIDGET",
                       "hideCard": false,
                       "animateLoading": true,
                       "parentColumnSpace": 6.4921875,
-                      "dynamicTriggerPathList": [],
+                      "dynamicTriggerPathList": [
+                        {
+                          "key": "onPlay"
+                        },
+                        {
+                          "key": "onPause"
+                        },
+                        {
+                          "key": "onEnd"
+                        }
+                      ],
                       "leftColumn": 0,
                       "dynamicBindingPathList": [
                         {
@@ -1546,10 +1563,12 @@
                       "widgetId": "1jlxw5v3pk",
                       "isVisible": true,
                       "version": 1,
+                      "onPlay": "{{showAlert('Track playing...')}}",
                       "url": "{{!!appsmith.store.play ? appsmith.store.play.url : ''}}",
                       "parentId": "iw6bt3mggi",
                       "renderMode": "CANVAS",
                       "isLoading": false,
+                      "onEnd": "{{JS_global_mobile.youtube_video_on_end()}}",
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "autoPlay": true
                     }

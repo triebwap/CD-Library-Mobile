@@ -147,5 +147,26 @@ export default {
 	},
 	track_id() {
 		return !tracks_table.selectedRow.track_id ? tracks_table.tableData[0].track_id : tracks_table.selectedRow.track_id
+	},
+	youtube_video_on_end() { 
+		var play_length = JSON.parse(tracks_table.tableData[appsmith.store.play.track_index].play).length
+		if (appsmith.store.play.source_index < play_length-1)
+			showAlert('Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+'] ended')
+		  .then(() => storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index+1, url: this.play_url(appsmith.store.play.track_index,appsmith.store.play.source_index+1)})) 
+		  .then(() => showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']'))
+    else if (appsmith.store.play.track_index < tracks_table.tableData.length-1 )
+			showAlert('Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+'] ended')
+		  .then(() => storeValue('play',{track_index: appsmith.store.play.track_index+1, source_index: 0, url: this.play_url(appsmith.store.play.track_index+1,0)}))
+		  .then(() => showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']'))
+		else showAlert('Playlist ended')
+  },
+	track_name(track_index) {
+		return tracks_table.tableData[track_index].Track
+	},
+	play_name(track_index,source_index) {
+		return JSON.parse(tracks_table.tableData[track_index].play)[source_index].play_name
+	},
+	play_url(track_index,source_index) {
+		return JSON.parse(tracks_table.tableData[track_index].play)[source_index].play_url
 	}
 }
