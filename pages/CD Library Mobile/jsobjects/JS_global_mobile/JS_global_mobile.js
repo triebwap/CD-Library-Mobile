@@ -12,32 +12,32 @@ export default {
 		.then(() => closeModal('collection_modal'))
 		if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
 			storeValue('collection_id',1)
-			.then(() => owner_name_api.run({exclude: false}))
-			.then(() => storeValue('collection_name',JSON.parse(owner_name_api.data).data.map(row => row.get_owner_name.label)[0]))
+			.then(() => get_owner_name.run({exclude: false}))
+			.then(() => storeValue('collection_name',get_owner_name.data.map(row => row.get_owner_name)[0].map(row => row.label)[0]))
 	  }
 		else {
 		  storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : appsmith.store.collection_id)
       .then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
-			.then(() => owner_name_api.run({exclude: true}))
+			.then(() => get_owner_name.run({exclude: true}))
 	  }
 		switch (view_RadioGroup.selectedOptionValue) {
 		case 'artist':  
-			artist_api.clear()
-			.then(() => artist_api.run())
-		  .then(() => album_api.run())
+			get_artists.clear()
+			.then(() => get_artists.run())
+		  .then(() => get_albums.run())
 			.then(() => track_api.run())
 			.then(() => showAlert('Found '+artists_table.tableData.length+' artist'+(artists_table.tableData.length >1 ? 's' : ''),'success'))
 			break;
 		case 'album': 
 			artist_api.clear()
 			.then(() => album_api.clear())
-			.then(() => album_api.run())
+			.then(() => get_albums.run())
 			.then(() => track_api.run())
 			.then(() => showAlert('Found '+albums_table.tableData.length+' album'+(albums_table.tableData.length >1 ? 's' : ''),'success'))
 			break;
     case 'track':
 			artist_api.clear()
-			.then(() => album_api.clear())
+			.then(() => get_albums.clear())
 			.then(() => track_api.clear())
 			.then(() => track_api.run())
 			.then(() => showAlert('Found '+tracks_table.tableData.length+' track'+(tracks_table.tableData.length >1 ? 's' : ''),'success'))
@@ -96,14 +96,14 @@ export default {
 	},
 	toggle_favourites_tooltip() {
 		switch(Tabs.selectedTab) {
-    case 'Artists': return (!artists_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+artists_table.selectedRow.Artist.match(/[\w].*/)[0]+(!artists_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
-    case 'Albums': return (!albums_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+albums_table.selectedRow.Album.match(/[\w].*/)[0]+(!albums_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
+    case 'Artists': return (!artists_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+artists_table.selectedRow.artist.match(/[\w].*/)[0]+(!artists_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
+    case 'Albums': return (!albums_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+albums_table.selectedRow.album.match(/[\w].*/)[0]+(!albums_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
     case 'Tracks': return (!tracks_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+tracks_table.selectedRow.Track.match(/[^/d/.\W][\w].*/)[0]+(!tracks_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
     }		
 	},
 	change_collection_button() {
     showModal('collection_modal')
-    .then(() => owner_name_api.run({exclude: true}))
+    .then(() => get_owner_name.run({exclude: true}))
   },
 	view_RadioGroup() {
 		showAlert(this.initcap(view_RadioGroup.selectedOptionValue)+' view selected','success')
