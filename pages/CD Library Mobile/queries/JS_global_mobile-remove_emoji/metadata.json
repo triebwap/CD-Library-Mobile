@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "view_RadioGroup",
-    "fullyQualifiedName": "JS_global_mobile.view_RadioGroup",
+    "name": "remove_emoji",
+    "fullyQualifiedName": "JS_global_mobile.remove_emoji",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,7 +20,11 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
+      "jsArguments": [
+        {
+          "name": "text"
+        }
+      ],
       "isAsync": false
     },
     "executeOnLoad": false,
@@ -37,7 +41,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.view_RadioGroup",
+  "id": "CD Library Mobile_JS_global_mobile.remove_emoji",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64623ccbc50b670aac6d0cbb"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6478a8841907bf7975f56b74"
 }

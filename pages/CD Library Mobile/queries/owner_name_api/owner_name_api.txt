@@ -1,1 +1,0 @@
-{"query_string":'SELECT get_owner_name(p_collection_id => {{appsmith.store.collection_id}}, p_exclude => {{this.params.exclude}})', "database_name":"triebwap/myDB"}

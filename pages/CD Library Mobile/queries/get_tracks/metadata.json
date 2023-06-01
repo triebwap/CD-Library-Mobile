@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "toggle_favourites",
+    "name": "get_tracks",
     "datasource": {
       "name": "neondb",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "CALL toggle_favourites (p_object_id     => {{this.params.object_id}}\n                       ,p_object_type   => {{this.params.object_type}}\n\t\t\t\t\t\t\t\t\t\t\t ,p_collection_id => {{appsmith.store.collection_id}}\n                       )",
+      "body": "SELECT get_tracks_desktop(p_collection_id    => {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t\t\t\t  ,p_favourites_only => {{favourites_RadioGroup.selectedOptionValue}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t,p_album_id        => {{view_RadioGroup.selectedOptionValue == 'track' ? -1 : albums_table.selectedRow.album_id}}\n\t\t\t\t\t\t\t\t\t\t\t\t  );",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -26,7 +26,7 @@
         }
       ]
     },
-    "executeOnLoad": false,
+    "executeOnLoad": true,
     "dynamicBindingPathList": [
       {
         "key": "body"
@@ -37,15 +37,15 @@
     "messages": [],
     "jsonPathKeys": [
       "appsmith.store.collection_id",
-      "this.params.object_id",
-      "this.params.object_type"
+      "favourites_RadioGroup.selectedOptionValue",
+      "view_RadioGroup.selectedOptionValue == 'track' ? -1 : albums_table.selectedRow.album_id"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_toggle_favourites",
+  "id": "CD Library Mobile_get_tracks",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6399b0914b95806da2dabeb8"
+  "gitSyncId": "6363b42e956dd31e95b0b466_647877fd1907bf7975f564df"
 }

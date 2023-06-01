@@ -1,1 +1,0 @@
-{"query_string":{{'SELECT get_albums_mobile(p_collection_id =>'+appsmith.store.collection_id+(view_RadioGroup.selectedOptionValue == 'album' ? '' : ', p_artist_id => '+artists_table.selectedRow.artist_id)+', p_favourites_only =>'+favourites_RadioGroup.selectedOptionValue+')'}}, "database_name":"triebwap/myDB"}

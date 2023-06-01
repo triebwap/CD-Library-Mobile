@@ -1,0 +1,4 @@
+SELECT get_tracks_desktop(p_collection_id    => {{appsmith.store.collection_id}}
+												  ,p_favourites_only => {{favourites_RadioGroup.selectedOptionValue}}
+													,p_album_id        => {{view_RadioGroup.selectedOptionValue == 'track' ? -1 : albums_table.selectedRow.album_id}}
+												  );

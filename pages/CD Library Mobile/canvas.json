@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 690,
+          "bottomRow": 670,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -39,13 +39,13 @@
                 "notification"
               ],
               "topRow": 68,
-              "bottomRow": 438,
+              "bottomRow": 428,
               "parentRowSpace": 10,
               "type": "MODAL_WIDGET",
               "hideCard": false,
               "shouldScrollContents": true,
               "mobileRightColumn": 59,
-              "minHeight": 370,
+              "minHeight": 360,
               "animateLoading": true,
               "parentColumnSpace": 19.703125,
               "leftColumn": 35,
@@ -60,7 +60,7 @@
                   "widgetName": "Canvas11",
                   "displayName": "Canvas",
                   "topRow": 0,
-                  "bottomRow": 370,
+                  "bottomRow": 360,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
                   "canExtend": true,
@@ -77,7 +77,7 @@
                       "borderColor": "#E0DEDE",
                       "isVisibleDownload": false,
                       "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                      "topRow": 5,
+                      "topRow": 4,
                       "isSortable": false,
                       "type": "TABLE_WIDGET_V2",
                       "inlineEditingSaveOption": "ROW_LEVEL",
@@ -234,7 +234,7 @@
                         }
                       ],
                       "displayName": "Table",
-                      "bottomRow": 35,
+                      "bottomRow": 34,
                       "columnWidthMap": {
                         "task": 245,
                         "step": 70,
@@ -451,7 +451,7 @@
                       "widgetId": "jmg03x79j4",
                       "allowAddNewRow": true,
                       "minWidth": 450,
-                      "tableData": "{{!!appsmith.store.play_rec ? JSON.parse(appsmith.store.play_rec.play) : ''}}",
+                      "tableData": "{{!!appsmith.store.play_rec ? appsmith.store.play_rec.play : ''}}",
                       "label": "Data",
                       "searchKey": "",
                       "parentId": "hlfwlc7fpu",
@@ -536,7 +536,7 @@
                         "label"
                       ],
                       "topRow": 0,
-                      "bottomRow": 5,
+                      "bottomRow": 4,
                       "parentRowSpace": 10,
                       "type": "TEXT_WIDGET",
                       "hideCard": false,
@@ -608,7 +608,7 @@
                 }
               ],
               "key": "g6yozazxhu",
-              "height": 370,
+              "height": 360,
               "isDeprecated": false,
               "rightColumn": 59,
               "detachFromLayout": true,
@@ -858,7 +858,7 @@
               "resetFormOnClick": false,
               "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
               "widgetName": "play_button",
-              "onClick": "{{storeValue('play_rec',{origin: 'play_button', track: tracks_table.selectedRow.Track, play: tracks_table.selectedRow.play})\n.then(() => showModal('play_modal'))}}",
+              "onClick": "{{storeValue('play_rec',{origin: 'play_button', track: tracks_table.selectedRow.track, play: tracks_table.selectedRow.play})\n.then(() => showModal('play_modal'))}}",
               "buttonColor": "white",
               "dynamicPropertyPathList": [
                 {
@@ -879,7 +879,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{!!tracks_table.selectedRow.play ? 'Play ['+tracks_table.selectedRow.Track.match(/[^/d/.\\W][\\w].*/)[0]+'] on '+(!!tracks_table.selectedRow.play.match('/.*youtube.*/') ? 'YouTube' : 'OneDrive') : ''}}",
+              "tooltip": "{{!!tracks_table.selectedRow.play ? 'Play ['+JS_global_mobile.remove_emoji(tracks_table.selectedRow.track)+']' : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -903,7 +903,7 @@
                 }
               ],
               "text": "",
-              "isDisabled": "{{tracks_table.selectedRowIndex ==-1 || !tracks_table.selectedRow.play}}",
+              "isDisabled": "{{tracks_table.selectedRowIndex ==-1 || !tracks_table.selectedRow.play[0].play_url}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
               "rightColumn": 64,
@@ -947,7 +947,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{!!albums_table.selectedRow.album_art ? 'Show ['+albums_table.selectedRow.album.match(/[\\w].*/)+'] Cover Art' : ''}}",
+              "tooltip": "{{!!albums_table.selectedRow.album_art ? 'Show ['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] Cover Art' : ''}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -1181,7 +1181,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{\n!!albums_table.selectedRow.url ? 'Show ['+albums_table.selectedRow.album.match(/[\\w].*/)+'] Wikipedia Page' : ''\n}}",
+              "tooltip": "{{\n!!albums_table.selectedRow.url ? 'Show ['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] Wikipedia Page' : ''\n}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -1945,8 +1945,8 @@
               ],
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
-              "topRow": 14,
-              "bottomRow": 69,
+              "topRow": 12,
+              "bottomRow": 67,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -2018,9 +2018,6 @@
                           "key": "boxShadow"
                         },
                         {
-                          "key": "tableData"
-                        },
-                        {
                           "key": "primaryColumns.artist_id.computedValue"
                         },
                         {
@@ -2034,6 +2031,9 @@
                         },
                         {
                           "key": "primaryColumns.album_count.computedValue"
+                        },
+                        {
+                          "key": "tableData"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -2097,7 +2097,7 @@
                         "status": 85,
                         "_Albums": 92,
                         "Artist": 215,
-                        "artist": 320
+                        "artist": 304
                       },
                       "parentRowSpace": 10,
                       "hideCard": false,
@@ -2373,7 +2373,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1685559794943,
+                      "columnUpdatedAt": 1685618903404,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -2382,14 +2382,14 @@
                       "columnOrder": [
                         "album",
                         "shelf",
+                        "year",
+                        "genre",
                         "favourite",
                         "url",
                         "album_art",
                         "artist_id",
                         "artist",
                         "album_id",
-                        "year",
-                        "genre",
                         "tracks",
                         "time"
                       ],
@@ -2407,7 +2407,10 @@
                         "status": 85,
                         "Shelf": 74,
                         "Tracks": 88,
-                        "Album": 186
+                        "Album": 186,
+                        "shelf": 76,
+                        "year": 83,
+                        "album": 182
                       },
                       "parentRowSpace": 10,
                       "hideCard": false,
@@ -2600,7 +2603,7 @@
                           "isEditable": false,
                           "isCellVisible": true,
                           "isDerived": false,
-                          "label": "year",
+                          "label": "Year",
                           "isSaveVisible": true,
                           "isDiscardVisible": true,
                           "computedValue": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"year\"]))}}",
@@ -2630,7 +2633,7 @@
                           "isEditable": false,
                           "isCellVisible": true,
                           "isDerived": false,
-                          "label": "genre",
+                          "label": "Genre",
                           "isSaveVisible": true,
                           "isDiscardVisible": true,
                           "computedValue": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"genre\"]))}}",
@@ -2660,7 +2663,7 @@
                           "isEditable": false,
                           "isCellVisible": true,
                           "isDerived": false,
-                          "label": "shelf",
+                          "label": "Shelf",
                           "isSaveVisible": true,
                           "isDiscardVisible": true,
                           "computedValue": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"shelf\"]))}}",
@@ -2750,7 +2753,7 @@
                           "isEditable": false,
                           "isCellVisible": true,
                           "isDerived": false,
-                          "label": "album",
+                          "label": "Album",
                           "isSaveVisible": true,
                           "isDiscardVisible": true,
                           "computedValue": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
@@ -2836,15 +2839,6 @@
                           "key": "tableData"
                         },
                         {
-                          "key": "primaryColumns.url.computedValue"
-                        },
-                        {
-                          "key": "primaryColumns.album_art.computedValue"
-                        },
-                        {
-                          "key": "primaryColumns.artist_id.computedValue"
-                        },
-                        {
                           "key": "primaryColumns.artist.computedValue"
                         },
                         {
@@ -2860,16 +2854,19 @@
                           "key": "primaryColumns.play.computedValue"
                         },
                         {
-                          "key": "primaryColumns.Track.computedValue"
-                        },
-                        {
-                          "key": "primaryColumns.Duration.computedValue"
-                        },
-                        {
                           "key": "defaultSelectedRowIndex"
                         },
                         {
                           "key": "primaryColumns.favourite.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.time.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.track.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.track_number.computedValue"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -2907,24 +2904,22 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1684662232896,
+                      "columnUpdatedAt": 1685618762224,
                       "defaultSelectedRowIndices": [
                         0
                       ],
                       "widgetName": "tracks_table",
                       "defaultPageSize": 0,
                       "columnOrder": [
-                        "url",
-                        "album_art",
-                        "artist_id",
                         "artist",
                         "album_id",
                         "album",
                         "track_id",
                         "play",
-                        "Track",
-                        "Duration",
-                        "favourite"
+                        "favourite",
+                        "track",
+                        "time",
+                        "track_number"
                       ],
                       "dynamicPropertyPathList": [
                         {
@@ -2939,7 +2934,8 @@
                         "step": 70,
                         "status": 85,
                         "Track": 336,
-                        "Duration": 102
+                        "Duration": 102,
+                        "track": 332
                       },
                       "parentRowSpace": 10,
                       "hideCard": false,
@@ -2951,84 +2947,6 @@
                       ],
                       "borderWidth": "1",
                       "primaryColumns": {
-                        "url": {
-                          "allowCellWrapping": false,
-                          "index": 5,
-                          "width": 150,
-                          "originalId": "url",
-                          "id": "url",
-                          "alias": "url",
-                          "horizontalAlignment": "LEFT",
-                          "verticalAlignment": "CENTER",
-                          "columnType": "text",
-                          "textSize": "1rem",
-                          "enableFilter": true,
-                          "enableSort": true,
-                          "isVisible": false,
-                          "isDisabled": false,
-                          "isCellEditable": false,
-                          "isEditable": false,
-                          "isCellVisible": true,
-                          "isDerived": false,
-                          "label": "url",
-                          "isSaveVisible": true,
-                          "isDiscardVisible": true,
-                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"url\"]))}}",
-                          "sticky": "",
-                          "validation": {}
-                        },
-                        "album_art": {
-                          "allowCellWrapping": false,
-                          "index": 6,
-                          "width": 150,
-                          "originalId": "album_art",
-                          "id": "album_art",
-                          "alias": "album_art",
-                          "horizontalAlignment": "LEFT",
-                          "verticalAlignment": "CENTER",
-                          "columnType": "text",
-                          "textSize": "1rem",
-                          "enableFilter": true,
-                          "enableSort": true,
-                          "isVisible": false,
-                          "isDisabled": false,
-                          "isCellEditable": false,
-                          "isEditable": false,
-                          "isCellVisible": true,
-                          "isDerived": false,
-                          "label": "album_art",
-                          "isSaveVisible": true,
-                          "isDiscardVisible": true,
-                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_art\"]))}}",
-                          "sticky": "",
-                          "validation": {}
-                        },
-                        "artist_id": {
-                          "allowCellWrapping": false,
-                          "index": 7,
-                          "width": 150,
-                          "originalId": "artist_id",
-                          "id": "artist_id",
-                          "alias": "artist_id",
-                          "horizontalAlignment": "LEFT",
-                          "verticalAlignment": "CENTER",
-                          "columnType": "number",
-                          "textSize": "1rem",
-                          "enableFilter": true,
-                          "enableSort": true,
-                          "isVisible": false,
-                          "isDisabled": false,
-                          "isCellEditable": false,
-                          "isEditable": false,
-                          "isCellVisible": true,
-                          "isDerived": false,
-                          "label": "artist_id",
-                          "isSaveVisible": true,
-                          "isDiscardVisible": true,
-                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
-                          "sticky": "",
-                          "validation": {}
-                        },
                         "artist": {
                           "allowCellWrapping": false,
                           "index": 8,
@@ -3159,64 +3077,6 @@
                           "sticky": "",
                           "validation": {}
                         },
-                        "Track": {
-                          "allowCellWrapping": false,
-                          "index": 8,
-                          "width": 150,
-                          "originalId": "Track",
-                          "id": "Track",
-                          "alias": "Track",
-                          "horizontalAlignment": "LEFT",
-                          "verticalAlignment": "CENTER",
-                          "columnType": "text",
-                          "textColor": "",
-                          "textSize": "1rem",
-                          "fontStyle": "",
-                          "enableFilter": true,
-                          "enableSort": true,
-                          "isVisible": true,
-                          "isDisabled": false,
-                          "isCellEditable": false,
-                          "isEditable": false,
-                          "isCellVisible": true,
-                          "isDerived": false,
-                          "label": "Track",
-                          "isSaveVisible": true,
-                          "isDiscardVisible": true,
-                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Track\"]))}}",
-                          "sticky": "",
-                          "validation": {},
-                          "cellBackground": ""
-                        },
-                        "Duration": {
-                          "allowCellWrapping": false,
-                          "index": 9,
-                          "width": 150,
-                          "originalId": "Duration",
-                          "id": "Duration",
-                          "alias": "Duration",
-                          "horizontalAlignment": "LEFT",
-                          "verticalAlignment": "CENTER",
-                          "columnType": "text",
-                          "textColor": "",
-                          "textSize": "1rem",
-                          "fontStyle": "",
-                          "enableFilter": true,
-                          "enableSort": true,
-                          "isVisible": true,
-                          "isDisabled": false,
-                          "isCellEditable": false,
-                          "isEditable": false,
-                          "isCellVisible": true,
-                          "isDerived": false,
-                          "label": "Time",
-                          "isSaveVisible": true,
-                          "isDiscardVisible": true,
-                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Duration\"]))}}",
-                          "sticky": "",
-                          "validation": {},
-                          "cellBackground": ""
-                        },
                         "favourite": {
                           "allowCellWrapping": false,
                           "index": 10,
@@ -3245,6 +3105,96 @@
                           "sticky": "",
                           "validation": {},
                           "cellBackground": ""
+                        },
+                        "time": {
+                          "allowCellWrapping": false,
+                          "allowSameOptionsInNewRow": true,
+                          "index": 1,
+                          "width": 150,
+                          "originalId": "time",
+                          "id": "time",
+                          "alias": "time",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Time",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"time\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "track": {
+                          "allowCellWrapping": false,
+                          "allowSameOptionsInNewRow": true,
+                          "index": 3,
+                          "width": 150,
+                          "originalId": "track",
+                          "id": "track",
+                          "alias": "track",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Track",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]+'. '+currentRow[\"track\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "track_number": {
+                          "allowCellWrapping": false,
+                          "allowSameOptionsInNewRow": true,
+                          "index": 8,
+                          "width": 150,
+                          "originalId": "track_number",
+                          "id": "track_number",
+                          "alias": "track_number",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": false,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "track_number",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
                         }
                       },
                       "onRowSelected": "{{JS_global_mobile.tracks_on_row_selected()}}",
@@ -3255,7 +3205,7 @@
                       "textSize": "1rem",
                       "widgetId": "17we4f0482",
                       "minWidth": 450,
-                      "tableData": "{{JSON.parse(track_api.data).data.map((row) => row.get_tracks_mobile)}}",
+                      "tableData": "{{get_tracks.data.map(row => row.get_tracks_desktop)[0]}}",
                       "label": "Data",
                       "searchKey": "",
                       "parentId": "xbyicda7o1",
@@ -3385,7 +3335,7 @@
               ],
               "shouldTruncate": false,
               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{!!artists_table.selectedRow.Artist ?artists_table.selectedRow.Artist.match(/[\\w].*/)[0] : tracks_table.selectedRow.artist}}",
+              "text": "{{JS_global_mobile.remove_emoji(!!artists_table.selectedRow.artist ?artists_table.selectedRow.artist : tracks_table.selectedRow.artist)}}",
               "key": "ykgijalkar",
               "isDeprecated": false,
               "rightColumn": 34,
@@ -3424,7 +3374,7 @@
                 "label"
               ],
               "topRow": 8,
-              "bottomRow": 14,
+              "bottomRow": 12,
               "parentRowSpace": 10,
               "type": "TEXT_WIDGET",
               "hideCard": false,
@@ -3457,7 +3407,7 @@
               ],
               "shouldTruncate": false,
               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-              "text": "{{!!albums_table.selectedRow.Album ?albums_table.selectedRow.Album.match(/[\\w].*/)[0] : tracks_table.selectedRow.album.match(/[\\w].*/)[0]}}",
+              "text": "{{JS_global_mobile.remove_emoji(!!albums_table.selectedRow.album ?albums_table.selectedRow.album : tracks_table.selectedRow.album)}}",
               "key": "ykgijalkar",
               "isDeprecated": false,
               "rightColumn": 64,
@@ -3524,6 +3474,18 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
+                "favourites_RadioGroup.selectedOptionValue",
+                "appsmith.store.collection_id"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "CD Library Mobile_get_tracks",
+              "name": "get_tracks",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "view_RadioGroup.selectedOptionValue == 'track' ? -1 : albums_table.selectedRow.album_id",
                 "favourites_RadioGroup.selectedOptionValue",
                 "appsmith.store.collection_id"
               ],
