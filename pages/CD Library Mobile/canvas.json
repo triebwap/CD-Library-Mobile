@@ -3442,54 +3442,6 @@
                 "function () {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  });\n  storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  });\n  storeValue('artist_rownum', 0);\n  storeValue('album_rownum', 0);\n  storeValue('track_rownum', 0);\n  JS_global_mobile.select_data();\n}"
               ],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "CD Library Mobile_get_owner_name",
-              "name": "get_owner_name",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "this.params.exclude",
-                "appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "CD Library Mobile_get_albums",
-              "name": "get_albums",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "favourites_RadioGroup.selectedOptionValue",
-                "view_RadioGroup.selectedOptionValue == 'album' ? -1 : artists_table.selectedRow.artist_id",
-                "appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "CD Library Mobile_get_artists",
-              "name": "get_artists",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "favourites_RadioGroup.selectedOptionValue",
-                "appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "CD Library Mobile_get_tracks",
-              "name": "get_tracks",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "view_RadioGroup.selectedOptionValue == 'track' ? -1 : albums_table.selectedRow.album_id",
-                "favourites_RadioGroup.selectedOptionValue",
-                "appsmith.store.collection_id"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ]
         ],
