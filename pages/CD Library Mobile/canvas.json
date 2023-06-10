@@ -859,7 +859,7 @@
               "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
               "widgetName": "play_button",
               "onClick": "{{storeValue('play_rec',{origin: 'play_button', track: tracks_table.selectedRow.track, play: tracks_table.selectedRow.play})\n.then(() => showModal('play_modal'))}}",
-              "buttonColor": "white",
+              "buttonColor": "{{tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : ''}}",
               "dynamicPropertyPathList": [
                 {
                   "key": "isDisabled"
@@ -900,6 +900,9 @@
                 },
                 {
                   "key": "tooltip"
+                },
+                {
+                  "key": "buttonColor"
                 }
               ],
               "text": "",
@@ -2071,7 +2074,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1685558196542,
+                      "columnUpdatedAt": 1686395115405,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -2867,6 +2870,12 @@
                         },
                         {
                           "key": "primaryColumns.track_number.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.track.textColor"
+                        },
+                        {
+                          "key": "primaryColumns.track.fontStyle"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -2876,6 +2885,7 @@
                       "accentColor": "{{appsmith.theme.colors.primaryColor}}",
                       "isVisibleFilters": false,
                       "isVisible": true,
+                      "fontStyle": "",
                       "enableClientSideSearch": true,
                       "version": 1,
                       "totalRecordsCount": 0,
@@ -2904,7 +2914,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1685618762224,
+                      "columnUpdatedAt": 1686395434052,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -2924,6 +2934,12 @@
                       "dynamicPropertyPathList": [
                         {
                           "key": "onRowSelected"
+                        },
+                        {
+                          "key": "primaryColumns.track.fontStyle"
+                        },
+                        {
+                          "key": "primaryColumns.track.textColor"
                         }
                       ],
                       "compactMode": "SHORT",
@@ -2971,7 +2987,8 @@
                           "isDiscardVisible": true,
                           "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]))}}",
                           "sticky": "",
-                          "validation": {}
+                          "validation": {},
+                          "fontStyle": ""
                         },
                         "album_id": {
                           "allowCellWrapping": false,
@@ -2997,7 +3014,8 @@
                           "isDiscardVisible": true,
                           "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_id\"]))}}",
                           "sticky": "",
-                          "validation": {}
+                          "validation": {},
+                          "fontStyle": ""
                         },
                         "album": {
                           "allowCellWrapping": false,
@@ -3023,7 +3041,8 @@
                           "isDiscardVisible": true,
                           "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album\"]))}}",
                           "sticky": "",
-                          "validation": {}
+                          "validation": {},
+                          "fontStyle": ""
                         },
                         "track_id": {
                           "allowCellWrapping": false,
@@ -3049,7 +3068,8 @@
                           "isDiscardVisible": true,
                           "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_id\"]))}}",
                           "sticky": "",
-                          "validation": {}
+                          "validation": {},
+                          "fontStyle": ""
                         },
                         "play": {
                           "allowCellWrapping": false,
@@ -3075,7 +3095,8 @@
                           "isDiscardVisible": true,
                           "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"play\"]))}}",
                           "sticky": "",
-                          "validation": {}
+                          "validation": {},
+                          "fontStyle": ""
                         },
                         "favourite": {
                           "allowCellWrapping": false,
@@ -3147,9 +3168,9 @@
                           "horizontalAlignment": "LEFT",
                           "verticalAlignment": "CENTER",
                           "columnType": "text",
-                          "textColor": "",
+                          "textColor": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( (tracks_table.selectedRowIndex == currentIndex && !!currentRow[\"play\"][0].play_url ? appsmith.store.colours.purple : '')))}}",
                           "textSize": "1rem",
-                          "fontStyle": "",
+                          "fontStyle": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( tracks_table.selectedRowIndex == currentIndex && !!currentRow[\"play\"][0].play_url ? 'BOLD' : 'NORMAL'))}}",
                           "enableFilter": true,
                           "enableSort": true,
                           "isVisible": true,

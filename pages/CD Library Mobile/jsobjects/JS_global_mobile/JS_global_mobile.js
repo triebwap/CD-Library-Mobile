@@ -152,7 +152,6 @@ export default {
 		var play_length = tracks_table.tableData[appsmith.store.play.track_index].play.length
 		console.log('play_length '+play_length)
 		if (appsmith.store.play.source_index < play_length-1) {
-			console.log(appsmith.store.play.track_index+'--'+appsmith.store.play.source_index)
 			showAlert('Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+'] ended')
 		  .then(() => storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index+1, url: this.play_url(appsmith.store.play.track_index,appsmith.store.play.source_index+1)})) 
 		  .then(() => showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']'))
