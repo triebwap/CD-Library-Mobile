@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 79,
+          "version": 80,
           "minHeight": 900,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -174,7 +174,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1684666787479,
+                      "columnUpdatedAt": 1686750951529,
                       "originalBottomRow": 35,
                       "defaultSelectedRowIndices": [
                         0
@@ -184,8 +184,8 @@
                       "defaultPageSize": 0,
                       "columnOrder": [
                         "play_name",
-                        "customColumn2",
                         "play_url",
+                        "customColumn2",
                         "customColumn1",
                         "EditActions1"
                       ],
@@ -231,6 +231,9 @@
                         },
                         {
                           "key": "primaryColumns.customColumn2.onClick"
+                        },
+                        {
+                          "key": "tableData"
                         }
                       ],
                       "displayName": "Table",
@@ -239,14 +242,15 @@
                         "task": 245,
                         "step": 70,
                         "status": 85,
-                        "customColumn1": 186,
-                        "play_url": 86,
-                        "customColumn2": 68,
-                        "play_name": 106
+                        "customColumn1": 85,
+                        "play_url": 84,
+                        "customColumn2": 67,
+                        "play_name": 96,
+                        "EditActions1": 138
                       },
                       "parentRowSpace": 10,
                       "hideCard": false,
-                      "onAddNewRowSave": "{{JS_global_desktop.update_play('insert',play_table.tableData)}}",
+                      "onAddNewRowSave": "{{JS_global_mobile.update_play('insert',play_table.tableData)}}",
                       "mobileRightColumn": 45,
                       "parentColumnSpace": 19.71875,
                       "dynamicTriggerPathList": [
@@ -404,7 +408,7 @@
                           "boxShadow": "{{play_table.processedTableData.map((currentRow, currentIndex) => ( \"none\"))}}",
                           "customAlias": "",
                           "iconName": "floppy-disk",
-                          "onClick": "{{JS_global_desktop.update_play('delete',play_table.tableData)}}"
+                          "onClick": "{{JS_global_mobile.update_play('delete',play_table.tableData)}}"
                         },
                         "customColumn2": {
                           "allowCellWrapping": false,
@@ -439,7 +443,7 @@
                           "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                           "customAlias": "",
                           "iconName": "play",
-                          "onClick": "{{JS_global_mobile.play_button()}}",
+                          "onClick": "{{JS_global_mobile.play_table_play_button()}}",
                           "buttonVariant": "TERTIARY"
                         }
                       },
@@ -858,7 +862,7 @@
               "resetFormOnClick": false,
               "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
               "widgetName": "play_button",
-              "onClick": "{{storeValue('play_rec',{origin: 'play_button', track: tracks_table.selectedRow.track, play: tracks_table.selectedRow.play})\n.then(() => showModal('play_modal'))}}",
+              "onClick": "{{JS_global_mobile.play_button()}}",
               "buttonColor": "{{tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : ''}}",
               "dynamicPropertyPathList": [
                 {
@@ -879,7 +883,7 @@
               ],
               "topRow": 4,
               "bottomRow": 8,
-              "tooltip": "{{!!tracks_table.selectedRow.play ? 'Play ['+JS_global_mobile.remove_emoji(tracks_table.selectedRow.track)+']' : ''}}",
+              "tooltip": "{{JS_global_mobile.play_button_tooltip()}}",
               "parentRowSpace": 10,
               "type": "BUTTON_WIDGET",
               "hideCard": false,
@@ -2089,6 +2093,9 @@
                       "dynamicPropertyPathList": [
                         {
                           "key": "onRowSelected"
+                        },
+                        {
+                          "key": "tableData"
                         }
                       ],
                       "compactMode": "SHORT",
@@ -2339,6 +2346,12 @@
                         },
                         {
                           "key": "primaryColumns.album.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.album.textColor"
+                        },
+                        {
+                          "key": "primaryColumns.album.fontStyle"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -2399,6 +2412,15 @@
                       "dynamicPropertyPathList": [
                         {
                           "key": "onRowSelected"
+                        },
+                        {
+                          "key": "tableData"
+                        },
+                        {
+                          "key": "primaryColumns.album.textColor"
+                        },
+                        {
+                          "key": "primaryColumns.album.fontStyle"
                         }
                       ],
                       "compactMode": "SHORT",
@@ -2745,9 +2767,9 @@
                           "horizontalAlignment": "LEFT",
                           "verticalAlignment": "CENTER",
                           "columnType": "text",
-                          "textColor": "",
+                          "textColor": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.track_text_colour(albums_table.selectedRowIndex,currentIndex,tracks_table.selectedRow.play.map(row => row.play_url)[0])))}}",
                           "textSize": "1rem",
-                          "fontStyle": "",
+                          "fontStyle": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.track_emphasis(albums_table.selectedRowIndex,currentIndex,tracks_table.selectedRow.play.map(row => row.play_url)[0])))}}",
                           "enableFilter": true,
                           "enableSort": true,
                           "isVisible": true,
@@ -2940,6 +2962,9 @@
                         },
                         {
                           "key": "primaryColumns.track.textColor"
+                        },
+                        {
+                          "key": "tableData"
                         }
                       ],
                       "compactMode": "SHORT",
@@ -3168,9 +3193,9 @@
                           "horizontalAlignment": "LEFT",
                           "verticalAlignment": "CENTER",
                           "columnType": "text",
-                          "textColor": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( (tracks_table.selectedRowIndex == currentIndex && !!currentRow[\"play\"][0].play_url ? appsmith.store.colours.purple : '')))}}",
+                          "textColor": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.track_text_colour(tracks_table.selectedRowIndex,currentIndex,currentRow[\"play\"][0].play_url)))}}",
                           "textSize": "1rem",
-                          "fontStyle": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( tracks_table.selectedRowIndex == currentIndex && !!currentRow[\"play\"][0].play_url ? 'BOLD' : 'NORMAL'))}}",
+                          "fontStyle": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.track_emphasis(tracks_table.selectedRowIndex,currentIndex,currentRow[\"play\"][0].play_url)))}}",
                           "enableFilter": true,
                           "enableSort": true,
                           "isVisible": true,
@@ -3460,7 +3485,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "function () {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  });\n  storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  });\n  storeValue('artist_rownum', 0);\n  storeValue('album_rownum', 0);\n  storeValue('track_rownum', 0);\n  JS_global_mobile.select_data();\n}"
+                "function () {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => storeValue('album_rownum', 0)).then(() => storeValue('track_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
               ],
               "timeoutInMillisecond": 10000
             }
