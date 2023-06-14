@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "play_button",
-    "fullyQualifiedName": "JS_global_mobile.play_button",
+    "name": "play_button_tooltip",
+    "fullyQualifiedName": "JS_global_mobile.play_button_tooltip",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.play_button",
+  "id": "CD Library Mobile_JS_global_mobile.play_button_tooltip",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6489be9389dc3302f00295e9"
+  "gitSyncId": "6363b42e956dd31e95b0b466_6489be9389dc3302f00295e7"
 }

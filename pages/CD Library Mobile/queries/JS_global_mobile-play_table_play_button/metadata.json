@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "play_button",
-    "fullyQualifiedName": "JS_global_mobile.play_button",
+    "name": "play_table_play_button",
+    "fullyQualifiedName": "JS_global_mobile.play_table_play_button",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -21,7 +21,7 @@
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [],
-      "isAsync": false
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -35,9 +35,10 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-05-21T12:24:09Z"
   },
-  "id": "CD Library Mobile_JS_global_mobile.play_button",
+  "id": "CD Library Mobile_JS_global_mobile.play_table_play_button",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6489be9389dc3302f00295e9"
+  "gitSyncId": "6363b42e956dd31e95b0b466_646a0d691e48f2718265c485"
 }

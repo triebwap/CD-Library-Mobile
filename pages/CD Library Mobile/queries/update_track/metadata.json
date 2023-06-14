@@ -18,16 +18,20 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "CALL update_track (p_track_id      => {{JS_global_mobile.track_id()}}\n\t\t\t\t\t\t\t\t\t,p_collection_id => {{appsmith.store.collection_id}}\n\t                ,p_track_number  => {{this.params.track_number}}\n\t\t\t\t\t\t\t\t\t,p_track         => {{this.params.track}}\n\t\t\t\t\t\t\t\t\t,p_duration      => {{this.params.duration}}\n\t\t\t\t\t\t\t\t\t,p_play          => '{{this.params.play}}'\n\t\t\t\t\t\t\t\t\t,p_favourite     => {{this.params.favourite}}\n\t\t\t\t\t\t\t\t\t)",
+      "body": "CALL update_track (p_track_id      =>  {{JS_global_mobile.track_id()}}\n\t\t\t\t\t\t\t\t\t,p_collection_id =>  {{appsmith.store.collection_id}}\n\t                ,p_track_number  =>  {{this.params.track_number}}\n\t\t\t\t\t\t\t\t\t,p_track         => '{{this.params.track}}'\n\t\t\t\t\t\t\t\t\t,p_duration      => '{{this.params.duration}}'\n\t\t\t\t\t\t\t\t\t,p_play          => '{{this.params.play}}'\n\t\t\t\t\t\t\t\t\t,p_favourite     =>  {{this.params.favourite}}\n\t\t\t\t\t\t\t\t\t)",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
     "executeOnLoad": false,
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "isValid": true,
     "invalids": [],
     "messages": [],
