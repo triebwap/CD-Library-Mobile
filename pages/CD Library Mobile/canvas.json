@@ -2885,9 +2885,6 @@
                           "key": "primaryColumns.favourite.computedValue"
                         },
                         {
-                          "key": "primaryColumns.time.computedValue"
-                        },
-                        {
                           "key": "primaryColumns.track.computedValue"
                         },
                         {
@@ -2898,6 +2895,9 @@
                         },
                         {
                           "key": "primaryColumns.track.fontStyle"
+                        },
+                        {
+                          "key": "primaryColumns.duration.computedValue"
                         }
                       ],
                       "needsHeightForContent": true,
@@ -2936,7 +2936,7 @@
                         }
                       },
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "columnUpdatedAt": 1686395434052,
+                      "columnUpdatedAt": 1687542287327,
                       "defaultSelectedRowIndices": [
                         0
                       ],
@@ -2950,8 +2950,8 @@
                         "play",
                         "favourite",
                         "track",
-                        "time",
-                        "track_number"
+                        "track_number",
+                        "duration"
                       ],
                       "dynamicPropertyPathList": [
                         {
@@ -3152,36 +3152,6 @@
                           "validation": {},
                           "cellBackground": ""
                         },
-                        "time": {
-                          "allowCellWrapping": false,
-                          "allowSameOptionsInNewRow": true,
-                          "index": 1,
-                          "width": 150,
-                          "originalId": "time",
-                          "id": "time",
-                          "alias": "time",
-                          "horizontalAlignment": "LEFT",
-                          "verticalAlignment": "CENTER",
-                          "columnType": "text",
-                          "textColor": "",
-                          "textSize": "1rem",
-                          "fontStyle": "",
-                          "enableFilter": true,
-                          "enableSort": true,
-                          "isVisible": true,
-                          "isDisabled": false,
-                          "isCellEditable": false,
-                          "isEditable": false,
-                          "isCellVisible": true,
-                          "isDerived": false,
-                          "label": "Time",
-                          "isSaveVisible": true,
-                          "isDiscardVisible": true,
-                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"time\"]))}}",
-                          "sticky": "",
-                          "validation": {},
-                          "cellBackground": ""
-                        },
                         "track": {
                           "allowCellWrapping": false,
                           "allowSameOptionsInNewRow": true,
@@ -3238,6 +3208,36 @@
                           "isSaveVisible": true,
                           "isDiscardVisible": true,
                           "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "duration": {
+                          "allowCellWrapping": false,
+                          "allowSameOptionsInNewRow": true,
+                          "index": 5,
+                          "width": 150,
+                          "originalId": "duration",
+                          "id": "duration",
+                          "alias": "duration",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textColor": "",
+                          "textSize": "1rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Time",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"duration\"]))}}",
                           "sticky": "",
                           "validation": {},
                           "cellBackground": ""
@@ -3399,7 +3399,7 @@
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
               "originalBottomRow": 12,
-              "fontSize": "{{JS_global_mobile.scale_font(!!artists_table.selectedRow.Artist ?artists_table.selectedRow.Artist.length : 0)}}",
+              "fontSize": "{{JS_global_mobile.scale_font(!!artists_table.selectedRow.artist ?artists_table.selectedRow.artist.length : 0)}}",
               "minDynamicHeight": 4
             },
             {

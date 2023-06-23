@@ -28,7 +28,7 @@
           "name": "array"
         }
       ],
-      "isAsync": true
+      "isAsync": false
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
