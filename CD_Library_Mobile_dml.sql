@@ -2,9 +2,8 @@
  -- Artist Select Mobile Function ********************************************************************************************** 
 DROP              FUNCTION get_artists_mobile;
 CREATE OR REPLACE FUNCTION get_artists_mobile(p_collection_id   collections.collection_id%TYPE
-                                             ,p_favourites_only BOOLEAN
-) 
-RETURNS SETOF artist_type_mobile AS $$
+                                             ,p_favourites_only BOOLEAN) RETURNS SETOF artist_type_mobile 
+AS $$
   SELECT CASE WHEN favourite(p_collection_id,artist_id,'artist') THEN '⭐' ELSE '' END||artist "Artist"
         ,artist
         ,(SELECT COUNT(*) 
@@ -60,8 +59,8 @@ DROP              FUNCTION get_albums_mobile;
 CREATE OR REPLACE FUNCTION get_albums_mobile(p_collection_id   collections.collection_id%TYPE
                                             ,p_favourites_only BOOLEAN
                                             ,p_artist_id       artists.artist_id%TYPE DEFAULT NULL
-                                            ) 
-RETURNS SETOF album_type_mobile AS $$
+                                            ) RETURNS SETOF album_type_mobile 
+AS $$
   SELECT CASE WHEN favourite(p_collection_id,alb.album_id,'album') THEN '⭐' ELSE '' END||album "Album"
         ,shelf  "Shelf"
         ,tracks "Tracks"
@@ -76,7 +75,10 @@ RETURNS SETOF album_type_mobile AS $$
         ,0       track_id
         ,(SELECT CASE WHEN (COUNT(*) > 0) THEN COUNT(*) ELSE NULL END 
           FROM   tracks trk
-               ,(SELECT  JSONB_ARRAY_ELEMENTS_TEXT(play) play, track_id FROM tracks) ilv 
+               ,(SELECT JSONB_ARRAY_ELEMENTS_TEXT(play) play
+                       ,track_id 
+                 FROM   tracks
+                ) ilv 
           WHERE  trk.album_id = alb.album_id 
           AND    ilv.play     LIKE '%https%'
           AND    ilv.track_id = trk.track_id) "#Playable"
@@ -107,8 +109,8 @@ DROP              FUNCTION get_tracks_mobile;
 CREATE OR REPLACE FUNCTION get_tracks_mobile(p_favourites_only BOOLEAN
                                             ,p_collection_id   collections.collection_id%TYPE
                                             ,p_album_id        albums.album_id%TYPE  DEFAULT NULL
-                                            ) 
-RETURNS SETOF track_type_mobile AS $$
+                                            ) RETURNS SETOF track_type_mobile 
+AS $$
   SELECT track_number||'. '||CASE WHEN favourite(p_collection_id,tra.track_id,'track') THEN '⭐' ELSE '' END||track "Track"
         ,interval_to_duration(p_interval => tra.duration) "Duration" 
         ,play
@@ -131,7 +133,8 @@ RETURNS SETOF track_type_mobile AS $$
   OR ((favourite(p_collection_id,alb.album_id,'album')   AND p_favourites_only) OR NOT p_favourites_only) 
   OR ((favourite(p_collection_id,art.artist_id,'artist') AND p_favourites_only) OR NOT p_favourites_only) 
   )
-  ORDER BY CASE WHEN p_album_id IS NULL THEN UPPER(tra.track) END, tra.track_number 
+  ORDER BY CASE WHEN p_album_id IS NULL THEN UPPER(tra.track) END
+          ,tra.track_number 
 $$ LANGUAGE sql;
 
  -- Toggle Favourites Mobile only Procedure **********************************************************************************************
@@ -156,5 +159,4 @@ BEGIN
            ,p_object_type);
   END IF;
 END;
-$$ LANGUAGE plpgsql   
-
+$$ LANGUAGE plpgsql
