@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 670,
+          "bottomRow": 690,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -910,7 +910,7 @@
                 }
               ],
               "text": "",
-              "isDisabled": "{{tracks_table.selectedRowIndex ==-1 || !tracks_table.selectedRow.play[0].play_url}}",
+              "isDisabled": "{{tracks_table.selectedRowIndex ==-1 || tracks_table.selectedRow.play == null ||!tracks_table.selectedRow.play[0].play_url}}",
               "key": "td8gp94qvx",
               "isDeprecated": false,
               "rightColumn": 64,
@@ -1952,8 +1952,8 @@
               ],
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
-              "topRow": 12,
-              "bottomRow": 67,
+              "topRow": 14,
+              "bottomRow": 69,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -2239,7 +2239,7 @@
                       "textSize": "1rem",
                       "widgetId": "7s8linnv6j",
                       "minWidth": 450,
-                      "tableData": "{{get_artists.data.map(row => row.get_artists_desktop)[0]}}",
+                      "tableData": "{{!!get_artists.data ?get_artists.data.map(row => row.get_artists_desktop)[0] : ''}}",
                       "label": "Data",
                       "searchKey": "",
                       "parentId": "3mw6vz3kgy",
@@ -2795,7 +2795,7 @@
                       "textSize": "1rem",
                       "widgetId": "y2imewk4if",
                       "minWidth": 450,
-                      "tableData": "{{get_albums.data.map(row => row.get_albums_desktop)[0]}}",
+                      "tableData": "{{!!get_albums.data ? get_albums.data.map(row => row.get_albums_desktop)[0] : ''}}",
                       "label": "Data",
                       "searchKey": "",
                       "parentId": "g797enqhu4",
@@ -3324,10 +3324,10 @@
               "renderMode": "CANVAS",
               "isLoading": false,
               "responsiveBehavior": "fill",
-              "originalTopRow": 12,
+              "originalTopRow": 13,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 67,
+              "originalBottomRow": 68,
               "minDynamicHeight": 15
             },
             {
@@ -3420,7 +3420,7 @@
                 "label"
               ],
               "topRow": 8,
-              "bottomRow": 12,
+              "bottomRow": 14,
               "parentRowSpace": 10,
               "type": "TEXT_WIDGET",
               "hideCard": false,
@@ -3470,8 +3470,8 @@
               "originalTopRow": 8,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 12,
-              "fontSize": "{{JS_global_mobile.scale_font(!!albums_table.selectedRow.Album ?albums_table.selectedRow.Album.length : '')}}",
+              "originalBottomRow": 13,
+              "fontSize": "{{JS_global_mobile.scale_font(!!albums_table.selectedRow.album ?albums_table.selectedRow.album.length : '')}}",
               "minDynamicHeight": 4
             }
           ]
@@ -3485,7 +3485,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "function () {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1.25rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => storeValue('album_rownum', 0)).then(() => storeValue('track_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
+                "function () {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => storeValue('album_rownum', 0)).then(() => storeValue('track_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
               ],
               "timeoutInMillisecond": 10000
             }

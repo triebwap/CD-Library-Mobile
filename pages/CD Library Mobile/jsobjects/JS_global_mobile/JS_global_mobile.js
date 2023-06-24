@@ -1,14 +1,14 @@
 export default {
 	startup() {
 		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'})
-		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1.25rem', small: '0.875rem'}))
+		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1rem', small: '0.875rem'}))
 		.then(() => storeValue('artist_rownum',0))
 		.then(() => storeValue('album_rownum',0))
 		.then(() => storeValue('track_rownum',0))
 		.then(() => this.select_data())
 	},
 	select_data() {
-		showAlert('Searching for 🎹...')
+		showAlert('Searching for 🎵...')
 		.then(() => closeModal('collection_modal'))
 		if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
 			storeValue('collection_id',1)
