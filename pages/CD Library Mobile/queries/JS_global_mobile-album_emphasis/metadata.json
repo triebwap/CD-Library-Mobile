@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "update_play",
-    "fullyQualifiedName": "JS_global_mobile.update_play",
+    "name": "album_emphasis",
+    "fullyQualifiedName": "JS_global_mobile.album_emphasis",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -22,13 +22,10 @@
       "selfReferencingDataPaths": [],
       "jsArguments": [
         {
-          "name": "action"
-        },
-        {
-          "name": "array"
+          "name": "album_id"
         }
       ],
-      "isAsync": true
+      "isAsync": false
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -44,7 +41,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.update_play",
+  "id": "CD Library Mobile_JS_global_mobile.album_emphasis",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6469fa122ad9944d457ba3bd"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64ad9c41e5b84e6550483323"
 }
