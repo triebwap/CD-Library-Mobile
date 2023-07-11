@@ -187,10 +187,10 @@ export default {
 		return !!tracks_table.selectedRow.play ? 'Play ['+this.track_name(tracks_table.selectedRowIndex)+']' : ''
 	},
 	track_emphasis(selectedRowIndex,currentIndex,play_url) {
-		return !!play_url ? 'BOLD' : 'NORMAL'
+		return selectedRowIndex == currentIndex && !!play_url ? 'BOLD' : 'NORMAL'
 	},
 	track_text_colour(selectedRowIndex,currentIndex,play_url) {
-		return !!play_url ? appsmith.store.colours.purple : ''
+		return selectedRowIndex == currentIndex && !!play_url ? appsmith.store.colours.purple : ''
 	},
 	album_text_colour(album_id) {
 		return tracks_table.tableData.filter(row => row.album_id == album_id).filter(row => row.play[0].play_name).length >0 ? appsmith.store.colours.purple : ''
