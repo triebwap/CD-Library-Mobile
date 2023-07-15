@@ -1,5 +1,5 @@
 SELECT get_albums_desktop(p_collection_id    =>  {{appsmith.store.collection_id}}
 												 ,p_artists         => '[{{artists_table.selectedRow}}]'
 												 ,p_favourites_only =>   {{favourites_RadioGroup.selectedOptionValue}}
-												 ,p_album_view      =>   {{view_RadioGroup.selectedOptionValue == 'album' ? true : false}}
+												 ,p_album_view      =>   {{view_select.selectedOptionValue == 'album' ? true : false}}
 												 );

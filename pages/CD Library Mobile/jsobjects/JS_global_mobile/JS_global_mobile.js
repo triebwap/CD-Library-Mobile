@@ -13,6 +13,7 @@ export default {
 		if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
 			storeValue('collection_id',1)
 			.then(() => get_owner_name.run({exclude: false}))
+			.then(() => get_domain.run())
 			.then(() => storeValue('collection_name',get_owner_name.data.map(row => row.get_owner_name)[0].map(row => row.label)[0]))
 		}
 		else {
@@ -20,7 +21,7 @@ export default {
 		  .then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
 			.then(() => get_owner_name.run({exclude: true}))
 		}
-		switch (view_RadioGroup.selectedOptionValue) {
+		switch (view_select.selectedOptionValue) {
 			case 'artist':  
 				get_artists.clear()
 				.then(() => get_artists.run())
@@ -105,12 +106,12 @@ export default {
 		showModal('collection_modal')
 		.then(() => get_owner_name.run({exclude: true}))
 	},
-	view_RadioGroup() {
-		showAlert(this.initcap(view_RadioGroup.selectedOptionValue)+' view selected','success')
+	view_select() {
+		showAlert(this.initcap(view_select.selectedOptionValue)+' view selected','success')
 		.then(() => this.select_data())
 	},
-	view_RadioGroup_accent_colour() {
-		switch (view_RadioGroup.selectedOptionValue) {
+	view_select_font_colour() {
+		switch (view_select.selectedOptionValue) {
 			case 'artist': return appsmith.store.colours.green
 			case 'album': return appsmith.store.colours.amber
 			case 'track':return appsmith.store.colours.red
@@ -193,9 +194,16 @@ export default {
 		return selectedRowIndex == currentIndex && !!play_url ? appsmith.store.colours.purple : ''
 	},
 	album_text_colour(album_id) {
-		return tracks_table.tableData.filter(row => row.album_id == album_id).filter(row => row.play[0].play_name).length >0 ? appsmith.store.colours.purple : ''
+		return tracks_table.tableData.filter(row => row.album_id == album_id).filter(row => row.play[0].play_url).length >0 ? appsmith.store.colours.purple : ''
 	},
 	album_emphasis(album_id) {
 	  return tracks_table.tableData.filter(row => row.album_id == album_id).filter(row => row.play[0].play_name).length >0 ? 'BOLD' : 'NORMAL'
-	}
+	},
+	favourite_icon() {
+		switch(Tabs.selectedTab) {
+			case 'Artists': return artists_table.selectedRow.favourite ? 'star' : 'star-empty'
+			case 'Albums': return albums_table.selectedRow.favourite ? 'star' : 'star-empty'
+			case 'Tracks': return tracks_table.selectedRow.favourite ? 'star' : 'star-empty'
+		}     
+  }
 }

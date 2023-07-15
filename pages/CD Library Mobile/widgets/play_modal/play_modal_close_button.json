@@ -1,0 +1,47 @@
+{
+    "boxShadow": "none",
+    "mobileBottomRow": 4,
+    "widgetName": "play_modal_close_button",
+    "onClick": "{{JS_global_mobile.modal_close_button('play_modal')}}",
+    "buttonColor": "{{appsmith.store.colours.red}}",
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "onClick"}
+    ],
+    "displayName": "Icon Button",
+    "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
+    "searchTags": [
+        "click",
+        "submit"
+    ],
+    "topRow": 0,
+    "bottomRow": 4,
+    "type": "ICON_BUTTON_WIDGET",
+    "hideCard": false,
+    "mobileRightColumn": 64,
+    "animateLoading": true,
+    "dynamicTriggerPathList": [{"key": "onClick"}],
+    "leftColumn": 58,
+    "dynamicBindingPathList": [
+        {"key": "buttonColor"},
+        {"key": "borderRadius"}
+    ],
+    "iconSize": 24,
+    "isDisabled": false,
+    "key": "0p2t0b9x2h",
+    "isDeprecated": false,
+    "rightColumn": 64,
+    "iconName": "cross",
+    "widgetId": "c511e8jswj",
+    "minWidth": 50,
+    "isVisible": true,
+    "version": 1,
+    "parentId": "hlfwlc7fpu",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "mobileTopRow": 0,
+    "responsiveBehavior": "hug",
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "mobileLeftColumn": 58,
+    "buttonVariant": "TERTIARY"
+}

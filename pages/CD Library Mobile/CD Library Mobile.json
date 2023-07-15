@@ -1,0 +1,58 @@
+{
+  "unpublishedPage": {
+    "name": "CD Library Mobile",
+    "slug": "cd-library-mobile",
+    "layouts": [
+      {
+        "viewMode": false,
+        "dsl": {
+          "widgetName": "MainContainer",
+          "backgroundColor": "none",
+          "rightColumn": 1174,
+          "snapColumns": 64,
+          "detachFromLayout": true,
+          "widgetId": "0",
+          "topRow": 0,
+          "bottomRow": 680,
+          "containerStyle": "none",
+          "snapRows": 125,
+          "parentRowSpace": 1,
+          "type": "CANVAS_WIDGET",
+          "canExtend": true,
+          "version": 80,
+          "minHeight": 900,
+          "parentColumnSpace": 1,
+          "dynamicTriggerPathList": [],
+          "dynamicBindingPathList": [],
+          "leftColumn": 0
+        },
+        "layoutOnLoadActions": [
+          [
+            {
+              "id": "CD Library Mobile_JS_global_mobile.startup",
+              "name": "JS_global_mobile.startup",
+              "collectionId": "CD Library Mobile_JS_global_mobile",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "function () {\n  storeValue('colours', {\n    red: '#dc2626',\n    amber: '#eab308',\n    green: '#16a34a',\n    purple: '#9333ea',\n    brown: '#a16207',\n    blue: '#1e40af',\n    pink: '#db2777',\n    light_blue: '#93c5fd'\n  }).then(() => storeValue('font_sizes', {\n    large: '1.25rem',\n    medium: '1rem',\n    small: '0.875rem'\n  })).then(() => storeValue('artist_rownum', 0)).then(() => storeValue('album_rownum', 0)).then(() => storeValue('track_rownum', 0)).then(() => JS_global_mobile.select_data());\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ]
+        ],
+        "layoutOnLoadActionErrors": [],
+        "validOnPageLoadActions": true,
+        "id": "CD Library Mobile",
+        "deleted": false,
+        "policies": [],
+        "userPermissions": []
+      }
+    ],
+    "userPermissions": [],
+    "policies": [],
+    "isHidden": false
+  },
+  "deleted": false,
+  "gitSyncId": "6363b42e956dd31e95b0b466_6363b42e956dd31e95b0b46c"
+}

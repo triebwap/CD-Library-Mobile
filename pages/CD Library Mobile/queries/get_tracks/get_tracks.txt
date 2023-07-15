@@ -1,5 +1,5 @@
 SELECT get_tracks_desktop(p_collection_id   =>   {{appsmith.store.collection_id}}
 												 ,p_favourites_only =>   {{favourites_RadioGroup.selectedOptionValue}}
 												 ,p_albums          => '[{{albums_table.selectedRow}}]'
-												 ,p_track_view      =>   {{view_RadioGroup.selectedOptionValue == 'track' ? true : false}}
+												 ,p_track_view      =>   {{view_select.selectedOptionValue == 'track' ? true : false}}
 												 )

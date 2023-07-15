@@ -1,0 +1,46 @@
+{
+    "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+    "widgetName": "youtube_video",
+    "dynamicPropertyPathList": [
+        {"key": "onPlay"},
+        {"key": "onPause"},
+        {"key": "onEnd"}
+    ],
+    "displayName": "Video",
+    "iconSVG": "/static/media/icon.39c2d6968b6bb91bbe019646a9243566.svg",
+    "searchTags": ["youtube"],
+    "topRow": 4,
+    "bottomRow": 48,
+    "parentRowSpace": 10,
+    "onPause": "{{showAlert('Track paused...')}}",
+    "type": "VIDEO_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "parentColumnSpace": 6.4921875,
+    "dynamicTriggerPathList": [
+        {"key": "onPlay"},
+        {"key": "onPause"},
+        {"key": "onEnd"}
+    ],
+    "leftColumn": 0,
+    "dynamicBindingPathList": [
+        {"key": "borderRadius"},
+        {"key": "boxShadow"},
+        {"key": "url"}
+    ],
+    "key": "2mb637s7y9",
+    "backgroundColor": "#000",
+    "isDeprecated": false,
+    "rightColumn": 63,
+    "widgetId": "1jlxw5v3pk",
+    "isVisible": true,
+    "version": 1,
+    "onPlay": "{{showAlert('Track playing...')}}",
+    "url": "{{!!appsmith.store.play ? appsmith.store.play.url : ''}}",
+    "parentId": "iw6bt3mggi",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "onEnd": "{{JS_global_mobile.youtube_video_on_end()}}",
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "autoPlay": true
+}

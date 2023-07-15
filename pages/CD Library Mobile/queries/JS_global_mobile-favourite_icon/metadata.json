@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "view_RadioGroup_accent_colour",
-    "fullyQualifiedName": "JS_global_mobile.view_RadioGroup_accent_colour",
+    "name": "favourite_icon",
+    "fullyQualifiedName": "JS_global_mobile.favourite_icon",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.view_RadioGroup_accent_colour",
+  "id": "CD Library Mobile_JS_global_mobile.favourite_icon",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64623d244d66f968a16e6c3d"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64b2948546a2df37803e6988"
 }

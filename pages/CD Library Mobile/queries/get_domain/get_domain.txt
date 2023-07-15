@@ -1,0 +1,2 @@
+SELECT get_domain(p_name => 'view_type')
+
