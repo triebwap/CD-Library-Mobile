@@ -9,10 +9,10 @@ export default {
     this.set_collection_owner()
 		get_domain.run()
 		.then(() => get_artists.run())
+		.then(() => storeValue('artist_rec',artists_table.selectedRow || artists_table.tableData[0]))
 		.then(() => get_albums.run())
+		.then(() => storeValue('album_rec',albums_table.selectedRow || albums_table.tableData[0]))
 		.then(() => get_tracks.run())
-		.then(() => storeValue('artist_rec',artists_table.selectedRow))
-		.then(() => storeValue('album_rec',albums_table.selectedRow))
 	},
 	select_data() {
 		this.set_collection_owner()
@@ -20,13 +20,16 @@ export default {
 			case 'artist':  
 				get_artists.clear()
 				.then(() => get_artists.run())
+				.then(() => storeValue('artist_rec',artists_table.selectedRow || artists_table.tableData[0]))
 				.then(() => get_albums.run())
+				.then(() => storeValue('album_rec',albums_table.selectedRow || albums_table.tableData[0]))
 				.then(() => get_tracks.run())
 				break;
 			case 'album': 
 				get_artists.clear()
 				.then(() => get_albums.clear())
 				.then(() => get_albums.run())
+				.then(() => storeValue('album_rec',albums_table.selectedRow || albums_table.tableData[0]))
 				.then(() => get_tracks.run())
 				break;
 			case 'track':
@@ -35,8 +38,6 @@ export default {
 				.then(() => get_tracks.clear())
 				.then(() => get_tracks.run())
 		}
-		storeValue('artist_rec',artists_table.selectedRow)
-		.then(() => storeValue('album_rec',albums_table.selectedRow))
 	},
 	play(play) {
 		storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index, url: play})
@@ -64,16 +65,19 @@ export default {
 		}		
 	},
 	artists_on_row_selected() {
-		get_albums.run({artist_id: artists_table.selectedRow.artist_id})
-		.then(() => get_tracks.run({album_id: albums_table.selectedRow.album_id}))
-		.then(() =>storeValue('artist_rownum',artists_table.selectedRowIndex))
-		.then(() =>storeValue('album_rownum',0))
-		.then(() =>storeValue('track_rownum',0))
+		storeValue('artist_rec',artists_table.selectedRow || artists_table.tableData[0])
+		.then(() => get_albums.run())
+		.then(() => storeValue('album_rec',albums_table.selectedRow))
+		.then(() => get_tracks.run())
+		.then(() => storeValue('artist_rownum',artists_table.selectedRowIndex))
+		.then(() => storeValue('album_rownum',0))
+		.then(() => storeValue('track_rownum',0))
 	},
 	albums_on_row_selected() {
-		get_tracks.run({album_id: albums_table.selectedRow.album_id})
-		.then(() =>storeValue('album_rownum',albums_table.selectedRowIndex))
-		.then(() =>storeValue('track_rownum',0))
+		storeValue('album_rec',albums_table.selectedRow)
+		.then(() => get_tracks.run())
+		.then(() => storeValue('album_rownum',albums_table.selectedRowIndex))
+		.then(() => storeValue('track_rownum',0))
 	},
 	tracks_on_row_selected() {
 		storeValue('track_rownum',tracks_table.selectedRowIndex)
@@ -224,5 +228,17 @@ export default {
 			.then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
 			.then(() => get_owner_name.run({exclude: true}))
 		}
-	}
+	},
+	title_text(type) {
+	  switch (type) {
+      case 'artist':
+				return ''
+				break
+      case 'album':
+				return ''
+				break
+      case 'track':
+				return ''
+    }
+  }
 }

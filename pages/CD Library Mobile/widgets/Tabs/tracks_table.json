@@ -62,7 +62,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1687542287327,
+    "columnUpdatedAt": 1689521931944,
     "defaultSelectedRowIndices": [0],
     "widgetName": "tracks_table",
     "defaultPageSize": 0,

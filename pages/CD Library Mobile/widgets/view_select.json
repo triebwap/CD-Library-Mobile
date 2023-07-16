@@ -19,7 +19,7 @@
     "options": "{{get_domain.data.map(row => row.get_domain)[0]}}",
     "placeholderText": "View",
     "isDisabled": false,
-    "isRequired": false,
+    "isRequired": true,
     "dynamicHeight": "FIXED",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",
     "isVisible": true,
@@ -28,7 +28,7 @@
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileBottomRow": 15,
     "widgetName": "view_select",
-    "isFilterable": true,
+    "isFilterable": false,
     "dynamicPropertyPathList": [
         {"key": "onOptionChange"},
         {"key": "labelTextColor"}
