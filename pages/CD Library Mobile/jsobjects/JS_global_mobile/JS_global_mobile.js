@@ -11,7 +11,6 @@ export default {
 		.then(() => get_artists.run())
 		.then(() => get_albums.run())
 		.then(() => get_tracks.run())
-	  .then(() => showAlert('Found '+artists_table.tableData.length+' artist'+(artists_table.tableData.length >1 ? 's' : ''),'success'))
 	},
 	select_data() {
 		this.set_collection_owner()
@@ -21,21 +20,18 @@ export default {
 				.then(() => get_artists.run())
 				.then(() => get_albums.run())
 				.then(() => get_tracks.run())
-				.then(() => showAlert('Found '+artists_table.tableData.length+' artist'+(artists_table.tableData.length >1 ? 's' : ''),'success'))
 				break;
 			case 'album': 
 				get_artists.clear()
 				.then(() => get_albums.clear())
 				.then(() => get_albums.run())
 				.then(() => get_tracks.run())
-				.then(() => showAlert('Found '+albums_table.tableData.length+' album'+(albums_table.tableData.length >1 ? 's' : ''),'success'))
 				break;
 			case 'track':
 				get_artists.clear()
 				.then(() => get_albums.clear())
 				.then(() => get_tracks.clear())
 				.then(() => get_tracks.run())
-				.then(() => showAlert('Found '+tracks_table.tableData.length+' track'+(tracks_table.tableData.length >1 ? 's' : ''),'success'))
 		}
 		storeValue('artist_rec',artists_table.selectedRow)
 		storeValue('album_rec',albums_table.selectedRow)
