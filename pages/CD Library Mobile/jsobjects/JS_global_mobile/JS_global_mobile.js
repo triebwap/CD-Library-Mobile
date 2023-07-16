@@ -39,6 +39,8 @@ export default {
 				.then(() => get_tracks.run())
 				.then(() => showAlert('Found '+tracks_table.tableData.length+' track'+(tracks_table.tableData.length >1 ? 's' : ''),'success'))
 		}
+		storeValue('artist_rec',artists_table.selectedRow)
+		storeValue('album_rec',albums_table.selectedRow)
 	},
 	play(play) {
 		storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index, url: play})
