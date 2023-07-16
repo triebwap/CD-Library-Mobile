@@ -6,13 +6,7 @@ export default {
 		.then(() => storeValue('artist_rownum',0))
 		.then(() => storeValue('album_rownum',0))
 		.then(() => storeValue('track_rownum',0))
-		.then(() => this.select_data())
-	},
-	select_data() {
-		showAlert('Searching for 🎵...')
-		.then(() => closeModal('collection_modal'))
-		.then(() => get_domain.run())
-    if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
+		if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
 			storeValue('collection_id', 1)
 			.then(() => get_owner_name.run({exclude: false}))
 			.then(() => storeValue('collection_name',get_owner_name.data.map(row => row.get_owner_name)[0][0].label))
@@ -22,6 +16,16 @@ export default {
 			.then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
 			.then(() => get_owner_name.run({exclude: true}))
 		}
+		get_domain.run()
+		.then(() => showAlert('Searching for 🎵...'))
+		.then(() => get_artists.run())
+		.then(() => get_albums.run())
+		.then(() => get_tracks.run())
+	  .then(() => showAlert('Found '+artists_table.tableData.length+' artist'+(artists_table.tableData.length >1 ? 's' : ''),'success'))
+	},
+	select_data() {
+		showAlert('Searching for 🎵...')
+		.then(() => closeModal('collection_modal'))
 		switch (view_select.selectedOptionValue) {
 			case 'artist':  
 				get_artists.clear()
