@@ -1,8 +1,3 @@
-CALL update_track (p_track_id      =>  {{JS_global_mobile.track_id()}}
+CALL update_track (p_tracks        =>  '{{this.params.tracks}}'
 									,p_collection_id =>  {{appsmith.store.collection_id}}
-	                ,p_track_number  =>  {{this.params.track_number}}
-									,p_track         => '{{this.params.track}}'
-									,p_duration      => '{{this.params.duration}}'
-									,p_play          => '{{this.params.play}}'
-									,p_favourite     =>  {{this.params.favourite}}
 									)

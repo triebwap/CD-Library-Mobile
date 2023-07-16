@@ -64,7 +64,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1689424388976,
+    "columnUpdatedAt": 1689515701209,
     "defaultSelectedRowIndices": [0],
     "widgetName": "albums_table",
     "defaultPageSize": 0,
@@ -258,7 +258,7 @@
             "allowCellWrapping": false,
             "index": 9,
             "isDiscardVisible": true,
-            "isVisible": true,
+            "isVisible": false,
             "label": "album_id",
             "columnType": "number",
             "horizontalAlignment": "LEFT",

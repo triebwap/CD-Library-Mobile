@@ -56,6 +56,6 @@
     "responsiveBehavior": "fill",
     "mobileLeftColumn": 12,
     "maxDynamicHeight": 9000,
-    "onOptionChange": "{{JS_global_mobile.view_select()}}",
+    "onOptionChange": "{{JS_global_mobile.select_data()}}",
     "minDynamicHeight": 4
 }

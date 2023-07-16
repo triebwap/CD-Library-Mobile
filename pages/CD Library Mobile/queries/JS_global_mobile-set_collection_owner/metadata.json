@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "view_select",
-    "fullyQualifiedName": "JS_global_mobile.view_select",
+    "name": "set_collection_owner",
+    "fullyQualifiedName": "JS_global_mobile.set_collection_owner",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -35,10 +35,9 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": [],
-    "createdAt": "2023-05-15T14:08:11Z"
+    "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.view_select",
+  "id": "CD Library Mobile_JS_global_mobile.set_collection_owner",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64623ccbc50b670aac6d0cbb"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64b3e6a1ad952b584565bfb8"
 }

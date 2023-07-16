@@ -3,7 +3,7 @@
     "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
     "widgetName": "play_button",
     "onClick": "{{JS_global_mobile.play_button()}}",
-    "buttonColor": "{{tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : ''}}",
+    "buttonColor": "{{tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : 'black'}}",
     "dynamicPropertyPathList": [
         {"key": "isDisabled"},
         {"key": "onClick"},
@@ -32,7 +32,7 @@
         {"key": "buttonColor"}
     ],
     "text": "",
-    "isDisabled": "{{tracks_table.selectedRowIndex ==-1 || tracks_table.selectedRow.play == null ||!tracks_table.selectedRow.play[0].play_url}}",
+    "isDisabled": "{{tracks_table.selectedRowIndex ==-1 || tracks_table.selectedRow.play == null}}",
     "key": "td8gp94qvx",
     "isDeprecated": false,
     "rightColumn": 64,

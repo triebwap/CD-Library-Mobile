@@ -31,7 +31,7 @@
     "text": "Play sources for track [{{!!appsmith.store.play_rec ? appsmith.store.play_rec.track: ''}}] ",
     "key": "avq9z8x9f4",
     "isDeprecated": false,
-    "rightColumn": 58,
+    "rightColumn": 57,
     "textAlign": "CENTER",
     "dynamicHeight": "AUTO_HEIGHT",
     "widgetId": "wcg2u4z4fs",

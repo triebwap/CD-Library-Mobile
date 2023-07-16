@@ -25,7 +25,7 @@
           "name": "play"
         }
       ],
-      "isAsync": false
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [

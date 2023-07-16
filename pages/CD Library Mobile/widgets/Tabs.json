@@ -56,7 +56,7 @@
             "index": 1,
             "label": "Albums",
             "id": "tab2",
-            "isVisible": "{{view_select.selectedOptionValue == 'artist' || view_RadioGroup.selectedOptionValue == 'album'}}"
+            "isVisible": "{{view_select.selectedOptionValue == 'artist' || view_select.selectedOptionValue == 'album'}}"
         },
         "tabsfedcxu7gx": {
             "widgetId": "xbyicda7o1",
