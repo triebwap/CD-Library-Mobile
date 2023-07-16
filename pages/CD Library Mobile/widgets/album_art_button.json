@@ -34,7 +34,7 @@
     "isDisabled": "{{!albums_table.selectedRow.album_art}}",
     "key": "td8gp94qvx",
     "isDeprecated": false,
-    "rightColumn": 52,
+    "rightColumn": 53,
     "isDefaultClickDisabled": true,
     "widgetId": "32qopqr4wz",
     "isVisible": true,
