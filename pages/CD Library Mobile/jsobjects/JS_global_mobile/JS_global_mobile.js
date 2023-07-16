@@ -1,5 +1,6 @@
 export default {
 	startup() {
+		//clearStore()
 		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'})
 		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1rem', small: '0.875rem'}))
 		.then(() => storeValue('artist_rownum',0))
@@ -10,15 +11,15 @@ export default {
 	select_data() {
 		showAlert('Searching for 🎵...')
 		.then(() => closeModal('collection_modal'))
-		if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
-			storeValue('collection_id',1)
+		.then(() => get_domain.run())
+    if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
+			storeValue('collection_id', 1)
 			.then(() => get_owner_name.run({exclude: false}))
-			.then(() => get_domain.run())
-			.then(() => storeValue('collection_name',get_owner_name.data.map(row => row.get_owner_name)[0].map(row => row.label)[0]))
+			.then(() => storeValue('collection_name',get_owner_name.data.map(row => row.get_owner_name)[0][0].label))
 		}
 		else {
 			storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : appsmith.store.collection_id)
-		  .then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
+			.then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
 			.then(() => get_owner_name.run({exclude: true}))
 		}
 		switch (view_select.selectedOptionValue) {
