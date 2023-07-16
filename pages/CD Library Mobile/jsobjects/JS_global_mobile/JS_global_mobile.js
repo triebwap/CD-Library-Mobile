@@ -8,15 +8,13 @@ export default {
 		.then(() => storeValue('track_rownum',0))
     this.set_collection_owner()
 		get_domain.run()
-		.then(() => showAlert('Searching for 🎵...'))
 		.then(() => get_artists.run())
 		.then(() => get_albums.run())
 		.then(() => get_tracks.run())
 	  .then(() => showAlert('Found '+artists_table.tableData.length+' artist'+(artists_table.tableData.length >1 ? 's' : ''),'success'))
 	},
 	select_data() {
-		showAlert('Searching for 🎵...')
-		.then(() => this.set_collection_owner())
+		this.set_collection_owner()
 		switch (view_select.selectedOptionValue) {
 			case 'artist':  
 				get_artists.clear()
