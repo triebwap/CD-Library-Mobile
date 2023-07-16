@@ -11,6 +11,8 @@ export default {
 		.then(() => get_artists.run())
 		.then(() => get_albums.run())
 		.then(() => get_tracks.run())
+		.then(() => storeValue('artist_rec',artists_table.selectedRow))
+		.then(() => storeValue('album_rec',albums_table.selectedRow))
 	},
 	select_data() {
 		this.set_collection_owner()
@@ -34,7 +36,7 @@ export default {
 				.then(() => get_tracks.run())
 		}
 		storeValue('artist_rec',artists_table.selectedRow)
-		storeValue('album_rec',albums_table.selectedRow)
+		.then(() => storeValue('album_rec',albums_table.selectedRow))
 	},
 	play(play) {
 		storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index, url: play})
