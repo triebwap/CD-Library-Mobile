@@ -239,10 +239,11 @@ export default {
 	},
 	default_selected_row(type) {
 	  switch (type) {
-      case 'artist': return appsmith.store.artist_rownum
-      case 'album': return appsmith.store.album_rownum
-	    case 'track': return appsmith.store.track_rownum
+      case 'artist': if (appsmith.store.artist_rownum <= artists_table.tableData.length-1) return appsmith.store.artist_rownum; break
+      case 'album': if (appsmith.store.album_rownum <= albums_table.tableData.length-1) return appsmith.store.album_rownum; break
+	    case 'track': if (appsmith.store.track_rownum <= tracks_table.tableData.length-1)return appsmith.store.track_rownum
 	  }
+		return 0
 	},
 	view_select_options() {
     return get_domain.data.map(row => row.get_domain)[0].sort((a,b) => ((a.value == 'track' && b.value  == 'artist') ? 1 : (a.value == 'track' && b.value  == 'album') ? 1 :-1))
