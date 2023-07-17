@@ -32,13 +32,13 @@
     "needsHeightForContent": true,
     "leftColumn": 0,
     "delimiter": ",",
-    "defaultSelectedRowIndex": "{{appsmith.store.album_rownum}}",
+    "defaultSelectedRowIndex": "{{JS_global_mobile.default_selected_row('album')}}",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",
     "isVisibleFilters": false,
     "isVisible": true,
     "enableClientSideSearch": true,
     "version": 1,
-    "totalRecordsCount": 0,
+    "totalRecordsCount": "0",
     "isLoading": false,
     "childStylesheet": {
         "button": {

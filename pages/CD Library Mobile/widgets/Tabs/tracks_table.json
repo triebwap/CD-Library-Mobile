@@ -29,7 +29,7 @@
     "needsHeightForContent": true,
     "leftColumn": 0,
     "delimiter": ",",
-    "defaultSelectedRowIndex": "{{appsmith.store.track_rownum}}",
+    "defaultSelectedRowIndex": "{{JS_global_mobile.default_selected_row('track')}}",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",
     "isVisibleFilters": false,
     "isVisible": true,
@@ -62,7 +62,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1689521931944,
+    "columnUpdatedAt": 1689597010064,
     "defaultSelectedRowIndices": [0],
     "widgetName": "tracks_table",
     "defaultPageSize": 0,

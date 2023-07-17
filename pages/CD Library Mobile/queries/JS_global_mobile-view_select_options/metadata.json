@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "modal_close_button",
-    "fullyQualifiedName": "JS_global_mobile.modal_close_button",
+    "name": "view_select_options",
+    "fullyQualifiedName": "JS_global_mobile.view_select_options",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,12 +20,8 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [
-        {
-          "name": "modal"
-        }
-      ],
-      "isAsync": true
+      "jsArguments": [],
+      "isAsync": false
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -41,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.modal_close_button",
+  "id": "CD Library Mobile_JS_global_mobile.view_select_options",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6469f7ee81e45e6464d75013"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64b5343358734b4fd5830b5c"
 }

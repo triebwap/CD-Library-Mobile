@@ -16,7 +16,7 @@
     ],
     "topRow": 4,
     "bottomRow": 8,
-    "tooltip": "{{\n!!albums_table.selectedRow.url ? 'Show ['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] Wikipedia Page' : ''\n}}",
+    "tooltip": "{{JS_global_mobile.album_button_tooltip('Wikipedia Page')}}",
     "parentRowSpace": 10,
     "type": "BUTTON_WIDGET",
     "hideCard": false,

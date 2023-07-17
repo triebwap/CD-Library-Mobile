@@ -33,7 +33,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "{{JS_global_mobile.remove_emoji(!!albums_table.selectedRow.album ?albums_table.selectedRow.album : tracks_table.selectedRow.album)}}",
+    "text": "{{JS_global_mobile.title_text('album')}}",
     "key": "ykgijalkar",
     "isDeprecated": false,
     "rightColumn": 64,
@@ -50,7 +50,7 @@
     "originalTopRow": 8,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 21,
+    "originalBottomRow": 13,
     "fontSize": "{{JS_global_mobile.scale_font(!!albums_table.selectedRow.album ?albums_table.selectedRow.album.length : '')}}",
     "minDynamicHeight": 4
 }

@@ -33,7 +33,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "{{JS_global_mobile.remove_emoji(!!artists_table.selectedRow.artist ?artists_table.selectedRow.artist : tracks_table.selectedRow.artist)}}",
+    "text": "{{JS_global_mobile.title_text('artist')}}",
     "key": "ykgijalkar",
     "isDeprecated": false,
     "rightColumn": 33,
@@ -50,7 +50,7 @@
     "originalTopRow": 8,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 21,
+    "originalBottomRow": 12,
     "fontSize": "{{JS_global_mobile.scale_font(!!artists_table.selectedRow.artist ?artists_table.selectedRow.artist.length : 0)}}",
     "minDynamicHeight": 4
 }

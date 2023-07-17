@@ -22,7 +22,7 @@
     "needsHeightForContent": true,
     "leftColumn": 0,
     "delimiter": ",",
-    "defaultSelectedRowIndex": "{{appsmith.store.artist_rownum}}",
+    "defaultSelectedRowIndex": "{{JS_global_mobile.default_selected_row('artist')}}",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",
     "isVisibleFilters": false,
     "isVisible": true,

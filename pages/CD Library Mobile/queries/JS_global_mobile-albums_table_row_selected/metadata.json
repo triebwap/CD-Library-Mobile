@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "update_play",
-    "fullyQualifiedName": "JS_global_mobile.update_play",
+    "name": "albums_table_row_selected",
+    "fullyQualifiedName": "JS_global_mobile.albums_table_row_selected",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -16,18 +16,11 @@
     "pageId": "CD Library Mobile",
     "collectionId": "CD Library Mobile_JS_global_mobile",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 0,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [
-        {
-          "name": "action"
-        },
-        {
-          "name": "array"
-        }
-      ],
+      "jsArguments": [],
       "isAsync": false
     },
     "executeOnLoad": false,
@@ -44,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.update_play",
+  "id": "CD Library Mobile_JS_global_mobile.albums_table_row_selected",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6469fa122ad9944d457ba3bd"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64b51c7c5a25a9234bede8e4"
 }
