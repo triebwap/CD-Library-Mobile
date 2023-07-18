@@ -24,7 +24,8 @@
         {"key": "primaryColumns.track_number.computedValue"},
         {"key": "primaryColumns.track.textColor"},
         {"key": "primaryColumns.track.fontStyle"},
-        {"key": "primaryColumns.duration.computedValue"}
+        {"key": "primaryColumns.duration.computedValue"},
+        {"key": "primaryColumns.artist_id.computedValue"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -62,7 +63,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1689597010064,
+    "columnUpdatedAt": 1689678847310,
     "defaultSelectedRowIndices": [0],
     "widgetName": "tracks_table",
     "defaultPageSize": 0,
@@ -75,7 +76,8 @@
         "favourite",
         "track",
         "track_number",
-        "duration"
+        "duration",
+        "artist_id"
     ],
     "dynamicPropertyPathList": [
         {"key": "onRowSelected"},
@@ -353,9 +355,39 @@
             "originalId": "track",
             "cellBackground": "",
             "verticalAlignment": "CENTER"
+        },
+        "artist_id": {
+            "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist_id\"]))}}",
+            "isEditable": false,
+            "alias": "artist_id",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "artist_id",
+            "isDisabled": false,
+            "allowSameOptionsInNewRow": true,
+            "validation": {},
+            "isCellVisible": true,
+            "isDerived": false,
+            "textSize": "1rem",
+            "allowCellWrapping": false,
+            "index": 7,
+            "isDiscardVisible": true,
+            "isVisible": true,
+            "label": "artist_id",
+            "fontStyle": "",
+            "textColor": "",
+            "columnType": "number",
+            "horizontalAlignment": "LEFT",
+            "isCellEditable": false,
+            "width": 150,
+            "enableFilter": true,
+            "sticky": "",
+            "originalId": "artist_id",
+            "cellBackground": "",
+            "verticalAlignment": "CENTER"
         }
     },
-    "onRowSelected": "{{JS_global_mobile.tracks_on_row_selected()}}",
+    "onRowSelected": "{{JS_global_mobile.on_row_selected('track')}}",
     "key": "uolbup18nq",
     "canFreezeColumn": true,
     "isDeprecated": false,

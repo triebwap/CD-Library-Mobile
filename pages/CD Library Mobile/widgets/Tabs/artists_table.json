@@ -74,7 +74,7 @@
     "columnWidthMap": {
         "Artist": 215,
         "task": 245,
-        "artist": 304,
+        "artist": 297,
         "_Albums": 92,
         "step": 70,
         "status": 85
@@ -197,7 +197,7 @@
             "validation": {}
         }
     },
-    "onRowSelected": "{{JS_global_mobile.artists_on_row_selected()\n}}",
+    "onRowSelected": "{{JS_global_mobile.on_row_selected('artist')}}",
     "key": "uolbup18nq",
     "canFreezeColumn": true,
     "isDeprecated": false,

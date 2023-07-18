@@ -2,36 +2,39 @@ export default {
 	startup() {
 		//clearStore()
 		storeValue('colours', {red: '#dc2626', amber: '#eab308', green: '#16a34a', purple: '#9333ea', brown: '#a16207', blue: '#1e40af', pink: '#db2777', light_blue: '#93c5fd'})
-		.then(() => storeValue('font_sizes',{large: '1.25rem', medium: '1rem', small: '0.875rem'}))
-		.then(() => storeValue('artist_rownum',0))
-		.then(() => storeValue('album_rownum',0))
-		.then(() => storeValue('track_rownum',0))
+		storeValue('font_sizes',{large: '1.25rem', medium: '1rem', small: '0.875rem'})
+		storeValue('selected_artist',undefined)
+		storeValue('selected_album',undefined)
+		storeValue('selected_track',undefined)
     this.set_collection_owner()
 		get_domain.run()
-		.then(() => get_artists.run())
+		get_artists.run()
 		.then(() => get_albums.run())
 		.then(() => get_tracks.run())
+		.then(() => this.initialise_selected())
 	},
 	select_data() {
+		storeValue('selected_artist',undefined)
+		storeValue('selected_album',undefined)
+		storeValue('selected_track',undefined)
 		this.set_collection_owner()
 		switch (view_select.selectedOptionValue) {
 			case 'artist':  
-				get_artists.clear()
-				.then(() => get_artists.run())
+				get_artists.run()
 				.then(() => get_albums.run())
 				.then(() => get_tracks.run())
-				break;
+				.then(() => this.initialise_selected())
+				break
 			case 'album': 
-				get_artists.clear()
-				.then(() => get_albums.clear())
-				.then(() => get_albums.run())
+				get_albums.clear()
+				get_albums.run()
 				.then(() => get_tracks.run())
-				break;
+				.then(() => this.initialise_selected())
+				break
 			case 'track':
-				get_artists.clear()
-				.then(() => get_albums.clear())
-				.then(() => get_tracks.clear())
-				.then(() => get_tracks.run())
+        get_tracks.clear()
+				get_tracks.run()
+				.then(() => this.initialise_selected())
 		}
 	},
 	play(play) {
@@ -44,7 +47,7 @@ export default {
 			showAlert('No playable URLs found','error')
 		else {
 		  storeValue('play',{track_index: tracks_table.selectedRowIndex, source_index: play_table.selectedRowIndex, url: null})
-		  .then(() => this.play(play_table.selectedRow.play_url))
+		  this.play(play_table.selectedRow.play_url)
 		}
 	},
 	scale_font(string_length) {
@@ -59,20 +62,20 @@ export default {
 			case 'Tracks': return appsmith.store.colours.red
 		}		
 	},
-	artists_on_row_selected() {
-		get_albums.run()
-		.then(() => get_tracks.run())
-		.then(() => storeValue('artist_rownum',artists_table.selectedRowIndex))
-		.then(() => storeValue('album_rownum',0))
-		.then(() => storeValue('track_rownum',0))
-	},
-	albums_on_row_selected() {
-		get_tracks.run()
-		.then(() => storeValue('album_rownum',albums_table.selectedRowIndex))
-		.then(() => storeValue('track_rownum',0))
-	},
-	tracks_on_row_selected() {
-		storeValue('track_rownum',tracks_table.selectedRowIndex)
+	on_row_selected(type) {
+    switch (type) {
+      case 'artist': 
+				storeValue('selected_artist',artists_table.selectedRow.artist_id)
+		    get_albums.run()
+		    .then(() => get_tracks.run())
+				break		
+      case 'album':
+				storeValue('selected_album',albums_table.selectedRow.album_id)
+		    get_tracks.run()
+				break		
+	    case 'track':
+				storeValue('selected_track',tracks_table.selectedRow.track_id)
+	  }
 	},
 	toggle_favourites() {
 		switch(Tabs.selectedTab) {
@@ -90,15 +93,19 @@ export default {
 		}
 	},
 	toggle_favourites_tooltip() {
+		const tab = this.initcap(Tabs.selectedTab).match(/.*[^s]/)[0]
 		switch(Tabs.selectedTab) {
-			case 'Artists': return (!artists_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+this.remove_emoji(artists_table.selectedRow.artist)+(!artists_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
-			case 'Albums': return (!albums_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+this.remove_emoji(albums_table.selectedRow.album)+(!albums_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
-			case 'Tracks': return (!tracks_table.selectedRow.favourite ? 'Add \'' : 'Remove \'')+this.remove_emoji(tracks_table.selectedRow.track)+(!tracks_table.selectedRow.favourite ? '\' to' : '\' from')+' favourites'
+			case 'Artists': 
+				return (!artists_table.selectedRow.favourite ? 'Add '+tab+' [' : 'Remove '+tab+' [')+this.remove_emoji(artists_table.selectedRow.artist)+(!artists_table.selectedRow.favourite ? '] to' : '] from')+' favourites'
+			case 'Albums': 
+				return (!albums_table.selectedRow.favourite ? 'Add '+tab+' [' : 'Remove '+tab+' [')+this.remove_emoji(albums_table.selectedRow.album)+(!albums_table.selectedRow.favourite ? '] to' : '] from')+' favourites'
+			case 'Tracks': 
+				return (!tracks_table.selectedRow.favourite ? 'Add '+tab+' [' : 'Remove '+tab+' [')+this.remove_emoji(this.track_name(tracks_table.selectedRowIndex))+(!tracks_table.selectedRow.favourite ? '] to' : '] from')+' favourites'
 		}		
 	},
 	change_collection_button() {
 		showModal('collection_modal')
-		.then(() => get_owner_name.run({exclude: true}))
+		get_owner_name.run({exclude: true})
 	},
 	view_select_font_colour() {
 		switch (view_select.selectedOptionValue) {
@@ -108,7 +115,8 @@ export default {
 		}	
 	},
 	initcap(string) {
-		return string.charAt(0).toUpperCase()+string.slice(1)
+		if (string.charAt(0).toUpperCase() != string.charAt(0)) return string.charAt(0).toUpperCase()+string.slice(1)
+		else return string.charAt(0).toLowerCase()+string.slice(1)
 	},
 	favourite_check() {
 		get_artists.clear()
@@ -119,7 +127,7 @@ export default {
 	},
 	modal_close_button(modal) {
 		closeModal(modal)
-		.then(() => {if (appsmith.store.play_rec.origin == 'playlist_tracks_table') showModal('playlist_modal')})
+		if (appsmith.store.play_rec.origin == 'playlist_tracks_table') showModal('playlist_modal')
 	},
 	update_play(action,array) {	
 		var source
@@ -146,25 +154,19 @@ export default {
 										 })
 		.then(() => get_tracks.run())
 		.then(() => showAlert('Source ['+source+'] '+action+(action == 'add' ? 'ed' : 'd'),'success'))
-		.then(() => storeValue('play_rec',{origin: appsmith.store.play_rec.origin,
-																			track: this.track_name(tracks_table.selectedRowIndex),
-																			play: tracks_table.selectedRow.play}))
-	},
-	track_id() {
-		return !tracks_table.selectedRow.track_id ? tracks_table.tableData[0].track_id : tracks_table.selectedRow.track_id
+		.then(() => storeValue('play_rec',{origin: appsmith.store.play_rec.origin,track: this.track_name(tracks_table.selectedRowIndex),play: tracks_table.selectedRow.play}))
 	},
 	youtube_video_on_end() { 
-		var play_length = tracks_table.tableData[appsmith.store.play.track_index].play.length
-		console.log('play_length '+play_length)
+		const play_length = tracks_table.tableData[appsmith.store.play.track_index].play.length
 		if (appsmith.store.play.source_index < play_length-1) {
 			showAlert('Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+'] ended')
-			.then(() => storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index+1, url: this.play_url(appsmith.store.play.track_index,appsmith.store.play.source_index+1)})) 
-			.then(() => showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']'))
+			storeValue('play',{track_index: appsmith.store.play.track_index, source_index: appsmith.store.play.source_index+1, url: this.play_url(appsmith.store.play.track_index,appsmith.store.play.source_index+1)}) 
+			showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']')
 		}
 		else if (appsmith.store.play.track_index < tracks_table.tableData.length-1 ) {
 			showAlert('Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+'] ended')
-			.then(() => storeValue('play',{track_index: appsmith.store.play.track_index+1, source_index: 0, url: this.play_url(appsmith.store.play.track_index+1,0)}))
-			.then(() => showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']'))
+			storeValue('play',{track_index: appsmith.store.play.track_index+1, source_index: 0, url: this.play_url(appsmith.store.play.track_index+1,0)})
+			showAlert('Now playing... Track ['+this.track_name(appsmith.store.play.track_index)+'] Source ['+this.play_name(appsmith.store.play.track_index,appsmith.store.play.source_index)+']')
 		}
 		else showAlert('Playlist ended')
 	},
@@ -181,13 +183,11 @@ export default {
 		return text.match(/.*[^\p{Emoji_Presentation}]/gu)[0]
 	},
 	play_button() {
-		storeValue('play_rec',{origin: 'play_button',
-													 track: this.track_name(tracks_table.selectedRowIndex),
-													 play: tracks_table.selectedRow.play})
-		.then(() => showModal('play_modal'))
+		storeValue('play_rec',{origin: 'play_button', track: this.track_name(tracks_table.selectedRowIndex),play: tracks_table.selectedRow.play})
+		showModal('play_modal')
 	},
 	play_button_tooltip() {
-		return !!tracks_table.selectedRow.play ? 'Play ['+this.track_name(tracks_table.selectedRowIndex)+']' : ''
+		return !!tracks_table.selectedRow.play ? 'Showtrack ['+this.track_name(tracks_table.selectedRowIndex)+'] play sources' : ''
 	},
 	track_emphasis(selectedRowIndex,currentIndex,play_url) {
 		return selectedRowIndex == currentIndex && !!play_url ? 'BOLD' : 'NORMAL'
@@ -212,21 +212,21 @@ export default {
 		closeModal('collection_modal')
 	  if (!appsmith.store.collection_id || !appsmith.store.collection_name) {
 			storeValue('collection_id', 1)
-			.then(() => get_owner_name.run({exclude: false}))
+			get_owner_name.run({exclude: false})
 			.then(() => storeValue('collection_name',get_owner_name.data.map(row => row.get_owner_name)[0][0].label))
 		}
 		else {
 			storeValue('collection_id',!!owner_name_select.selectedOptionValue ? owner_name_select.selectedOptionValue : appsmith.store.collection_id)
-			.then(() => storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name))
-			.then(() => get_owner_name.run({exclude: true}))
+			storeValue('collection_name',!!owner_name_select.selectedOptionLabel ? owner_name_select.selectedOptionLabel : appsmith.store.collection_name)
+			get_owner_name.run({exclude: true})
 		}
 	},
 	title_text(type) {
 	  switch (type) {
 		  case 'artist':
-				return JS_global_mobile.remove_emoji(!!artists_table.selectedRow.artist ?artists_table.selectedRow.artist : tracks_table.selectedRow.artist)
+				return this.remove_emoji(tracks_table.selectedRow.artist)
       case 'album':
-				return JS_global_mobile.remove_emoji(!!albums_table.selectedRow.album ?albums_table.selectedRow.album : tracks_table.selectedRow.album)
+				return this.remove_emoji(tracks_table.selectedRow.album)
     }
   },
 	row_selected(type) {
@@ -238,12 +238,13 @@ export default {
     }
 	},
 	default_selected_row(type) {
+		var index
 	  switch (type) {
-      case 'artist': if (appsmith.store.artist_rownum <= artists_table.tableData.length-1) return appsmith.store.artist_rownum; break
-      case 'album': if (appsmith.store.album_rownum <= albums_table.tableData.length-1) return appsmith.store.album_rownum; break
-	    case 'track': if (appsmith.store.track_rownum <= tracks_table.tableData.length-1)return appsmith.store.track_rownum
+      case 'artist': index = _.findIndex(artists_table.tableData,(element) => element.artist_id == appsmith.store.selected_artist); break		
+      case 'album': index = _.findIndex(albums_table.tableData,(element) => element.album_id == appsmith.store.selected_album); break		
+	    case 'track': index = _.findIndex(tracks_table.tableData,(element) => element.track_id == appsmith.store.selected_track)
 	  }
-		return 0
+		return index < 0 ? 0 : index
 	},
 	view_select_options() {
     return get_domain.data.map(row => row.get_domain)[0].sort((a,b) => ((a.value == 'track' && b.value  == 'artist') ? 1 : (a.value == 'track' && b.value  == 'album') ? 1 :-1))
@@ -252,6 +253,14 @@ export default {
     return tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : 'black'
   },
   album_button_tooltip(text) {
-    return !!albums_table.selectedRow.url ? 'Show ['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] '+text : ''
+    return !!albums_table.selectedRow.url ? 'Show album ['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] '+text : ''
   },
+	initialise_selected() {
+    if (artists_table.tableData.length != 0) storeValue('selected_artist',artists_table.tableData[0].artist_id)
+		else	if (albums_table.tableData.length != 0) storeValue('selected_artist',albums_table.tableData[0].artist_id) 	
+	  else storeValue('selected_artist',tracks_table.tableData[0].artist_id)
+    if (albums_table.tableData.length != 0) storeValue('selected_album',albums_table.tableData[0].album_id)
+		else storeValue('selected_album',tracks_table.tableData[0].album_id)
+    storeValue('selected_track',tracks_table.tableData[0].track_id)
+  }
 }

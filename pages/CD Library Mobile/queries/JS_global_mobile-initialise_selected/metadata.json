@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "albums_on_row_selected",
-    "fullyQualifiedName": "JS_global_mobile.albums_on_row_selected",
+    "name": "initialise_selected",
+    "fullyQualifiedName": "JS_global_mobile.initialise_selected",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.albums_on_row_selected",
+  "id": "CD Library Mobile_JS_global_mobile.initialise_selected",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6432d37e99d4922aba727fc2"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64b6677146d58024d7be3e4f"
 }
