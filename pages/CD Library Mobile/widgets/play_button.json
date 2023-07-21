@@ -32,7 +32,7 @@
         {"key": "tooltip"},
         {"key": "isDisabled"}
     ],
-    "isDisabled": "{{tracks_table.selectedRowIndex == -1 || tracks_table.selectedRow.play == null}}",
+    "isDisabled": "{{tracks_table.selectedRowIndex < 0 || tracks_table.selectedRow.play == null}}",
     "key": "02q814nsit",
     "isDeprecated": false,
     "rightColumn": 64,
