@@ -1,0 +1,8 @@
+SELECT insert_track (p_album_id      =>  {{this.params.album_id}}
+	                  ,p_track_number  =>  {{this.params.track_number}}
+							   		,p_track         => '{{this.params.track}}'
+								  	,p_duration      => '{{this.params.duration}}'
+								  	,p_play          => '{{this.params.play}}'
+								  	,p_favourite     =>  {{this.params.favourite}}
+									  ,p_collection_id =>  {{this.params.collection_id}}
+									  )

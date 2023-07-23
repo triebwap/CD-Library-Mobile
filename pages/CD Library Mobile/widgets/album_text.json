@@ -11,7 +11,7 @@
         "paragraph",
         "label"
     ],
-    "topRow": 8,
+    "topRow": 9,
     "bottomRow": 13,
     "parentRowSpace": 10,
     "type": "TEXT_WIDGET",
@@ -50,7 +50,7 @@
     "originalTopRow": 8,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 12,
+    "originalBottomRow": 13,
     "fontSize": "{{JS_global_mobile.scale_font(!!albums_table.selectedRow.album ?albums_table.selectedRow.album.length : '')}}",
     "minDynamicHeight": 4
 }

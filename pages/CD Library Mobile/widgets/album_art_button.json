@@ -24,7 +24,7 @@
     "animateLoading": true,
     "parentColumnSpace": 7.1171875,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 45,
+    "leftColumn": 49,
     "dynamicBindingPathList": [
         {"key": "borderRadius"},
         {"key": "isDisabled"},
@@ -34,7 +34,7 @@
     "isDisabled": "{{!albums_table.selectedRow.album_art}}",
     "key": "td8gp94qvx",
     "isDeprecated": false,
-    "rightColumn": 53,
+    "rightColumn": 57,
     "isDefaultClickDisabled": true,
     "widgetId": "32qopqr4wz",
     "isVisible": true,

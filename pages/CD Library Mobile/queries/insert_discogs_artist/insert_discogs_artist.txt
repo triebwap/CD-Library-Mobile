@@ -1,0 +1,5 @@
+SELECT insert_discogs_artist(p_artist        => {{artists_table.selectedRow.artist}}
+									          ,p_favourite     => false 
+									          ,p_collection_id => {{appsmith.store.collection_id}}
+									          )
+

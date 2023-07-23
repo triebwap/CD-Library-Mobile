@@ -1,0 +1,52 @@
+{
+    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "mobileBottomRow": 8,
+    "widgetName": "search_button",
+    "onClick": "{{JS_global_mobile.search_button()}}",
+    "buttonColor": "{{appsmith.store.colours.green}}",
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "onClick"},
+        {"key": "isDisabled"}
+    ],
+    "displayName": "Icon Button",
+    "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
+    "searchTags": [
+        "click",
+        "submit"
+    ],
+    "topRow": 4,
+    "bottomRow": 8,
+    "tooltip": "{{JS_global_mobile.search_button_tooltip()}}",
+    "parentRowSpace": 10,
+    "type": "ICON_BUTTON_WIDGET",
+    "hideCard": false,
+    "mobileRightColumn": 23,
+    "animateLoading": true,
+    "parentColumnSpace": 19.71875,
+    "dynamicTriggerPathList": [{"key": "onClick"}],
+    "leftColumn": 33,
+    "dynamicBindingPathList": [
+        {"key": "tooltip"},
+        {"key": "buttonColor"},
+        {"key": "borderRadius"},
+        {"key": "isDisabled"}
+    ],
+    "isDisabled": "{{artists_table.selectedRowIndex < 0}}",
+    "key": "76l6n0yv7p",
+    "isDeprecated": false,
+    "rightColumn": 40,
+    "iconName": "search",
+    "widgetId": "phf3q8l7ni",
+    "minWidth": 50,
+    "isVisible": true,
+    "version": 1,
+    "parentId": "0",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "mobileTopRow": 4,
+    "responsiveBehavior": "hug",
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "mobileLeftColumn": 19,
+    "buttonVariant": "TERTIARY"
+}

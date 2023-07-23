@@ -1,0 +1,52 @@
+{
+    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "mobileBottomRow": 31,
+    "widgetName": "search_album_art_button",
+    "onClick": "{{JS_global_desktop.search_album_art_button()}}",
+    "buttonColor": "{{appsmith.store.colours.pink}}",
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "onClick"},
+        {"key": "isDisabled"}
+    ],
+    "displayName": "Icon button",
+    "iconSVG": "https://appcdn.appsmith.com/static/media/icon.80fc7466c0d7181ec0271de7fda795ec.svg",
+    "searchTags": [
+        "click",
+        "submit"
+    ],
+    "topRow": 4,
+    "bottomRow": 8,
+    "tooltip": "Show album [{{search_albums_table.selectedRow.title}}] Cover Art",
+    "parentRowSpace": 10,
+    "type": "ICON_BUTTON_WIDGET",
+    "hideCard": false,
+    "mobileRightColumn": 47,
+    "animateLoading": true,
+    "parentColumnSpace": 19.05,
+    "dynamicTriggerPathList": [{"key": "onClick"}],
+    "leftColumn": 62,
+    "dynamicBindingPathList": [
+        {"key": "tooltip"},
+        {"key": "isDisabled"},
+        {"key": "buttonColor"},
+        {"key": "borderRadius"}
+    ],
+    "isDisabled": "{{!search_albums_table.selectedRow.cover_image}}",
+    "key": "odjqom61cg",
+    "isDeprecated": false,
+    "rightColumn": 64,
+    "iconName": "more",
+    "widgetId": "7zm97ajpvx",
+    "minWidth": 50,
+    "isVisible": true,
+    "version": 1,
+    "parentId": "zr6vcrizhb",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "mobileTopRow": 27,
+    "responsiveBehavior": "hug",
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "mobileLeftColumn": 43,
+    "buttonVariant": "TERTIARY"
+}

@@ -1,0 +1,12 @@
+SELECT insert_album(p_collection_id => {{this.params.collection_id}}
+	                 ,p_artist_id     => {{this.params.artist_id}}
+								   ,p_album         => {{this.params.album}}
+								   ,p_shelf         => {{this.params.shelf}}
+	                 ,p_tracks        => {{this.params.tracks}}
+								   ,p_time          => {{this.params.time}}
+								   ,p_year          => {{this.params.year}}
+								   ,p_genre         => {{this.params.genre}}
+								   ,p_url           => {{this.params.url}}
+							     ,p_album_art     => {{this.params.album_art}}
+								   ,p_favourite     => {{this.params.favourite}} 
+								   )

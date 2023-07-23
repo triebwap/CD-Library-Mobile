@@ -262,5 +262,122 @@ export default {
     if (albums_table.tableData.length != 0) storeValue('selected_album',albums_table.tableData[0].album_id)
 		else storeValue('selected_album',tracks_table.tableData[0].album_id)
     storeValue('selected_track',tracks_table.tableData[0].track_id)
-  }
+  },
+	discogs_search_query(type) {
+		switch (view_select.selectedOptionValue) {
+			case 'artist': 
+				if (type == 'artist') return this.remove_emoji(artists_table.selectedRow.artist) 
+				else return '' 
+				break
+			case 'album': 
+				if (type == 'album') return this.remove_emoji(albums_table.selectedRow.album)  
+				else return '' 
+				break
+			case 'track': albums_table.selectedRow
+				if (type == 'track') return this.remove_emoji(tracks_table.selectedRow.track)
+				else return ''
+		}			
+	},
+	search_change_page(direction) {
+		if (direction == 'next') 
+			if (discogs_search_api.data.pagination.page == discogs_search_api.data.pagination.pages) showAlert('At last page','warning')
+		  else this.search_button(discogs_search_api.data.pagination.page+1)
+		else if (direction == 'previous') 
+			if (discogs_search_api.data.pagination.page == 1) showAlert('At first page','warning')
+		  else this.search_button(discogs_search_api.data.pagination.page-1)
+	},
+	search_page_button_tooltip(direction) {
+		if (direction == 'next')
+			if (discogs_search_api.data.pagination.page == discogs_search_api.data.pagination.pages) return 'At last page'
+		  else return 'Go to page '+(discogs_search_api.data.pagination.page+1)
+		else if (direction == 'previous')
+			if (discogs_search_api.data.pagination.page == 1) return 'At first page'
+		  else return 'Go to page '+(discogs_search_api.data.pagination.page-1)
+	},
+	search_button(page) {
+		discogs_master_api.clear()
+		.then(() => discogs_search_api.clear())
+		.then(() => showModal('discogs_modal'))	
+		.then(() => discogs_search_api.run({page: page}))
+		.then(() => {
+			showAlert('Found '+discogs_search_api.data.pagination.items+' matches: page '+discogs_search_api.data.pagination.page+' of '+discogs_search_api.data.pagination.pages+' pages','success')
+			if (!!search_albums_table.selectedRow.master_id && search_albums_table.selectedRow.master_id != 0) {
+				discogs_master_api.run()
+			}
+			else showAlert('No master release data available','warning')
+	  .catch(() => showAlert(discogs_master_api.data.message,'error'))
+		})
+		.catch(() => showAlert('Search failed: '+discogs_search_api.data,'error'))
+	},
+	search_button_tooltip() {
+    return 'Search on Discogs for '+view_select.selectedOptionValue+' ['+this.discogs_search_query(view_select.selectedOptionValue)+']'
+  },
+	search_albums_table_data() {
+		return !!discogs_search_api.data ? discogs_search_api.data.results : ''
+	},
+	search_tracks_table_data() {
+		return !!discogs_master_api.responseMeta.isExecutionSuccess ? discogs_master_api.data.tracklist.filter(element => element.type_ == 'track').map(row => {return {title: row.title, position: row.position, duration: row.duration}}) : ''
+	},
+	page_number_select(tot_pages) {
+		const pages = [];
+		for (let i = 0; i < tot_pages; i++) {
+			pages[i] = {"label": i+1,"value": i+1}
+		} return pages
+	},
+	search_albums_table_on_row_selected() {
+		discogs_master_api.run() 
+		if (!!search_albums_table.selectedRow.master_id && search_albums_table.selectedRow.master_id != 0) {
+			discogs_master_api.run()
+		} else showAlert('No master release data available','warning')
+		.catch(() => showAlert(discogs_master_api.data.message,'error'))
+	},
+	discogs_insert_album_button() {
+		insert_discogs_artist.run()
+		.then(() => this.insert_album_tracks())
+	},
+	insert_album_tracks() {
+		const array = appsmith.store.selected_albums
+		closeModal('discogs_modal')
+		insert_album.run({
+			collection_id: appsmith.store.collection_id,
+			artist_id: insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0],
+			album: search_albums_table.selectedRow.title,
+			shelf: '',
+			tracks: search_tracks_table.tableData.length,
+			time: this.sum_duration().concat(':'),
+			year: search_albums_table.selectedRow.year,
+			genre: genre_table.selectedRow.Genre,
+			url: '',
+			album_art: search_albums_table.selectedRow.cover_image,
+			favourite: false})
+		.then(() => {search_tracks_table.tableData.forEach((element, index) => insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
+			album_id: this.get_album_id(),
+			track_number: index+1,
+			track: element.title,
+			duration: element.duration.concat(':'),
+			play: [{"play_url":"","play_name":""}],
+			favourite: false,
+			collection_id: appsmith.store.collection_id
+		          })) 
+									 get_albums.run({artist_id: artists_table.selectedRow.artist_id})
+									 .then(() => get_tracks.run({album_id: albums_table.selectedRow.album_id}))
+								   .then(() => {array.push(this.get_album_id())
+                                storeValue('selected_albums',array)})
+									})
+		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
+	},
+	sum_duration() {
+		var minutes = 0
+		var seconds = 0
+		search_tracks_table.tableData.map(row => row.duration).forEach(element => {
+			minutes += Number(element.match(/[^:]/))
+			seconds += Number(element.match(/[^:]*$/))
+		})
+		minutes += Math.trunc(seconds/60)
+		seconds %= 60
+		return minutes+':'+(seconds.toString().length == 1 ? '0'+seconds.toString() : seconds)
+	},
+	get_album_id() {
+		return insert_album.data.map(row => row.insert_album)[0].album_id
+	}
 }
