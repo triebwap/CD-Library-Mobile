@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 4,
-    "bottomRow": 8,
+    "topRow": 5,
+    "bottomRow": 9,
     "tooltip": "Show album [{{search_albums_table.selectedRow.title}}] Cover Art",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -25,7 +25,7 @@
     "animateLoading": true,
     "parentColumnSpace": 19.05,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 62,
+    "leftColumn": 0,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "isDisabled"},
@@ -35,7 +35,7 @@
     "isDisabled": "{{!search_albums_table.selectedRow.cover_image}}",
     "key": "odjqom61cg",
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 7,
     "iconName": "more",
     "widgetId": "7zm97ajpvx",
     "minWidth": 50,
@@ -46,7 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 27,
     "responsiveBehavior": "hug",
+    "originalTopRow": 5,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 43,
+    "originalBottomRow": 9,
     "buttonVariant": "TERTIARY"
 }

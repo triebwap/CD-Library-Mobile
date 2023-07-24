@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "get_album_id",
-    "fullyQualifiedName": "JS_global_mobile.get_album_id",
+    "name": "delete_artist",
+    "fullyQualifiedName": "JS_global_mobile.delete_artist",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -21,7 +21,7 @@
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [],
-      "isAsync": false
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -35,9 +35,10 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-07-24T15:29:34Z"
   },
-  "id": "CD Library Mobile_JS_global_mobile.get_album_id",
+  "id": "CD Library Mobile_JS_global_mobile.delete_artist",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64bd6d6f3b53e00844f0717c"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64be98dece1be7608fc71346"
 }

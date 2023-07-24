@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT insert_discogs_artist(p_artist        => {{artists_table.selectedRow.artist}}\n\t\t\t\t\t\t\t\t\t          ,p_favourite     => false \n\t\t\t\t\t\t\t\t\t          ,p_collection_id => {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t          )\n\n",
+      "body": "SELECT insert_discogs_artist(p_artist        => {{JS_global_mobile.remove_emoji(artists_table.selectedRow.artist)}}\n\t\t\t\t\t\t\t\t\t          ,p_favourite     => false \n\t\t\t\t\t\t\t\t\t          ,p_collection_id => {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t          )\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,8 +36,8 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "appsmith.store.collection_id",
-      "artists_table.selectedRow.artist"
+      "JS_global_mobile.remove_emoji(artists_table.selectedRow.artist)",
+      "appsmith.store.collection_id"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

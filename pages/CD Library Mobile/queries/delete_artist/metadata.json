@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "insert_track",
+    "name": "delete_artist",
     "datasource": {
       "name": "neondb",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT insert_track (p_album_id      =>  {{this.params.album_id}}\n\t                  ,p_track_number  =>  {{this.params.track_number}}\n\t\t\t\t\t\t\t   \t\t,p_track         => '{{this.params.track}}'\n\t\t\t\t\t\t\t\t  \t,p_duration      => '{{this.params.duration}}'\n\t\t\t\t\t\t\t\t  \t,p_play          => '{{this.params.play}}'\n\t\t\t\t\t\t\t\t  \t,p_favourite     =>  {{this.params.favourite}}\n\t\t\t\t\t\t\t\t\t  ,p_collection_id =>  {{this.params.collection_id}}\n\t\t\t\t\t\t\t\t\t  )\n",
+      "body": "CALL delete_artist(p_artists       => '{{this.params.artists}}'\n\t\t\t\t\t\t\t\t\t,p_collection_id =>  {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t)\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,21 +36,16 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.album_id",
-      "this.params.collection_id",
-      "this.params.duration",
-      "this.params.favourite",
-      "this.params.play",
-      "this.params.track",
-      "this.params.track_number"
+      "appsmith.store.collection_id",
+      "this.params.artists"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-07-23T18:05:52Z"
+    "createdAt": "2023-07-24T15:25:00Z"
   },
-  "id": "CD Library Mobile_insert_track",
+  "id": "CD Library Mobile_delete_artist",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64bd6c003b53e00844f07147"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64be97cc5567e865a6614b0f"
 }

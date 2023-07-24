@@ -265,18 +265,10 @@ export default {
   },
 	discogs_search_query(type) {
 		switch (view_select.selectedOptionValue) {
-			case 'artist': 
-				if (type == 'artist') return this.remove_emoji(artists_table.selectedRow.artist) 
-				else return '' 
-				break
-			case 'album': 
-				if (type == 'album') return this.remove_emoji(albums_table.selectedRow.album)  
-				else return '' 
-				break
-			case 'track': albums_table.selectedRow
-				if (type == 'track') return this.remove_emoji(tracks_table.selectedRow.track)
-				else return ''
-		}			
+			case 'artist': return type == 'artist' ? this.remove_emoji(artists_table.selectedRow.artist) : '' 
+			case 'album': return type == 'album' ? this.remove_emoji(albums_table.selectedRow.album) : '' 
+			case 'track': return type == 'track' ? this.remove_emoji(tracks_table.selectedRow.track) : ''
+		}
 	},
 	search_change_page(direction) {
 		if (direction == 'next') 
@@ -287,6 +279,7 @@ export default {
 		  else this.search_button(discogs_search_api.data.pagination.page-1)
 	},
 	search_page_button_tooltip(direction) {
+		if (discogs_search_api.data == undefined) return ''
 		if (direction == 'next')
 			if (discogs_search_api.data.pagination.page == discogs_search_api.data.pagination.pages) return 'At last page'
 		  else return 'Go to page '+(discogs_search_api.data.pagination.page+1)
@@ -295,10 +288,14 @@ export default {
 		  else return 'Go to page '+(discogs_search_api.data.pagination.page-1)
 	},
 	search_button(page) {
+		if (!search_page_select.isDirty) search_page_select.setSelectedOption(({ label: '1', value: 1 }))
 		discogs_master_api.clear()
 		.then(() => discogs_search_api.clear())
 		.then(() => showModal('discogs_modal'))	
-		.then(() => discogs_search_api.run({page: page}))
+		.then(() => discogs_search_api.run({page: page,
+																			 artist: this.discogs_search_query('artist'),
+																			 album: this.discogs_search_query('album'),
+																			 track: this.discogs_search_query('track')}))
 		.then(() => {
 			showAlert('Found '+discogs_search_api.data.pagination.items+' matches: page '+discogs_search_api.data.pagination.page+' of '+discogs_search_api.data.pagination.pages+' pages','success')
 			if (!!search_albums_table.selectedRow.master_id && search_albums_table.selectedRow.master_id != 0) {
@@ -336,7 +333,6 @@ export default {
 		.then(() => this.insert_album_tracks())
 	},
 	insert_album_tracks() {
-		const array = appsmith.store.selected_albums
 		closeModal('discogs_modal')
 		insert_album.run({
 			collection_id: appsmith.store.collection_id,
@@ -350,20 +346,20 @@ export default {
 			url: '',
 			album_art: search_albums_table.selectedRow.cover_image,
 			favourite: false})
-		.then(() => {search_tracks_table.tableData.forEach((element, index) => insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
+		.then(() => {
+			search_tracks_table.tableData.forEach((element, index) => insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
 			album_id: this.get_album_id(),
 			track_number: index+1,
-			track: element.title,
+			track: element.title.replace('\'','\'\''),
 			duration: element.duration.concat(':'),
 			play: [{"play_url":"","play_name":""}],
 			favourite: false,
 			collection_id: appsmith.store.collection_id
-		          })) 
-									 get_albums.run({artist_id: artists_table.selectedRow.artist_id})
-									 .then(() => get_tracks.run({album_id: albums_table.selectedRow.album_id}))
-								   .then(() => {array.push(this.get_album_id())
-                                storeValue('selected_albums',array)})
-									})
+		  })) 
+			storeValue('selected_album',this.get_album_id())
+			.then(() => get_albums.run())
+			.then(() => get_tracks.run())
+			})
 		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
 	},
 	sum_duration() {
@@ -379,5 +375,21 @@ export default {
 	},
 	get_album_id() {
 		return insert_album.data.map(row => row.insert_album)[0].album_id
+	},
+	discogs_modal_text() {
+		if (discogs_search_api.data == undefined) return ''
+    return 'Discogs Search Results for '+view_select.selectedOptionValue+'['+JS_global_mobile.discogs_search_query(view_select.selectedOptionValue)+'] page '+discogs_search_api.data.pagination.page+' of '+(!discogs_search_api.data   ? '' : discogs_search_api.data.pagination.pages)
+  },
+	delete_artist() {
+		const artist = artists_table.selectedRow.artist
+		delete_artist.run([{artists: artists_table.selectedRow.artist_id}])
+		.then(() => {
+			storeValue('selected_artist',undefined)
+			.then(() => get_artists.run())
+			.then(() => get_albums.run())
+			.then(() => get_tracks.run())
+			.then(() => showAlert('Artist ['+artist+'] deleted','success'))
+		})
+		.catch(() => showAlert('Unable to delete artist: '+delete_artist.data.match(/.*/)[0],'error'))
 	}
 }

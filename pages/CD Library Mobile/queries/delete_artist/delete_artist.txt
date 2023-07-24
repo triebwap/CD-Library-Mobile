@@ -1,0 +1,4 @@
+CALL delete_artist(p_artists       => '{{this.params.artists}}'
+									,p_collection_id =>  {{appsmith.store.collection_id}}
+									)
+

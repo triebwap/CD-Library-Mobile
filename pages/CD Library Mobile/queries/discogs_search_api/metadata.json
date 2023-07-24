@@ -36,15 +36,15 @@
         },
         {
           "key": "artist",
-          "value": "{{JS_global_mobile.discogs_search_query('artist')}}"
+          "value": "{{this.params.artist}}"
         },
         {
           "key": "release_title",
-          "value": "{{JS_global_mobile.discogs_search_query('album')}}"
+          "value": "{{this.params.album}}"
         },
         {
           "key": "track",
-          "value": "{{JS_global_mobile.discogs_search_query('track')}}"
+          "value": "{{this.params.track}}"
         },
         {
           "key": "page",
@@ -60,23 +60,23 @@
         "key": "queryParameters[1].value"
       },
       {
+        "key": "queryParameters[4].value"
+      },
+      {
         "key": "queryParameters[2].value"
       },
       {
         "key": "queryParameters[3].value"
-      },
-      {
-        "key": "queryParameters[4].value"
       }
     ],
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "JS_global_mobile.discogs_search_query('album')",
-      "JS_global_mobile.discogs_search_query('artist')",
-      "JS_global_mobile.discogs_search_query('track')",
-      "this.params.page"
+      "this.params.album",
+      "this.params.artist",
+      "this.params.page",
+      "this.params.track"
     ],
     "userSetOnLoad": true,
     "confirmBeforeExecute": false,

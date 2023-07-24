@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "get_album_id",
-    "fullyQualifiedName": "JS_global_mobile.get_album_id",
+    "name": "discogs_modal_text",
+    "fullyQualifiedName": "JS_global_mobile.discogs_modal_text",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.get_album_id",
+  "id": "CD Library Mobile_JS_global_mobile.discogs_modal_text",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64bd6d6f3b53e00844f0717c"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64be508794500558852828db"
 }
