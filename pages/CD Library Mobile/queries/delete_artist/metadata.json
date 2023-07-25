@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "CALL delete_artist(p_artists       => '{{this.params.artists}}'\n\t\t\t\t\t\t\t\t\t,p_collection_id =>  {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t)\n\n",
+      "body": "CALL delete_artist(p_artists       => '{{this.params.artist}}'\n\t\t\t\t\t\t\t\t\t,p_collection_id =>  {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t)\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -37,7 +37,7 @@
     "messages": [],
     "jsonPathKeys": [
       "appsmith.store.collection_id",
-      "this.params.artists"
+      "this.params.artist"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

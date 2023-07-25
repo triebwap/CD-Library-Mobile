@@ -24,8 +24,8 @@
     ],
     "displayName": "Menu button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.3cf002d0ae89cb8036b5fe5195a33339.svg",
-    "topRow": 5,
-    "bottomRow": 9,
+    "topRow": 4,
+    "bottomRow": 8,
     "parentRowSpace": 10,
     "type": "MENU_BUTTON_WIDGET",
     "hideCard": false,
@@ -60,6 +60,7 @@
     "menuItems": {
         "menuItem1": {
             "onClick": "{{showModal('wiki_modal')}}",
+            "iconName": "page-layout",
             "widgetId": "",
             "index": 0,
             "label": "{{JS_global_mobile.album_button_tooltip('Wikipedia Page')}}",
@@ -80,6 +81,7 @@
         },
         "menuItem2": {
             "onClick": "{{showModal('album_art_modal')}}",
+            "iconName": "media",
             "widgetId": "",
             "index": 1,
             "label": "{{JS_global_mobile.album_button_tooltip('Cover Art')}}",

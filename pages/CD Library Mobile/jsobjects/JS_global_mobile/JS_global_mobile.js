@@ -187,7 +187,7 @@ export default {
 		showModal('play_modal')
 	},
 	play_button_tooltip() {
-		return !!tracks_table.selectedRow.play ? 'Showtrack ['+this.track_name(tracks_table.selectedRowIndex)+'] play sources' : ''
+		return !!tracks_table.selectedRow.play ? '['+this.track_name(tracks_table.selectedRowIndex)+'] play sources' : ''
 	},
 	track_emphasis(selectedRowIndex,currentIndex,play_url) {
 		return selectedRowIndex == currentIndex && !!play_url ? 'BOLD' : 'NORMAL'
@@ -223,10 +223,8 @@ export default {
 	},
 	title_text(type) {
 	  switch (type) {
-		  case 'artist':
-				return this.remove_emoji(tracks_table.selectedRow.artist)
-      case 'album':
-				return this.remove_emoji(tracks_table.selectedRow.album)
+		  case 'artist': return this.remove_emoji(tracks_table.selectedRow.artist)
+      case 'album': return this.remove_emoji(tracks_table.selectedRow.album)
     }
   },
 	row_selected(type) {
@@ -253,7 +251,7 @@ export default {
     return tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : 'black'
   },
   album_button_tooltip(text) {
-    return !!albums_table.selectedRow.url ? 'Show album ['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] '+text : ''
+    return !!albums_table.selectedRow.url ? '['+JS_global_mobile.remove_emoji(albums_table.selectedRow.album)+'] '+text : ''
   },
 	initialise_selected() {
     if (artists_table.tableData.length != 0) storeValue('selected_artist',artists_table.tableData[0].artist_id)
@@ -264,10 +262,21 @@ export default {
     storeValue('selected_track',tracks_table.tableData[0].track_id)
   },
 	discogs_search_query(type) {
-		switch (view_select.selectedOptionValue) {
-			case 'artist': return type == 'artist' ? this.remove_emoji(artists_table.selectedRow.artist) : '' 
-			case 'album': return type == 'album' ? this.remove_emoji(albums_table.selectedRow.album) : '' 
-			case 'track': return type == 'track' ? this.remove_emoji(tracks_table.selectedRow.track) : ''
+    switch (view_select.selectedOptionValue) {
+			case 'artist': {
+				if (type == 'artist') return discogs_search_input.text != this.remove_emoji(artists_table.selectedRow.artist) ? discogs_search_input.text : this.remove_emoji(artists_table.selectedRow.artist)
+				else return  ''
+				break
+			}
+			case 'album': {
+				if (type == 'album') return discogs_search_input.text != this.remove_emoji(albums_table.selectedRow.album) ? discogs_search_input.text : this.remove_emoji(albums_table.selectedRow.album)
+				else return '' 
+				break
+			}
+			case 'track':  {
+				if (type == 'track') return discogs_search_input.text != this.track_name(tracks_table.selectedRowIndex) ? discogs_search_input.text : this.track_name(tracks_table.selectedRowIndex)
+				else return ''
+			}
 		}
 	},
 	search_change_page(direction) {
@@ -300,9 +309,9 @@ export default {
 			showAlert('Found '+discogs_search_api.data.pagination.items+' matches: page '+discogs_search_api.data.pagination.page+' of '+discogs_search_api.data.pagination.pages+' pages','success')
 			if (!!search_albums_table.selectedRow.master_id && search_albums_table.selectedRow.master_id != 0) {
 				discogs_master_api.run()
+				.catch(() => showAlert(discogs_master_api.data.message,'error'))
 			}
 			else showAlert('No master release data available','warning')
-	  .catch(() => showAlert(discogs_master_api.data.message,'error'))
 		})
 		.catch(() => showAlert('Search failed: '+discogs_search_api.data,'error'))
 	},
@@ -329,7 +338,7 @@ export default {
 		.catch(() => showAlert(discogs_master_api.data.message,'error'))
 	},
 	discogs_insert_album_button() {
-		insert_discogs_artist.run()
+		insert_discogs_artist.run({artist: discogs_search_input.text != this.remove_emoji(artists_table.selectedRow.artist) ? discogs_master_api.data.artists[0].name : this.remove_emoji(artists_table.selectedRow.artist)})
 		.then(() => this.insert_album_tracks())
 	},
 	insert_album_tracks() {
@@ -347,16 +356,22 @@ export default {
 			album_art: search_albums_table.selectedRow.cover_image,
 			favourite: false})
 		.then(() => {
-			search_tracks_table.tableData.forEach((element, index) => insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
-			album_id: this.get_album_id(),
-			track_number: index+1,
-			track: element.title.replace('\'','\'\''),
-			duration: element.duration.concat(':'),
-			play: [{"play_url":"","play_name":""}],
-			favourite: false,
-			collection_id: appsmith.store.collection_id
-		  })) 
-			storeValue('selected_album',this.get_album_id())
+			search_tracks_table.tableData.forEach((element, index) => {
+				insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
+			    album_id: this.get_album_id(),
+			    track_number: index+1,
+			    track: element.title.replace('\'','\'\''),
+			    duration: element.duration.concat(':'),
+			    play: [{"play_url":"","play_name":""}],
+			    favourite: false,
+			    collection_id: appsmith.store.collection_id
+		    })
+			  .then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
+				.catch(() => showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error'))
+			}) 
+			storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0])
+			.then(() => storeValue('selected_album',this.get_album_id()))
+			.then(() => get_artists.run())
 			.then(() => get_albums.run())
 			.then(() => get_tracks.run())
 			})
@@ -378,11 +393,11 @@ export default {
 	},
 	discogs_modal_text() {
 		if (discogs_search_api.data == undefined) return ''
-    return 'Discogs Search Results for '+view_select.selectedOptionValue+'['+JS_global_mobile.discogs_search_query(view_select.selectedOptionValue)+'] page '+discogs_search_api.data.pagination.page+' of '+(!discogs_search_api.data   ? '' : discogs_search_api.data.pagination.pages)
+    return 'Discogs Search Results for '+view_select.selectedOptionValue+' ['+JS_global_mobile.discogs_search_query(view_select.selectedOptionValue)+'] page '+discogs_search_api.data.pagination.page+' of '+(!discogs_search_api.data   ? '' : discogs_search_api.data.pagination.pages)
   },
 	delete_artist() {
 		const artist = artists_table.selectedRow.artist
-		delete_artist.run([{artists: artists_table.selectedRow.artist_id}])
+		delete_artist.run({artist: [{artist_id: artists_table.selectedRow.artist_id}]})
 		.then(() => {
 			storeValue('selected_artist',undefined)
 			.then(() => get_artists.run())
@@ -391,5 +406,51 @@ export default {
 			.then(() => showAlert('Artist ['+artist+'] deleted','success'))
 		})
 		.catch(() => showAlert('Unable to delete artist: '+delete_artist.data.match(/.*/)[0],'error'))
+	},
+	delete_album() {
+	  const album = albums_table.selectedRow.album
+		delete_album.run({album: [{album_id: albums_table.selectedRow.album_id}]})
+		.then(() => {
+			storeValue('selected_album',undefined)
+			.then(() => get_albums.run())
+			.then(() => get_tracks.run())
+			.then(() => showAlert('Album ['+album+'] deleted','success'))
+		})
+		.catch(() => showAlert('Unable to delete album: '+delete_album.data.match(/.*/)[0],'error'))
+	},
+	delete_track() {
+		const track = this.track_name(tracks_table.selectedRowIndex)
+		delete_track.run({track: [{track_id: tracks_table.selectedRow.track_id}]})
+		.then(() => {
+			storeValue('selected_tracks',undefined)
+			.then(() => get_tracks.run())
+			.then(() => showAlert('Track ['+track+'] deleted','success'))
+		})
+		.catch(() => showAlert('Unable to delete track(s): '+delete_track.data.match(/Album.*disabled/)[0],'error'))
+	},
+	delete_modal_text() {
+		const tab = this.initcap(Tabs.selectedTab).match(/.*[^s]/)[0]
+		switch (tab) {
+			case 'artist': return 'Delete '+tab+' ['+this.remove_emoji(artists_table.selectedRow.artist)+']' 
+			case 'album': return 'Delete '+tab+' ['+this.remove_emoji(albums_table.selectedRow.album)+']' 
+			case 'track': return 'Delete '+tab+' ['+this.track_name(tracks_table.selectedRowIndex)+']' 
+		}
+	},
+	delete_modal_delete_button() {
+		const tab = this.initcap(Tabs.selectedTab).match(/.*[^s]/)[0]
+		closeModal('delete_modal')
+		switch (tab) {
+			case 'artist': this.delete_artist(); break
+			case 'album': this.delete_album(); break
+			case 'track': this.delete_track()			
+	  }
+	},
+	discogs_search_input() {
+		const tab = this.initcap(Tabs.selectedTab).match(/.*[^s]/)[0]
+		switch (tab) {
+			case 'artist': return this.remove_emoji(artists_table.selectedRow.artist)
+			case 'album': return this.remove_emoji(albums_table.selectedRow.album)
+			case 'track': return this.track_name(tracks_table.selectedRowIndex)
+	  }
 	}
 }

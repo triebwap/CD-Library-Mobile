@@ -1,0 +1,3 @@
+CALL delete_track(p_tracks        => '{{this.params.track}}'
+								 ,p_collection_id =>  {{appsmith.store.collection_id}}
+								 )

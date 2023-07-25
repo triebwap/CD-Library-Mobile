@@ -8,7 +8,7 @@
     "serverSideFiltering": false,
     "defaultOptionValue": "",
     "animateLoading": true,
-    "leftColumn": 30,
+    "leftColumn": 25,
     "dynamicBindingPathList": [
         {"key": "options"},
         {"key": "borderRadius"}
@@ -40,7 +40,7 @@
     "key": "9gs5pm5rce",
     "labelTextSize": "0.875rem",
     "isDeprecated": false,
-    "rightColumn": 51,
+    "rightColumn": 46,
     "widgetId": "xft2pn5ukt",
     "minWidth": 450,
     "parentId": "zr6vcrizhb",

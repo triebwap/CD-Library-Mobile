@@ -24,7 +24,7 @@
     "animateLoading": true,
     "parentColumnSpace": 20.03125,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 58,
+    "leftColumn": 57,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "buttonColor"},
@@ -33,7 +33,7 @@
     "isDisabled": false,
     "key": "yeykilyblm",
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 63,
     "iconName": "arrow-right",
     "widgetId": "0smo1sf5b0",
     "minWidth": 50,

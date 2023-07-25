@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "discogs_insert_album_button",
-    "fullyQualifiedName": "JS_global_mobile.discogs_insert_album_button",
+    "name": "delete_album",
+    "fullyQualifiedName": "JS_global_mobile.delete_album",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -21,7 +21,7 @@
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [],
-      "isAsync": false
+      "isAsync": true
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -35,9 +35,10 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-07-25T10:39:04Z"
   },
-  "id": "CD Library Mobile_JS_global_mobile.discogs_insert_album_button",
+  "id": "CD Library Mobile_JS_global_mobile.delete_album",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64bfba38965bc42bda545293"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64bfa6483aed7b7bc0e524e6"
 }

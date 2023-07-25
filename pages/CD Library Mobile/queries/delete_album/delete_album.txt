@@ -1,0 +1,3 @@
+CALL delete_album(p_albums        => '{{this.params.album}}'
+								 ,p_collection_id =>  {{appsmith.store.collection_id}}
+								 )
