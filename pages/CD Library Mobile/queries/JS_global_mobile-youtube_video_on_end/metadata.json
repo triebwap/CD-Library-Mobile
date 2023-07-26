@@ -35,7 +35,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-05-30T11:16:18Z"
   },
   "id": "CD Library Mobile_JS_global_mobile.youtube_video_on_end",
   "deleted": false,

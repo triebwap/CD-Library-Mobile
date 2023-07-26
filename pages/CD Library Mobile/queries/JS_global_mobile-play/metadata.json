@@ -25,7 +25,7 @@
           "name": "play"
         }
       ],
-      "isAsync": true
+      "isAsync": false
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -43,5 +43,5 @@
   },
   "id": "CD Library Mobile_JS_global_mobile.play",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_6384b2a63e748351b7e6bff5"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64c0ed0ff11f9772607c7c30"
 }

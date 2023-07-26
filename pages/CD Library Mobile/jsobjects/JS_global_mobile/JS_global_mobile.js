@@ -13,6 +13,81 @@ export default {
 		.then(() => get_tracks.run())
 		.then(() => this.initialise_selected())
 	},
+	artist: {
+	  delete() {
+		  const artist = artists_table.selectedRow.artist
+		  delete_artist.run({artist: [{artist_id: artists_table.selectedRow.artist_id}]})
+		  .then(() => {
+			storeValue('selected_artist',undefined)
+			.then(() => get_artists.run())
+			.then(() => get_albums.run())
+			.then(() => get_tracks.run())
+			.then(() => showAlert('Artist ['+artist+'] deleted','success'))
+		})
+		.catch(() => showAlert('Unable to delete artist: '+delete_artist.data.match(/.*/)[0],'error'))
+	  }
+	},
+	album: {
+		delete() {
+	    const album = albums_table.selectedRow.album
+		  delete_album.run({album: [{album_id: albums_table.selectedRow.album_id}]})
+		  .then(() => {
+			  storeValue('selected_album',undefined)
+			  .then(() => get_albums.run())
+			  .then(() => get_tracks.run())
+			  .then(() => showAlert('Album ['+album+'] deleted','success'))
+		  })
+		.catch(() => showAlert('Unable to delete album: '+delete_album.data.match(/.*/)[0],'error'))
+	  },
+	  insert_tracks() {
+		  closeModal('discogs_modal')
+		  insert_album.run({
+			  collection_id: appsmith.store.collection_id,
+			  artist_id: insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0],
+			  album: search_albums_table.selectedRow.title,
+			  shelf: '',
+			  tracks: search_tracks_table.tableData.length,
+			  time: this.sum_duration().concat(':'),
+			  year: search_albums_table.selectedRow.year,
+			  genre: genre_table.selectedRow.Genre,
+			  url: '',
+			  album_art: search_albums_table.selectedRow.cover_image,
+			  favourite: false})
+		  .then(() => {
+			  search_tracks_table.tableData.forEach((element, index) => {
+				  insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
+			      album_id: insert_album.data.map(row => row.insert_album)[0].album_id,
+			      track_number: index+1,
+			      track: element.title.replace('\'','\'\''),
+			      duration: element.duration.concat(':'),
+			      play: [{"play_url":"","play_name":""}],
+			      favourite: false,
+			      collection_id: appsmith.store.collection_id
+		      })
+			    .then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
+				  .catch(() => showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error'))
+			  }) 
+			  storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0])
+			  .then(() => storeValue('selected_album',insert_album.data.map(row => row.insert_album)[0].album_id))
+			  .then(() => get_artists.run())
+			  .then(() => get_albums.run())
+			  .then(() => get_tracks.run())
+			})
+		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
+	  }
+	},
+	track: {
+	  delete() {
+			const track = this.track_name(tracks_table.selectedRowIndex)
+		  delete_track.run({track: [{track_id: tracks_table.selectedRow.track_id}]})
+		  .then(() => {
+			  storeValue('selected_track',undefined)
+			  .then(() => get_tracks.run())
+			  .then(() => showAlert('Track ['+track+'] deleted','success'))
+		  })
+		  .catch(() => showAlert('Unable to delete track(s): '+delete_track.data.match(/Album.*disabled/)[0],'error'))
+	  }
+	},
 	select_data() {
 		storeValue('selected_artist',undefined)
 		storeValue('selected_album',undefined)
@@ -171,7 +246,7 @@ export default {
 		else showAlert('Playlist ended')
 	},
 	track_name(track_index) {
-		return this.remove_emoji(tracks_table.tableData[track_index].track)
+		 return this.remove_emoji(tracks_table.tableData[track_index].track)
 	},
 	play_name(track_index,source_index) {
 		return tracks_table.tableData[track_index].play[source_index].play_name
@@ -339,43 +414,7 @@ export default {
 	},
 	discogs_insert_album_button() {
 		insert_discogs_artist.run({artist: discogs_search_input.text != this.remove_emoji(artists_table.selectedRow.artist) ? discogs_master_api.data.artists[0].name : this.remove_emoji(artists_table.selectedRow.artist)})
-		.then(() => this.insert_album_tracks())
-	},
-	insert_album_tracks() {
-		closeModal('discogs_modal')
-		insert_album.run({
-			collection_id: appsmith.store.collection_id,
-			artist_id: insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0],
-			album: search_albums_table.selectedRow.title,
-			shelf: '',
-			tracks: search_tracks_table.tableData.length,
-			time: this.sum_duration().concat(':'),
-			year: search_albums_table.selectedRow.year,
-			genre: genre_table.selectedRow.Genre,
-			url: '',
-			album_art: search_albums_table.selectedRow.cover_image,
-			favourite: false})
-		.then(() => {
-			search_tracks_table.tableData.forEach((element, index) => {
-				insert_track.run(() => {showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success')},() => {showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error')},{
-			    album_id: this.get_album_id(),
-			    track_number: index+1,
-			    track: element.title.replace('\'','\'\''),
-			    duration: element.duration.concat(':'),
-			    play: [{"play_url":"","play_name":""}],
-			    favourite: false,
-			    collection_id: appsmith.store.collection_id
-		    })
-			  .then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
-				.catch(() => showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error'))
-			}) 
-			storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0])
-			.then(() => storeValue('selected_album',this.get_album_id()))
-			.then(() => get_artists.run())
-			.then(() => get_albums.run())
-			.then(() => get_tracks.run())
-			})
-		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
+		.then(() => this.album.insert_tracks())
 	},
 	sum_duration() {
 		var minutes = 0
@@ -388,46 +427,10 @@ export default {
 		seconds %= 60
 		return minutes+':'+(seconds.toString().length == 1 ? '0'+seconds.toString() : seconds)
 	},
-	get_album_id() {
-		return insert_album.data.map(row => row.insert_album)[0].album_id
-	},
 	discogs_modal_text() {
 		if (discogs_search_api.data == undefined) return ''
     return 'Discogs Search Results for '+view_select.selectedOptionValue+' ['+JS_global_mobile.discogs_search_query(view_select.selectedOptionValue)+'] page '+discogs_search_api.data.pagination.page+' of '+(!discogs_search_api.data   ? '' : discogs_search_api.data.pagination.pages)
   },
-	delete_artist() {
-		const artist = artists_table.selectedRow.artist
-		delete_artist.run({artist: [{artist_id: artists_table.selectedRow.artist_id}]})
-		.then(() => {
-			storeValue('selected_artist',undefined)
-			.then(() => get_artists.run())
-			.then(() => get_albums.run())
-			.then(() => get_tracks.run())
-			.then(() => showAlert('Artist ['+artist+'] deleted','success'))
-		})
-		.catch(() => showAlert('Unable to delete artist: '+delete_artist.data.match(/.*/)[0],'error'))
-	},
-	delete_album() {
-	  const album = albums_table.selectedRow.album
-		delete_album.run({album: [{album_id: albums_table.selectedRow.album_id}]})
-		.then(() => {
-			storeValue('selected_album',undefined)
-			.then(() => get_albums.run())
-			.then(() => get_tracks.run())
-			.then(() => showAlert('Album ['+album+'] deleted','success'))
-		})
-		.catch(() => showAlert('Unable to delete album: '+delete_album.data.match(/.*/)[0],'error'))
-	},
-	delete_track() {
-		const track = this.track_name(tracks_table.selectedRowIndex)
-		delete_track.run({track: [{track_id: tracks_table.selectedRow.track_id}]})
-		.then(() => {
-			storeValue('selected_tracks',undefined)
-			.then(() => get_tracks.run())
-			.then(() => showAlert('Track ['+track+'] deleted','success'))
-		})
-		.catch(() => showAlert('Unable to delete track(s): '+delete_track.data.match(/Album.*disabled/)[0],'error'))
-	},
 	delete_modal_text() {
 		const tab = this.initcap(Tabs.selectedTab).match(/.*[^s]/)[0]
 		switch (tab) {
@@ -440,9 +443,9 @@ export default {
 		const tab = this.initcap(Tabs.selectedTab).match(/.*[^s]/)[0]
 		closeModal('delete_modal')
 		switch (tab) {
-			case 'artist': this.delete_artist(); break
-			case 'album': this.delete_album(); break
-			case 'track': this.delete_track()			
+			case 'artist': this.artist.delete(); break
+			case 'album': this.album.delete(); break
+			case 'track': this.track.delete()			
 	  }
 	},
 	discogs_search_input() {

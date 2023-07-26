@@ -35,7 +35,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-04-10T08:18:56Z"
   },
   "id": "CD Library Mobile_JS_global_mobile.toggle_favourites_tooltip",
   "deleted": false,

@@ -54,7 +54,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1690285972412,
+    "columnUpdatedAt": 1690370855174,
     "defaultSelectedRowIndices": [0],
     "widgetName": "artists_table",
     "defaultPageSize": 0,

@@ -35,7 +35,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-07-25T12:01:47Z"
   },
   "id": "CD Library Mobile_JS_global_mobile.delete_modal_delete_button",
   "deleted": false,

@@ -42,7 +42,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-05-21T11:01:38Z"
   },
   "id": "CD Library Mobile_JS_global_mobile.update_play",
   "deleted": false,

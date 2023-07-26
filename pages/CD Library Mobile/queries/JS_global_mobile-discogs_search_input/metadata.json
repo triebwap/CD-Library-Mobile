@@ -35,7 +35,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-07-25T13:04:50Z"
   },
   "id": "CD Library Mobile_JS_global_mobile.discogs_search_input",
   "deleted": false,

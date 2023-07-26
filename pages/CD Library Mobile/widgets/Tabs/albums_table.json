@@ -64,7 +64,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1689515701209,
+    "columnUpdatedAt": 1690370811005,
     "defaultSelectedRowIndices": [0],
     "widgetName": "albums_table",
     "defaultPageSize": 0,
