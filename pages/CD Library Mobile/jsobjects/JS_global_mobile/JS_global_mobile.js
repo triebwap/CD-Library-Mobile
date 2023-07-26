@@ -15,7 +15,7 @@ export default {
 	},
 	artist: {
 	  delete() {
-		  const artist = artists_table.selectedRow.artist
+		  const artist = this.remove_emoji(artists_table.selectedRow.artist)
 		  delete_artist.run({artist: [{artist_id: artists_table.selectedRow.artist_id}]})
 		  .then(() => {
 			storeValue('selected_artist',undefined)
@@ -29,7 +29,7 @@ export default {
 	},
 	album: {
 		delete() {
-	    const album = albums_table.selectedRow.album
+	    const album = this.remove_emoji(albums_table.selectedRow.album)
 		  delete_album.run({album: [{album_id: albums_table.selectedRow.album_id}]})
 		  .then(() => {
 			  storeValue('selected_album',undefined)
