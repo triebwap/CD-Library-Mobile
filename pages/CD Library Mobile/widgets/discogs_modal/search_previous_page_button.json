@@ -6,7 +6,8 @@
     "buttonColor": "{{appsmith.store.colours.blue}}",
     "dynamicPropertyPathList": [
         {"key": "onClick"},
-        {"key": "buttonColor"}
+        {"key": "buttonColor"},
+        {"key": "isDisabled"}
     ],
     "displayName": "Icon Button",
     "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
@@ -14,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 5,
-    "bottomRow": 9,
+    "topRow": 4,
+    "bottomRow": 8,
     "tooltip": "{{JS_global_mobile.search_page_button_tooltip('previous')}}",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -24,16 +25,17 @@
     "animateLoading": true,
     "parentColumnSpace": 20.03125,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 48,
+    "leftColumn": 46,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "buttonColor"},
-        {"key": "borderRadius"}
+        {"key": "borderRadius"},
+        {"key": "isDisabled"}
     ],
-    "isDisabled": false,
+    "isDisabled": "{{search_albums_table.tableData.length == 0 ||discogs_search_api.data.pagination.page == 1}}",
     "key": "yeykilyblm",
     "isDeprecated": false,
-    "rightColumn": 55,
+    "rightColumn": 53,
     "iconName": "arrow-left",
     "widgetId": "z8xnk22ddv",
     "minWidth": 50,

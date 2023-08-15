@@ -2,16 +2,16 @@
     "boxShadow": "none",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.d0ce957b6c4640f8a7418ce846ee200e.svg",
     "onSubmit": "{{JS_global_mobile.search_button()}}",
-    "topRow": 9,
+    "topRow": 8,
     "labelWidth": "8",
     "type": "INPUT_WIDGET_V2",
     "animateLoading": true,
     "resetOnSubmit": false,
     "leftColumn": 0,
     "dynamicBindingPathList": [
+        {"key": "defaultText"},
         {"key": "accentColor"},
-        {"key": "borderRadius"},
-        {"key": "defaultText"}
+        {"key": "borderRadius"}
     ],
     "labelStyle": "",
     "inputType": "TEXT",
@@ -36,7 +36,7 @@
         "number",
         "textarea"
     ],
-    "bottomRow": 13,
+    "bottomRow": 12,
     "parentRowSpace": 10,
     "autoFocus": false,
     "hideCard": false,
@@ -47,7 +47,7 @@
     "key": "r7mzoip4ao",
     "labelTextSize": "0.875rem",
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 63,
     "widgetId": "1dxwbdz80n",
     "minWidth": 450,
     "label": "Search",

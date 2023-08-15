@@ -14,12 +14,12 @@
     "imageShape": "RECTANGLE",
     "leftColumn": 0,
     "dynamicBindingPathList": [
-        {"key": "borderRadius"},
-        {"key": "image"}
+        {"key": "image"},
+        {"key": "borderRadius"}
     ],
     "defaultImage": "",
     "key": "wudu7x0306",
-    "image": "{{albums_table.selectedRow.album_art}}",
+    "image": "{{appsmith.store.album_art}}",
     "isDeprecated": false,
     "rightColumn": 63,
     "objectFit": "cover",

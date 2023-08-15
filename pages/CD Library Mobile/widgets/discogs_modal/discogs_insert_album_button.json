@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 5,
-    "bottomRow": 9,
+    "topRow": 4,
+    "bottomRow": 8,
     "tooltip": "Add album [{{search_albums_table.selectedRow.title}}] to collection",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -32,7 +32,7 @@
         {"key": "buttonColor"},
         {"key": "borderRadius"}
     ],
-    "isDisabled": "{{search_albums_table.selectedRowIndex == -1}}",
+    "isDisabled": "{{search_albums_table.selectedRowIndex == -1 || search_albums_table.tableData.length == 0}}",
     "key": "odjqom61cg",
     "isDeprecated": false,
     "rightColumn": 25,

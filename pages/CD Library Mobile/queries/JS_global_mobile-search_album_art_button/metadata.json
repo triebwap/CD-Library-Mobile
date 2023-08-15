@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "album_button_tooltip",
-    "fullyQualifiedName": "JS_global_mobile.album_button_tooltip",
+    "name": "search_album_art_button",
+    "fullyQualifiedName": "JS_global_mobile.search_album_art_button",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -22,13 +22,12 @@
       "selfReferencingDataPaths": [],
       "jsArguments": [
         {
-          "name": "text"
+          "name": "source_button"
         },
         {
-          "name": "type"
+          "name": "album_art"
         }
-      ],
-      "isAsync": false
+      ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -42,10 +41,9 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": [],
-    "createdAt": "2023-07-17T14:21:35Z"
+    "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.album_button_tooltip",
+  "id": "CD Library Mobile_JS_global_mobile.search_album_art_button",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64b54e6fc94ad95f9dc595a6"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64db7f6bdf876a13cf638316"
 }

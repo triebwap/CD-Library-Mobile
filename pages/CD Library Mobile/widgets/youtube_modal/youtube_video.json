@@ -24,9 +24,9 @@
     ],
     "leftColumn": 0,
     "dynamicBindingPathList": [
+        {"key": "url"},
         {"key": "borderRadius"},
-        {"key": "boxShadow"},
-        {"key": "url"}
+        {"key": "boxShadow"}
     ],
     "key": "2mb637s7y9",
     "backgroundColor": "#000",

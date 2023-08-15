@@ -25,10 +25,10 @@
     "dynamicTriggerPathList": [{"key": "onClick"}],
     "leftColumn": 30,
     "dynamicBindingPathList": [
-        {"key": "borderRadius"},
         {"key": "text"},
+        {"key": "tooltip"},
         {"key": "buttonColor"},
-        {"key": "tooltip"}
+        {"key": "borderRadius"}
     ],
     "text": "{{appsmith.store.collection_name}}",
     "isDisabled": false,

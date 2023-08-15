@@ -9,15 +9,15 @@
     "inlineEditingSaveOption": "ROW_LEVEL",
     "animateLoading": true,
     "dynamicBindingPathList": [
+        {"key": "tableData"},
+        {"key": "primaryColumns.album_count.computedValue"},
+        {"key": "primaryColumns.favourite.computedValue"},
+        {"key": "primaryColumns.artist.computedValue"},
+        {"key": "primaryColumns.artist_id.computedValue"},
+        {"key": "defaultSelectedRowIndex"},
         {"key": "accentColor"},
         {"key": "borderRadius"},
-        {"key": "boxShadow"},
-        {"key": "primaryColumns.artist_id.computedValue"},
-        {"key": "primaryColumns.artist.computedValue"},
-        {"key": "defaultSelectedRowIndex"},
-        {"key": "primaryColumns.favourite.computedValue"},
-        {"key": "primaryColumns.album_count.computedValue"},
-        {"key": "tableData"}
+        {"key": "boxShadow"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,

@@ -17,9 +17,9 @@
     "dynamicTriggerPathList": [{"key": "onMessageReceived"}],
     "leftColumn": 0,
     "dynamicBindingPathList": [
+        {"key": "source"},
         {"key": "borderRadius"},
-        {"key": "boxShadow"},
-        {"key": "source"}
+        {"key": "boxShadow"}
     ],
     "borderWidth": 1,
     "key": "w7h1il6tnw",

@@ -19,8 +19,8 @@
     "dynamicTriggerPathList": [],
     "leftColumn": 58,
     "dynamicBindingPathList": [
-        {"key": "borderRadius"},
-        {"key": "buttonColor"}
+        {"key": "buttonColor"},
+        {"key": "borderRadius"}
     ],
     "iconSize": 24,
     "isDisabled": false,

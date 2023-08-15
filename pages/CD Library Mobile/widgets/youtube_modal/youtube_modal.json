@@ -34,10 +34,7 @@
         "parentColumnSpace": 1,
         "dynamicTriggerPathList": [],
         "leftColumn": 0,
-        "dynamicBindingPathList": [
-            {"key": "borderRadius"},
-            {"key": "accentColor"}
-        ],
+        "dynamicBindingPathList": [],
         "isDisabled": false,
         "key": "1sunwavry9",
         "isDeprecated": false,

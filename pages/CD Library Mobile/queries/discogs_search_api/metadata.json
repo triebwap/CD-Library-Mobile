@@ -57,16 +57,19 @@
     "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
-        "key": "queryParameters[1].value"
+        "key": "path"
       },
       {
-        "key": "queryParameters[4].value"
+        "key": "queryParameters[1].value"
       },
       {
         "key": "queryParameters[2].value"
       },
       {
         "key": "queryParameters[3].value"
+      },
+      {
+        "key": "queryParameters[4].value"
       }
     ],
     "isValid": true,

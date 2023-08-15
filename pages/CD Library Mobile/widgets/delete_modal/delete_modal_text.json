@@ -24,10 +24,8 @@
     "dynamicTriggerPathList": [],
     "leftColumn": 0,
     "dynamicBindingPathList": [
-        {"key": "truncateButtonColor"},
-        {"key": "fontFamily"},
-        {"key": "borderRadius"},
         {"key": "text"},
+        {"key": "fontFamily"},
         {"key": "fontSize"},
         {"key": "textColor"}
     ],

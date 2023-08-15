@@ -1,9 +1,12 @@
 {
     "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
     "widgetName": "close_album_art_button",
-    "onClick": "{{closeModal('album_art_modal')}}",
+    "onClick": "{{JS_global_mobile.close_album_art_button()}}",
     "buttonColor": "{{appsmith.store.colours.red}}",
-    "dynamicPropertyPathList": [{"key": "buttonColor"}],
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "onClick"}
+    ],
     "displayName": "Icon Button",
     "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
     "searchTags": [
@@ -16,11 +19,11 @@
     "type": "ICON_BUTTON_WIDGET",
     "hideCard": false,
     "animateLoading": true,
-    "dynamicTriggerPathList": [],
+    "dynamicTriggerPathList": [{"key": "onClick"}],
     "leftColumn": 56,
     "dynamicBindingPathList": [
-        {"key": "borderRadius"},
-        {"key": "buttonColor"}
+        {"key": "buttonColor"},
+        {"key": "borderRadius"}
     ],
     "iconSize": 24,
     "isDisabled": false,

@@ -16,11 +16,11 @@
     "dynamicPropertyPathList": [
         {"key": "menuItems.menuItem1.isDisabled"},
         {"key": "menuItems.menuItem1.onClick"},
-        {"key": "menuItems.menuItem2.onClick"},
         {"key": "menuItems.menuItem3.onClick"},
         {"key": "menuItems.menuItem2.isDisabled"},
         {"key": "menuItems.menuItem3.isDisabled"},
-        {"key": "menuColor"}
+        {"key": "menuColor"},
+        {"key": "menuItems.menuItem2.onClick"}
     ],
     "displayName": "Menu button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.3cf002d0ae89cb8036b5fe5195a33339.svg",
@@ -39,15 +39,14 @@
     ],
     "leftColumn": 56,
     "dynamicBindingPathList": [
-        {"key": "borderRadius"},
-        {"key": "menuItems.menuItem1.isDisabled"},
-        {"key": "menuItems.menuItem2.label"},
-        {"key": "menuItems.menuItem3.label"},
-        {"key": "menuItems.menuItem1.label"},
-        {"key": "menuItems.menuItem2.isDisabled"},
         {"key": "menuItems.menuItem3.isDisabled"},
-        {"key": "menuItems.menuItem3.iconColor"},
-        {"key": "menuColor"}
+        {"key": "menuItems.menuItem3.label"},
+        {"key": "menuItems.menuItem2.isDisabled"},
+        {"key": "menuItems.menuItem2.label"},
+        {"key": "menuItems.menuItem1.isDisabled"},
+        {"key": "menuItems.menuItem1.label"},
+        {"key": "menuColor"},
+        {"key": "borderRadius"}
     ],
     "isDisabled": false,
     "sourceData": [],
@@ -63,7 +62,7 @@
             "iconName": "page-layout",
             "widgetId": "",
             "index": 0,
-            "label": "{{JS_global_mobile.album_button_tooltip('Wikipedia Page')}}",
+            "label": "{{JS_global_mobile.album_button_tooltip('Wikipedia Page','W')}}",
             "id": "menuItem1",
             "isVisible": true,
             "isDisabled": "{{!albums_table.selectedRow.url}}"
@@ -80,11 +79,11 @@
             "isDisabled": "{{tracks_table.selectedRowIndex < 0 || tracks_table.selectedRow.play == null}}"
         },
         "menuItem2": {
-            "onClick": "{{showModal('album_art_modal')}}",
+            "onClick": "{{JS_global_mobile.search_album_art_button('album_art_button',albums_table.selectedRow.album_art)}}",
             "iconName": "media",
             "widgetId": "",
             "index": 1,
-            "label": "{{JS_global_mobile.album_button_tooltip('Cover Art')}}",
+            "label": "{{JS_global_mobile.album_button_tooltip('Cover Art','A')}}",
             "id": "menuItem2",
             "isVisible": true,
             "isDisabled": "{{!albums_table.selectedRow.album_art}}"

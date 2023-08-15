@@ -4,15 +4,18 @@
     "widgetName": "discogs_details_button",
     "onClick": "{{showModal('discogs_details_modal');}}",
     "buttonColor": "{{appsmith.store.colours.blue}}",
-    "dynamicPropertyPathList": [{"key": "buttonColor"}],
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "isDisabled"}
+    ],
     "displayName": "Icon button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.80fc7466c0d7181ec0271de7fda795ec.svg",
     "searchTags": [
         "click",
         "submit"
     ],
-    "topRow": 5,
-    "bottomRow": 9,
+    "topRow": 4,
+    "bottomRow": 8,
     "tooltip": "Show details for album [{{search_albums_table.selectedRow.title}}]",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -23,15 +26,16 @@
     "dynamicTriggerPathList": [{"key": "onClick"}],
     "leftColumn": 10,
     "dynamicBindingPathList": [
-        {"key": "borderRadius"},
+        {"key": "tooltip"},
         {"key": "buttonColor"},
-        {"key": "tooltip"}
+        {"key": "borderRadius"},
+        {"key": "isDisabled"}
     ],
-    "isDisabled": false,
+    "isDisabled": "{{search_albums_table.tableData.length == 0}}",
     "key": "pp0uefyqcb",
     "isDeprecated": false,
     "rightColumn": 17,
-    "iconName": "plus",
+    "iconName": "more",
     "widgetId": "wdlrn0p39h",
     "minWidth": 50,
     "isVisible": true,

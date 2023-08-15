@@ -28,9 +28,9 @@
     "leftColumn": 33,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
+        {"key": "isDisabled"},
         {"key": "buttonColor"},
-        {"key": "borderRadius"},
-        {"key": "isDisabled"}
+        {"key": "borderRadius"}
     ],
     "isDisabled": "{{artists_table.selectedRowIndex < 0}}",
     "key": "76l6n0yv7p",

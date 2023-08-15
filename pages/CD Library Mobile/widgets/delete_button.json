@@ -26,10 +26,10 @@
     "dynamicTriggerPathList": [{"key": "onClick"}],
     "leftColumn": 45,
     "dynamicBindingPathList": [
-        {"key": "buttonColor"},
-        {"key": "borderRadius"},
         {"key": "tooltip"},
-        {"key": "isDisabled"}
+        {"key": "isDisabled"},
+        {"key": "buttonColor"},
+        {"key": "borderRadius"}
     ],
     "isDisabled": "{{artists_table.selectedRowIndex < 0}}",
     "key": "oomyx2bx1x",

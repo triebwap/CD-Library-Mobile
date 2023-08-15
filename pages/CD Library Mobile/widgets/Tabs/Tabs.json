@@ -11,8 +11,8 @@
     ],
     "displayName": "Tabs",
     "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
-    "topRow": 12,
-    "bottomRow": 67,
+    "topRow": 13,
+    "bottomRow": 68,
     "parentRowSpace": 10,
     "type": "TABS_WIDGET",
     "hideCard": false,
@@ -22,12 +22,12 @@
     "dynamicTriggerPathList": [{"key": "onTabSelected"}],
     "leftColumn": 0,
     "dynamicBindingPathList": [
+        {"key": "tabsObj.tab2.isVisible"},
+        {"key": "tabsObj.tab1.isVisible"},
+        {"key": "defaultTab"},
         {"key": "accentColor"},
         {"key": "borderRadius"},
-        {"key": "boxShadow"},
-        {"key": "tabsObj.tab1.isVisible"},
-        {"key": "tabsObj.tab2.isVisible"},
-        {"key": "defaultTab"}
+        {"key": "boxShadow"}
     ],
     "children": [
         {
