@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT get_tracks_desktop(p_collection_id   =>   {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_favourites_only =>   {{favourites_RadioGroup.selectedOptionValue}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_albums          =>  '{{JS_global_mobile.row_selected('album')}}'\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_track_view      =>   {{view_select.selectedOptionValue == 'track' ? true : false}}\n\t\t\t\t\t\t\t\t\t\t\t\t )",
+      "body": "SELECT get_tracks_desktop(p_collection_id   =>  {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_favourites_only =>  {{favourites_RadioGroup.selectedOptionValue}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_albums          => '{{JS_global_mobile.row_selected('album')}}'\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_track_view      =>  {{view_select.selectedOptionValue == 'track' ? true : false}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_limit           =>  {{appsmith.store.page_size}}\n\t\t\t\t\t\t\t\t\t       ,p_offset          =>  {{this.params.offset}}\n\t\t\t\t\t\t\t\t\t\t\t\t )",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -38,7 +38,9 @@
     "jsonPathKeys": [
       "JS_global_mobile.row_selected('album')",
       "appsmith.store.collection_id",
+      "appsmith.store.page_size",
       "favourites_RadioGroup.selectedOptionValue",
+      "this.params.offset",
       "view_select.selectedOptionValue == 'track' ? true : false"
     ],
     "userSetOnLoad": true,

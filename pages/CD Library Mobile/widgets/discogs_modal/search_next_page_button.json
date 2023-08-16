@@ -25,7 +25,7 @@
     "animateLoading": true,
     "parentColumnSpace": 20.03125,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 53,
+    "leftColumn": 57,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "buttonColor"},
@@ -35,7 +35,7 @@
     "isDisabled": "{{search_albums_table.tableData.length == 0 || discogs_search_api.data.pagination.page == discogs_search_api.data.pagination.pages}}",
     "key": "yeykilyblm",
     "isDeprecated": false,
-    "rightColumn": 60,
+    "rightColumn": 64,
     "iconName": "arrow-right",
     "widgetId": "0smo1sf5b0",
     "minWidth": 50,
@@ -46,9 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 4,
     "responsiveBehavior": "hug",
-    "originalTopRow": 5,
+    "originalTopRow": 4,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 30,
-    "originalBottomRow": 9,
+    "originalBottomRow": 8,
     "buttonVariant": "TERTIARY"
 }

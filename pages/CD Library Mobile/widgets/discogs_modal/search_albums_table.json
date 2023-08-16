@@ -70,7 +70,7 @@
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "columnUpdatedAt": 1692099376690,
-    "originalBottomRow": 49,
+    "originalBottomRow": 48,
     "defaultSelectedRowIndices": [0],
     "widgetName": "search_albums_table",
     "defaultPageSize": 0,
@@ -758,7 +758,7 @@
     "renderMode": "CANVAS",
     "horizontalAlignment": "LEFT",
     "isVisibleSearch": true,
-    "originalTopRow": 13,
+    "originalTopRow": 12,
     "isVisiblePagination": false,
     "verticalAlignment": "CENTER"
 }

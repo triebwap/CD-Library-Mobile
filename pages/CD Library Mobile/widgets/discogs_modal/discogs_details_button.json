@@ -24,7 +24,7 @@
     "animateLoading": true,
     "parentColumnSpace": 6.4921875,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 10,
+    "leftColumn": 9,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "buttonColor"},
@@ -34,7 +34,7 @@
     "isDisabled": "{{search_albums_table.tableData.length == 0}}",
     "key": "pp0uefyqcb",
     "isDeprecated": false,
-    "rightColumn": 17,
+    "rightColumn": 16,
     "iconName": "more",
     "widgetId": "wdlrn0p39h",
     "minWidth": 50,
@@ -45,9 +45,9 @@
     "isLoading": false,
     "mobileTopRow": 37,
     "responsiveBehavior": "hug",
-    "originalTopRow": 5,
+    "originalTopRow": 4,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 48,
-    "originalBottomRow": 9,
+    "originalBottomRow": 8,
     "buttonVariant": "TERTIARY"
 }
