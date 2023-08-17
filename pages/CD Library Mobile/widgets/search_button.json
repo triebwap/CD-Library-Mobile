@@ -25,7 +25,7 @@
     "animateLoading": true,
     "parentColumnSpace": 19.71875,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 33,
+    "leftColumn": 41,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "isDisabled"},
@@ -35,7 +35,7 @@
     "isDisabled": "{{artists_table.selectedRowIndex < 0}}",
     "key": "76l6n0yv7p",
     "isDeprecated": false,
-    "rightColumn": 40,
+    "rightColumn": 48,
     "iconName": "search",
     "widgetId": "phf3q8l7ni",
     "minWidth": 50,

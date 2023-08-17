@@ -37,14 +37,11 @@
         {"key": "menuItems.menuItem2.onClick"},
         {"key": "menuItems.menuItem3.onClick"}
     ],
-    "leftColumn": 56,
+    "leftColumn": 57,
     "dynamicBindingPathList": [
         {"key": "menuItems.menuItem3.isDisabled"},
-        {"key": "menuItems.menuItem3.label"},
         {"key": "menuItems.menuItem2.isDisabled"},
-        {"key": "menuItems.menuItem2.label"},
         {"key": "menuItems.menuItem1.isDisabled"},
-        {"key": "menuItems.menuItem1.label"},
         {"key": "menuColor"},
         {"key": "borderRadius"}
     ],
@@ -62,7 +59,7 @@
             "iconName": "page-layout",
             "widgetId": "",
             "index": 0,
-            "label": "{{JS_global_mobile.album_button_tooltip('Wikipedia Page','W')}}",
+            "label": "Wiki",
             "id": "menuItem1",
             "isVisible": true,
             "isDisabled": "{{!albums_table.selectedRow.url}}"
@@ -73,7 +70,7 @@
             "widgetId": "",
             "iconColor": "{{JS_global_mobile.play_button_colour()}}",
             "index": 2,
-            "label": "{{JS_global_mobile.play_button_tooltip()}}",
+            "label": "Play",
             "id": "menuItem3",
             "isVisible": true,
             "isDisabled": "{{tracks_table.selectedRowIndex < 0 || tracks_table.selectedRow.play == null}}"
@@ -83,7 +80,7 @@
             "iconName": "media",
             "widgetId": "",
             "index": 1,
-            "label": "{{JS_global_mobile.album_button_tooltip('Cover Art','A')}}",
+            "label": "Art",
             "id": "menuItem2",
             "isVisible": true,
             "isDisabled": "{{!albums_table.selectedRow.album_art}}"

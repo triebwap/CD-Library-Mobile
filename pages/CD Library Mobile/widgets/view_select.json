@@ -1,7 +1,7 @@
 {
     "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.1a5defb3c19b4cac4a27829d1f979e4c.svg",
-    "labelText": "View",
+    "labelText": "",
     "topRow": 4,
     "labelWidth": "7",
     "type": "SELECT_WIDGET",
@@ -46,7 +46,7 @@
     "key": "1qh7j6gtwe",
     "labelTextSize": "0.875rem",
     "isDeprecated": false,
-    "rightColumn": 32,
+    "rightColumn": 18,
     "widgetId": "1r7a9eiput",
     "optionValue": "value",
     "minWidth": 450,
