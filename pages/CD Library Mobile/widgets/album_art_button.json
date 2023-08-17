@@ -1,9 +1,14 @@
 {
     "boxShadow": "none",
     "mobileBottomRow": 8,
-    "widgetName": "cover_art_button",
-    "buttonColor": "{{appsmith.store.colours.red}}",
-    "dynamicPropertyPathList": [{"key": "buttonColor"}],
+    "widgetName": "album_art_button",
+    "onClick": "{{JS_global_mobile.search_album_art_button('album_art_button',albums_table.selectedRow.album_art)}}",
+    "buttonColor": "{{appsmith.store.colours.purple}}",
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "onClick"},
+        {"key": "isDisabled"}
+    ],
     "displayName": "Icon button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.b08054586989b185a0801e9a34f8ad49.svg",
     "searchTags": [
@@ -12,19 +17,22 @@
     ],
     "topRow": 4,
     "bottomRow": 8,
+    "tooltip": "{{JS_global_mobile.album_button_tooltip('album art','A')}}",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
     "hideCard": false,
     "mobileRightColumn": 35,
     "animateLoading": true,
     "parentColumnSpace": 6.84375,
-    "dynamicTriggerPathList": [],
+    "dynamicTriggerPathList": [{"key": "onClick"}],
     "leftColumn": 31,
     "dynamicBindingPathList": [
         {"key": "buttonColor"},
-        {"key": "borderRadius"}
+        {"key": "borderRadius"},
+        {"key": "isDisabled"},
+        {"key": "tooltip"}
     ],
-    "isDisabled": false,
+    "isDisabled": "{{!albums_table.selectedRow.album_art}}",
     "key": "szlp46t114",
     "isDeprecated": false,
     "rightColumn": 37,

@@ -37,6 +37,6 @@
     "isLoading": false,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "fontSize": "1.25rem",
+    "fontSize": "0.875rem",
     "minDynamicHeight": 4
 }

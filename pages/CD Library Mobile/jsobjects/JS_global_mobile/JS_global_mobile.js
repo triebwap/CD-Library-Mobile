@@ -145,9 +145,14 @@ export default {
 				storeValue('selected_album',albums_table.selectedRow.album_id)
 		    get_tracks.run(); break		
 	    case 'track':
-				storeValue('selected_track',tracks_table.selectedRow.track_id)
-				if (tracks_table.selectedRowIndex+1 == appsmith.store.page_size && tracks_table.selectedRow.page_number != tracks_table.selectedRow.total_pages) get_tracks.run({offset: this.get_offset()+appsmith.store.page_size})
-				else if (tracks_table.selectedRowIndex == 0 && tracks_table.selectedRow.page_number != 1) get_tracks.run({offset: this.get_offset()-appsmith.store.page_size})
+				if (tracks_table.selectedRowIndex+1 == appsmith.store.page_size && tracks_table.selectedRow.page_number != tracks_table.selectedRow.total_pages) {
+					get_tracks.run({offset: this.get_offset()+appsmith.store.page_size})
+					.then(() => storeValue('selected_track',tracks_table.tableData[tracks_table.tableData.length-1].track_id))
+				}
+				else if (tracks_table.selectedRowIndex == 0 && tracks_table.selectedRow.page_number != 1) {
+					get_tracks.run({offset: this.get_offset()-appsmith.store.page_size})
+					.then(() => storeValue('selected_track',tracks_table.tableData[0].track_id))
+				} else storeValue('selected_track',tracks_table.selectedRow.track_id)
 	  }
 	},
 	toggle_favourites() {

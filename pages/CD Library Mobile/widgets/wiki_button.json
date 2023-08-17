@@ -2,8 +2,13 @@
     "boxShadow": "none",
     "mobileBottomRow": 8,
     "widgetName": "wiki_button",
+    "onClick": "{{showModal('wiki_modal')}}",
     "buttonColor": "{{appsmith.store.colours.blue}}",
-    "dynamicPropertyPathList": [{"key": "buttonColor"}],
+    "dynamicPropertyPathList": [
+        {"key": "buttonColor"},
+        {"key": "onClick"},
+        {"key": "isDisabled"}
+    ],
     "displayName": "Icon button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.b08054586989b185a0801e9a34f8ad49.svg",
     "searchTags": [
@@ -12,19 +17,22 @@
     ],
     "topRow": 4,
     "bottomRow": 8,
+    "tooltip": "{{JS_global_mobile.album_button_tooltip('Wikipedia page','W')}}",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
     "hideCard": false,
     "mobileRightColumn": 26,
     "animateLoading": true,
     "parentColumnSpace": 6.84375,
-    "dynamicTriggerPathList": [],
+    "dynamicTriggerPathList": [{"key": "onClick"}],
     "leftColumn": 58,
     "dynamicBindingPathList": [
         {"key": "buttonColor"},
-        {"key": "borderRadius"}
+        {"key": "borderRadius"},
+        {"key": "isDisabled"},
+        {"key": "tooltip"}
     ],
-    "isDisabled": false,
+    "isDisabled": "{{!albums_table.selectedRow.url}}",
     "key": "szlp46t114",
     "isDeprecated": false,
     "rightColumn": 64,
