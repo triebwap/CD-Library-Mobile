@@ -1,5 +1,5 @@
 {
-    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "boxShadow": "none",
     "mobileBottomRow": 8,
     "widgetName": "search_next_page_button",
     "onClick": "{{JS_global_mobile.search_change_page('next')}}",
@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 4,
-    "bottomRow": 8,
+    "topRow": 5,
+    "bottomRow": 9,
     "tooltip": "{{JS_global_mobile.search_page_button_tooltip('next')}}",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -25,7 +25,7 @@
     "animateLoading": true,
     "parentColumnSpace": 20.03125,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 57,
+    "leftColumn": 56,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "buttonColor"},
@@ -35,7 +35,7 @@
     "isDisabled": "{{search_albums_table.tableData.length == 0 || discogs_search_api.data.pagination.page == discogs_search_api.data.pagination.pages}}",
     "key": "yeykilyblm",
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 63,
     "iconName": "arrow-right",
     "widgetId": "0smo1sf5b0",
     "minWidth": 50,
@@ -46,9 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 4,
     "responsiveBehavior": "hug",
-    "originalTopRow": 4,
+    "originalTopRow": 5,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 30,
-    "originalBottomRow": 8,
+    "originalBottomRow": 9,
     "buttonVariant": "TERTIARY"
 }

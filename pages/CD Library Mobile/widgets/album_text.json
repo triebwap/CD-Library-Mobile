@@ -48,7 +48,7 @@
     "originalTopRow": 9,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 15,
+    "originalBottomRow": 14,
     "fontSize": "{{JS_global_mobile.scale_font(!!albums_table.selectedRow.album ?albums_table.selectedRow.album.length : '')}}",
     "minDynamicHeight": 4
 }

@@ -1,5 +1,5 @@
 {
-    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "boxShadow": "none",
     "mobileBottomRow": 34,
     "widgetName": "discogs_insert_album_button",
     "onClick": "{{JS_global_mobile.discogs_insert_album_button()}}",
@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 4,
-    "bottomRow": 8,
+    "topRow": 5,
+    "bottomRow": 9,
     "tooltip": "Add album [{{search_albums_table.selectedRow.title}}] to collection",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -46,9 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 30,
     "responsiveBehavior": "hug",
-    "originalTopRow": 4,
+    "originalTopRow": 5,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 47,
-    "originalBottomRow": 8,
+    "originalBottomRow": 9,
     "buttonVariant": "TERTIARY"
 }

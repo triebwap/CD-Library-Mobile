@@ -1,9 +1,9 @@
 {
-    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "boxShadow": "none",
     "mobileBottomRow": 31,
     "widgetName": "search_album_art_button",
     "onClick": "{{JS_global_mobile.search_album_art_button('search_album_art_button',search_albums_table.selectedRow.cover_image)}}",
-    "buttonColor": "{{appsmith.store.colours.pink}}",
+    "buttonColor": "{{appsmith.store.colours.purple}}",
     "dynamicPropertyPathList": [
         {"key": "buttonColor"},
         {"key": "isDisabled"},
@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 4,
-    "bottomRow": 8,
+    "topRow": 5,
+    "bottomRow": 9,
     "tooltip": "Show album [{{search_albums_table.selectedRow.title}}] Cover Art",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -46,9 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 27,
     "responsiveBehavior": "hug",
-    "originalTopRow": 4,
+    "originalTopRow": 5,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 43,
-    "originalBottomRow": 8,
+    "originalBottomRow": 9,
     "buttonVariant": "TERTIARY"
 }
