@@ -11,8 +11,8 @@
         "paragraph",
         "label"
     ],
-    "topRow": 9,
-    "bottomRow": 13,
+    "topRow": 8,
+    "bottomRow": 12,
     "parentRowSpace": 10,
     "type": "TEXT_WIDGET",
     "hideCard": false,
