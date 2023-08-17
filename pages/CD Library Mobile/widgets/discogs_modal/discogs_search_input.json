@@ -3,7 +3,7 @@
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.d0ce957b6c4640f8a7418ce846ee200e.svg",
     "onSubmit": "{{JS_global_mobile.search_button()}}",
     "topRow": 9,
-    "labelWidth": "10",
+    "labelWidth": "12",
     "type": "INPUT_WIDGET_V2",
     "animateLoading": true,
     "resetOnSubmit": false,
