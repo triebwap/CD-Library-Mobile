@@ -24,7 +24,7 @@
     "animateLoading": true,
     "parentColumnSpace": 6.84375,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 49,
+    "leftColumn": 48,
     "dynamicBindingPathList": [
         {"key": "tooltip"},
         {"key": "isDisabled"},
@@ -34,7 +34,7 @@
     "isDisabled": "{{artists_table.selectedRowIndex < 0}}",
     "key": "oomyx2bx1x",
     "isDeprecated": false,
-    "rightColumn": 56,
+    "rightColumn": 55,
     "iconName": "trash",
     "widgetId": "kghwyczr02",
     "minWidth": 50,

@@ -23,7 +23,7 @@
     "animateLoading": true,
     "parentColumnSpace": 19.8125,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 24,
+    "leftColumn": 28,
     "dynamicBindingPathList": [
         {"key": "text"},
         {"key": "tooltip"},
@@ -34,7 +34,7 @@
     "isDisabled": false,
     "key": "eonruxonh6",
     "isDeprecated": false,
-    "rightColumn": 53,
+    "rightColumn": 57,
     "isDefaultClickDisabled": true,
     "widgetId": "7rnztkd861",
     "isVisible": true,
