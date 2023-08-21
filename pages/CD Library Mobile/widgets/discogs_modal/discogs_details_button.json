@@ -14,8 +14,8 @@
         "click",
         "submit"
     ],
-    "topRow": 5,
-    "bottomRow": 9,
+    "topRow": 4,
+    "bottomRow": 8,
     "tooltip": "Show details for album [{{search_albums_table.selectedRow.title}}]",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",

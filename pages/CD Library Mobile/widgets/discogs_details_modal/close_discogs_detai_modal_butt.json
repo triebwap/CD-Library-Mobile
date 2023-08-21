@@ -1,6 +1,6 @@
 {
-    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-    "widgetName": "close_discogs_modal_buttonCopy",
+    "boxShadow": "none",
+    "widgetName": "close_discogs_detai_modal_butt",
     "onClick": "{{showModal('discogs_modal');}}",
     "buttonColor": "{{appsmith.store.colours.red}}",
     "dynamicPropertyPathList": [{"key": "buttonColor"}],

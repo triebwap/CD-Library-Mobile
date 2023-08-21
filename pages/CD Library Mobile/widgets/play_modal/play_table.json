@@ -225,7 +225,7 @@
             "verticalAlignment": "CENTER"
         },
         "customColumn1": {
-            "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+            "boxShadow": "none",
             "computedValue": "",
             "onClick": "{{JS_global_mobile.update_play('delete',play_table.tableData)}}",
             "buttonColor": "{{play_table.processedTableData.map((currentRow, currentIndex) => ( (appsmith.store.colours.red)))}}",
@@ -261,7 +261,7 @@
             "verticalAlignment": "CENTER"
         },
         "customColumn2": {
-            "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+            "boxShadow": "none",
             "computedValue": "",
             "onClick": "{{JS_global_mobile.play_table_play_button()}}",
             "buttonColor": "black",

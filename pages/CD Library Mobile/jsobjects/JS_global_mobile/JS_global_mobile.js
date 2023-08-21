@@ -66,12 +66,12 @@ export default {
 		      })
 				  .catch(() => showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error'))
 			  }) 
-			  storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0])
+			  get_artists.run()
+				.then(() => storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0]))
 			  .then(() => storeValue('selected_album',insert_album.data.map(row => row.insert_album)[0].album_id))
-				.then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
-			  .then(() => get_artists.run())
 			  .then(() => get_albums.run())
 			  .then(() => get_tracks.run({offset: this.get_offset()}))
+				.then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
 			})
 		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
 	  }
@@ -143,15 +143,17 @@ export default {
 		    .then(() => get_tracks.run({offset: this.get_offset()})); break		
       case 'album':
 				storeValue('selected_album',albums_table.selectedRow.album_id)
-		    get_tracks.run(); break		
+		    get_tracks.run({offset: this.get_offset()}); break		
 	    case 'track':
 				if (tracks_table.selectedRowIndex+1 == appsmith.store.page_size && tracks_table.selectedRow.page_number != tracks_table.selectedRow.total_pages) {
 					get_tracks.run({offset: this.get_offset()+appsmith.store.page_size})
 					.then(() => storeValue('selected_track',tracks_table.tableData[tracks_table.tableData.length-1].track_id))
+					.then(() => showAlert('Fetched next '+appsmith.store.page_size+' records: page '+tracks_table.selectedRow.page_number+' of '+tracks_table.selectedRow.total_pages,'success'))
 				}
 				else if (tracks_table.selectedRowIndex == 0 && tracks_table.selectedRow.page_number != 1) {
 					get_tracks.run({offset: this.get_offset()-appsmith.store.page_size})
 					.then(() => storeValue('selected_track',tracks_table.tableData[0].track_id))
+					.then(() => showAlert('Fetched previous '+appsmith.store.page_size+' records: page '+tracks_table.selectedRow.page_number+' of '+tracks_table.selectedRow.total_pages,'success'))
 				} else storeValue('selected_track',tracks_table.selectedRow.track_id)
 	  }
 	},
@@ -465,6 +467,6 @@ export default {
 		else closeModal('album_art_modal')
 	},
 	get_offset() {
-		return (tracks_table.tableData[0].page_number-1)*appsmith.store.page_size
+		return (tracks_table.tableData.length > 0 ? tracks_table.tableData[0].page_number-1 : 0)*appsmith.store.page_size
 	}
 }

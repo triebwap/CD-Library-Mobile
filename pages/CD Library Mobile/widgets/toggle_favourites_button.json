@@ -25,7 +25,7 @@
     "animateLoading": true,
     "parentColumnSpace": 6.84375,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 57,
+    "leftColumn": 59,
     "dynamicBindingPathList": [
         {"key": "iconName"},
         {"key": "tooltip"},

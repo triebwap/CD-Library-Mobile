@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 5,
-    "bottomRow": 9,
+    "topRow": 4,
+    "bottomRow": 8,
     "tooltip": "Show album [{{search_albums_table.selectedRow.title}}] Cover Art",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",

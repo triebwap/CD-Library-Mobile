@@ -1,12 +1,9 @@
 {
-    "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "boxShadow": "none",
     "widgetName": "close_button",
-    "onClick": "{{closeModal('youtube_modal')}}",
+    "onClick": "{{showModal('play_modal');}}",
     "buttonColor": "{{appsmith.store.colours.red}}",
-    "dynamicPropertyPathList": [
-        {"key": "onClick"},
-        {"key": "buttonColor"}
-    ],
+    "dynamicPropertyPathList": [{"key": "buttonColor"}],
     "displayName": "Icon Button",
     "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
     "searchTags": [
