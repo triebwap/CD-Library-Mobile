@@ -35,7 +35,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-04-09T15:08:36Z"
   },
   "id": "CD Library Mobile_JS_global_mobile.toggle_favourites",
   "deleted": false,

@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "default_selected_row",
-    "fullyQualifiedName": "JS_global_mobile.default_selected_row",
+    "name": "albums_table_data",
+    "fullyQualifiedName": "JS_global_mobile.albums_table_data",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,12 +20,7 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [
-        {
-          "name": "type"
-        }
-      ],
-      "isAsync": false
+      "jsArguments": []
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -41,7 +36,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.default_selected_row",
+  "id": "CD Library Mobile_JS_global_mobile.albums_table_data",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64b523d791ff021acdaf4500"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64fdc3aacdcf08037df4f960"
 }

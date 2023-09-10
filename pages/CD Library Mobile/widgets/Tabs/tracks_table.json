@@ -33,7 +33,7 @@
     "needsHeightForContent": true,
     "leftColumn": 0,
     "delimiter": ",",
-    "defaultSelectedRowIndex": "{{JS_global_mobile.default_selected_row('track')}}",
+    "defaultSelectedRowIndex": "{{JS_global_mobile.tracks_table_default_selected_rows()}}",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",
     "isVisibleFilters": false,
     "isVisible": true,
@@ -66,7 +66,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1692611931882,
+    "columnUpdatedAt": 1694357132034,
     "defaultSelectedRowIndices": [0],
     "widgetName": "tracks_table",
     "defaultPageSize": 0,
@@ -453,7 +453,7 @@
             "verticalAlignment": "CENTER"
         },
         "track": {
-            "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]+'. '+currentRow[\"track\"]))}}",
+            "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]+'. '+currentRow[\"track\"]+(currentRow[\"favourite\"] ? '⭐' : '')))}}",
             "isEditable": false,
             "alias": "track",
             "enableSort": true,
@@ -491,7 +491,7 @@
     "textSize": "1rem",
     "widgetId": "17we4f0482",
     "minWidth": 450,
-    "tableData": "{{get_tracks.data.map(row => row.get_tracks_desktop)[0]}}",
+    "tableData": "{{JS_global_mobile.tracks_table_data()}}",
     "label": "Data",
     "searchKey": "",
     "parentId": "xbyicda7o1",

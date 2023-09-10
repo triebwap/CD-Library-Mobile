@@ -30,7 +30,8 @@
     "isFilterable": true,
     "dynamicPropertyPathList": [
         {"key": "onOptionChange"},
-        {"key": "isDisabled"}
+        {"key": "isDisabled"},
+        {"key": "sourceData"}
     ],
     "displayName": "Select",
     "searchTags": ["dropdown"],

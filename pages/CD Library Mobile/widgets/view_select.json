@@ -30,7 +30,8 @@
     "isFilterable": false,
     "dynamicPropertyPathList": [
         {"key": "onOptionChange"},
-        {"key": "labelTextColor"}
+        {"key": "labelTextColor"},
+        {"key": "sourceData"}
     ],
     "displayName": "Select",
     "searchTags": ["dropdown"],

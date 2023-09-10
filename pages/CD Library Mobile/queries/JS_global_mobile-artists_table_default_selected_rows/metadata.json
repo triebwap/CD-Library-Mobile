@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "favourite_icon",
-    "fullyQualifiedName": "JS_global_mobile.favourite_icon",
+    "name": "artists_table_default_selected_rows",
+    "fullyQualifiedName": "JS_global_mobile.artists_table_default_selected_rows",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,8 +20,7 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": false
+      "jsArguments": []
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -36,9 +35,9 @@
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-07-15T12:43:49Z"
+    "createdAt": "2023-09-10T14:25:41Z"
   },
-  "id": "CD Library Mobile_JS_global_mobile.favourite_icon",
+  "id": "CD Library Mobile_JS_global_mobile.artists_table_default_selected_rows",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64b2948546a2df37803e6988"
+  "gitSyncId": "6363b42e956dd31e95b0b466_64fdd1e586fe88532881623f"
 }

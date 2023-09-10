@@ -8,9 +8,7 @@ export default {
 		storeValue('page_size', 200)
     this.set_collection_owner()
 		get_domain.run()
-		get_artists.run()
-		.then(() => get_albums.run())
-		.then(() => get_tracks.run({offset: 0}))
+		.then(() => get_artist_objects.run())
 		.then(() => this.initialise_selected())
 	},
 	artist: {
@@ -138,12 +136,9 @@ export default {
 	on_row_selected(type) {
     switch (type) {
       case 'artist': 
-				storeValue('selected_artist',artists_table.selectedRow.artist_id)
-		    get_albums.run()
-		    .then(() => get_tracks.run({offset: this.get_offset()})); break		
+				storeValue('selected_artist',artists_table.selectedRow.artist_id); break		
       case 'album':
-				storeValue('selected_album',albums_table.selectedRow.album_id)
-		    get_tracks.run({offset: this.get_offset()}); break		
+				storeValue('selected_album',albums_table.selectedRow.album_id); break		
 	    case 'track':
 				if (tracks_table.selectedRowIndex+1 == appsmith.store.page_size && tracks_table.selectedRow.page_number != tracks_table.selectedRow.total_pages) {
 					get_tracks.run({offset: this.get_offset()+appsmith.store.page_size})
@@ -154,7 +149,7 @@ export default {
 					get_tracks.run({offset: this.get_offset()-appsmith.store.page_size})
 					.then(() => storeValue('selected_track',tracks_table.tableData[0].track_id))
 					.then(() => showAlert('Fetched previous '+appsmith.store.page_size+' records: page '+tracks_table.selectedRow.page_number+' of '+tracks_table.selectedRow.total_pages,'success'))
-				} else storeValue('selected_track',tracks_table.selectedRow.track_id)
+				} else storeValue('selected_track',tracks_table.selectedRow.track_id) 
 	  }
 	},
 	toggle_favourites() {
@@ -311,13 +306,16 @@ export default {
 				return [{album_id: (albums_table.selectedRowIndex == -1 || albums_table.selectedRowIndex == undefined ? albums_table.tableData[0] : albums_table.selectedRow).album_id}]
     }
 	},
-	default_selected_row(type) {
-		var index
-	  switch (type) {
-      case 'artist': index = _.findIndex(artists_table.tableData,(element) => element.artist_id == appsmith.store.selected_artist); break		
-      case 'album': index = _.findIndex(albums_table.tableData,(element) => element.album_id == appsmith.store.selected_album); break		
-	    case 'track': index = _.findIndex(tracks_table.tableData,(element) => element.track_id == appsmith.store.selected_track)
-	  }
+	artists_table_default_selected_rows() {
+		const index = _.findIndex(artists_table.tableData,(element) => element.artist_id == appsmith.store.selected_artist)
+		return index < 0 ? 0 : index
+	},
+	albums_table_default_selected_rows() {
+		const index = _.findIndex(albums_table.tableData,(element) => element.album_id == appsmith.store.selected_album)
+		return index < 0 ? 0 : index
+	},
+	tracks_table_default_selected_rows() {
+		const index = _.findIndex(tracks_table.tableData,(element) => element.track_id == appsmith.store.selected_track)
 		return index < 0 ? 0 : index
 	},
 	view_select_options() {
@@ -468,5 +466,13 @@ export default {
 	},
 	get_offset() {
 		return (tracks_table.tableData.length > 0 ? tracks_table.tableData[0].page_number-1 : 0)*appsmith.store.page_size
+	},
+	albums_table_data() {
+		if (view_select.selectedOptionValue == 'album') return get_albums.data.map(row => row.get_albums_desktop)[0]
+		else return _.sortBy(artists_table.selectedRow.albums,'album')
+	},
+	tracks_table_data() {
+		if (view_select.selectedOptionValue == 'track' || view_select.selectedOptionValue == 'album') return get_tracks.data.map(row => row.get_tracks_desktop)[0]
+		else return albums_table.selectedRow.tracks
 	}
 }
