@@ -1,3 +1,5 @@
 SELECT get_artists_desktop(p_collection_id   => {{appsmith.store.collection_id}}
 												  ,p_favourites_only => {{favourites_RadioGroup.selectedOptionValue}}
+													,p_limit           => {{appsmith.store.page_size}}
+									        ,p_offset          => {{this.params.offset || 0}}
 												  );

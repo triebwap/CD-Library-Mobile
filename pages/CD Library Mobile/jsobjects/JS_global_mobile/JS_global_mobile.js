@@ -5,7 +5,7 @@ export default {
 		storeValue('selected_artist',undefined)
 		storeValue('selected_album',undefined)
 		storeValue('selected_track',undefined)
-		storeValue('page_size', 200)
+		storeValue('page_size', 100)
     this.set_collection_owner()
 		get_domain.run()
 		.then(() => get_artist_objects.run())
@@ -17,9 +17,7 @@ export default {
 		  delete_artist.run({artist: [{artist_id: artists_table.selectedRow.artist_id}]})
 		  .then(() => {
 			storeValue('selected_artist',undefined)
-			.then(() => get_artists.run())
-			.then(() => get_albums.run())
-			.then(() => get_tracks.run({offset: this.get_offset()}))
+			.then(() => get_artist_objects.run({offset: this.get_offset()}))
 			.then(() => showAlert('Artist ['+artist+'] deleted','success'))
 		})
 		.catch(() => showAlert('Unable to delete artist: '+delete_artist.data.match(/.*/)[0],'error'))
@@ -31,8 +29,7 @@ export default {
 		  delete_album.run({album: [{album_id: albums_table.selectedRow.album_id}]})
 		  .then(() => {
 			  storeValue('selected_album',undefined)
-			  .then(() => get_albums.run())
-			  .then(() => get_tracks.run({offset: this.get_offset()}))
+			  .then(() => get_artist_objects.run({offset: this.get_offset()}))
 			  .then(() => showAlert('Album ['+album+'] deleted','success'))
 		  })
 		.catch(() => showAlert('Unable to delete album: '+delete_album.data.match(/.*/)[0],'error'))
@@ -64,11 +61,10 @@ export default {
 		      })
 				  .catch(() => showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error'))
 			  }) 
-			  get_artists.run()
+			  .then(() => get_artist_objects.run({offset: this.get_offset()}))
 				.then(() => storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0]))
 			  .then(() => storeValue('selected_album',insert_album.data.map(row => row.insert_album)[0].album_id))
-			  .then(() => get_albums.run())
-			  .then(() => get_tracks.run({offset: this.get_offset()}))
+			  .then(() => get_artist_objects.run({offset: this.get_offset()}))
 				.then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
 			})
 		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
@@ -80,7 +76,7 @@ export default {
 		  delete_track.run({track: [{track_id: tracks_table.selectedRow.track_id}]})
 		  .then(() => {
 			  storeValue('selected_track',undefined)
-			  .then(() => get_tracks.run({offset: this.get_offset()}))
+			  .then(() => get_artist_objects.run({offset: this.get_offset()}))
 			  .then(() => showAlert('Track ['+track+'] deleted','success'))
 		  })
 		  .catch(() => showAlert('Unable to delete track(s): '+delete_track.data.match(/Album.*disabled/)[0],'error'))
@@ -93,17 +89,13 @@ export default {
 		this.set_collection_owner()
 		switch (view_select.selectedOptionValue) {
 			case 'artist':  
-				get_artists.run()
-				.then(() => get_albums.run())
-				.then(() => get_tracks.run({offset: this.get_offset()}))
+				get_artist_objects.run({offset: this.get_offset()})
 				.then(() => this.initialise_selected()); break
-			case 'album': 
-				get_albums.clear()
+			case 'album':
 				get_albums.run()
 				.then(() => get_tracks.run({offset: this.get_offset()}))
 				.then(() => this.initialise_selected()); break
 			case 'track':
-        get_tracks.clear()
 				get_tracks.run({offset: this.get_offset()})
 				.then(() => this.initialise_selected())
 		}
@@ -134,35 +126,37 @@ export default {
 		}		
 	},
 	on_row_selected(type) {
+		type='track'
+		var index, page_number, total_pages, tableData, selected_row_id
     switch (type) {
       case 'artist': 
 				storeValue('selected_artist',artists_table.selectedRow.artist_id); break		
       case 'album':
 				storeValue('selected_album',albums_table.selectedRow.album_id); break		
 	    case 'track':
-				if (tracks_table.selectedRowIndex+1 == appsmith.store.page_size && tracks_table.selectedRow.page_number != tracks_table.selectedRow.total_pages) {
-					get_tracks.run({offset: this.get_offset()+appsmith.store.page_size})
-					.then(() => storeValue('selected_track',tracks_table.tableData[tracks_table.tableData.length-1].track_id))
-					.then(() => showAlert('Fetched next '+appsmith.store.page_size+' records: page '+tracks_table.selectedRow.page_number+' of '+tracks_table.selectedRow.total_pages,'success'))
-				}
-				else if (tracks_table.selectedRowIndex == 0 && tracks_table.selectedRow.page_number != 1) {
-					get_tracks.run({offset: this.get_offset()-appsmith.store.page_size})
-					.then(() => storeValue('selected_track',tracks_table.tableData[0].track_id))
-					.then(() => showAlert('Fetched previous '+appsmith.store.page_size+' records: page '+tracks_table.selectedRow.page_number+' of '+tracks_table.selectedRow.total_pages,'success'))
-				} else storeValue('selected_track',tracks_table.selectedRow.track_id) 
+				index = tracks_table.selectedRowIndex
+				page_number = tracks_table.selectedRow.page_number
+				total_pages = tracks_table.selectedRow.total_pages
+				tableData = tracks_table.tableData
+				selected_row_id = tracks_table.selectedRow.track_id
 	  }
+		if (index+1 == appsmith.store.page_size && page_number != total_pages) {
+		  this.data_page_navigation('next')
+		} else if (index == 0 && page_number != 1) {
+		  this.data_page_navigation('previous')
+		} else storeValue('selected_'+type,selected_row_id) 
 	},
 	toggle_favourites() {
 		switch(Tabs.selectedTab) {
 			case 'Artists':
 				toggle_favourites.run({object_id: artists_table.selectedRow.artist_id, object_type: 'artist'})
-				.then(() => get_artists.run()); break
+				.then(() => get_artist_objects.run({offset: this.get_offset()})); break
 			case 'Albums':
 				toggle_favourites.run({object_id: albums_table.selectedRow.album_id, object_type: 'album'})
-				.then(() => get_albums.run()); break
+				.then(() => get_artist_objects.run({offset: this.get_offset()})); break
 			case 'Tracks':
 				toggle_favourites.run({object_id: tracks_table.selectedRow.track_id, object_type: 'track'})
-				.then(() => get_tracks.run({offset: this.get_offset()}))
+				.then(() => get_artist_objects.run({offset: this.get_offset()}))
 		}
 	},
 	toggle_favourites_tooltip() {
@@ -192,10 +186,7 @@ export default {
 		else return string.charAt(0).toLowerCase()+string.slice(1)
 	},
 	favourite_check() {
-		get_artists.clear()
-		.then(() => get_artists.run())
-		.then(() => get_albums.run())
-		.then(() => get_tracks.run({offset: this.get_offset()}))
+		get_artist_objects.run({offset: this.get_offset()})
 		.then(() => showAlert((/true/).test(favourites_RadioGroup.selectedOptionValue) ? 'Favourites Only Selected' : 'All Selected','success'))
 	},
 	modal_close_button(modal) {
@@ -223,7 +214,7 @@ export default {
 								               }],
 										 collection_id: appsmith.store.collection_id
 										 })
-		.then(() => get_tracks.run({offset: this.get_offset()}))
+		.then(() => get_artist_objects.run({offset: this.get_offset()}))
 		.then(() => showAlert('Source ['+source+'] '+action+(action == 'add' ? 'ed' : 'd'),'success'))
 		.then(() => storeValue('play_rec',{origin: appsmith.store.play_rec.origin,track: this.track_name(tracks_table.selectedRowIndex),play: tracks_table.selectedRow.play}))
 	},
@@ -465,8 +456,14 @@ export default {
 		else closeModal('album_art_modal')
 	},
 	get_offset() {
-		return (tracks_table.tableData.length > 0 ? tracks_table.tableData[0].page_number-1 : 0)*appsmith.store.page_size
-	},
+		var page_number
+		switch (view_select.selectedOptionValue) {
+			case 'artist': page_number =  artists_table.tableData.length > 0 ? artists_table.tableData[0].page_number : 0; break
+			case 'album': page_number =  albums_table.tableData.length > 0 ? albums_table.tableData[0].page_number : 0; break
+			case 'track': page_number =  tracks_table.tableData.length > 0 ? tracks_table.tableData[0].page_number : 0
+		}
+		return ((page_number || 1)-1)*appsmith.store.page_size
+	},	
 	albums_table_data() {
 		if (view_select.selectedOptionValue == 'album') return get_albums.data.map(row => row.get_albums_desktop)[0]
 		else return _.sortBy(artists_table.selectedRow.albums,'album')
@@ -474,5 +471,29 @@ export default {
 	tracks_table_data() {
 		if (view_select.selectedOptionValue == 'track' || view_select.selectedOptionValue == 'album') return get_tracks.data.map(row => row.get_tracks_desktop)[0]
 		else return albums_table.selectedRow.tracks
+	},
+	data_page_navigation(direction) {
+		var offset
+		function get_new_offset(old_offset,direction) {
+			if (direction == 'next') return old_offset+appsmith.store.page_size
+			else if (direction == 'previous') return old_offset-appsmith.store.page_size
+		}
+		showAlert('Loading data...')
+		switch (view_select.selectedOptionValue) {
+			case 'artist': 
+				offset = get_new_offset((artists_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
+				get_artist_objects.run({offset: offset}); break
+			case 'album':
+				offset = get_new_offset((albums_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
+				get_albums.run({offset: offset}); break
+			case 'track':
+				offset = get_new_offset((tracks_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
+				get_tracks.run({offset: offset})
+				.then(() => {
+					showAlert('Fetched '+direction+' '+appsmith.store.page_size+' records: page '+get_tracks.data.map(row => row.get_tracks_desktop)[0][0].page_number+' of '+tracks_table.tableData[0].total_pages,'success')
+				  if (direction == 'next') storeValue('selected_track',tracks_table.tableData[0].track_id)
+				  else if (direction == 'previous') storeValue('selected_track',tracks_table.tableData[tracks_table.tableData.length-1].track_id)
+			})
+		}
 	}
 }

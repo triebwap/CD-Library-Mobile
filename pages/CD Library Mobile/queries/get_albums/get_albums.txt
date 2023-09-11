@@ -2,4 +2,6 @@ SELECT get_albums_desktop(p_collection_id   =>  {{appsmith.store.collection_id}}
 												 ,p_artists         => '{{JS_global_mobile.row_selected('artist')}}'
 												 ,p_favourites_only =>  {{favourites_RadioGroup.selectedOptionValue}}
 												 ,p_album_view      =>  {{view_select.selectedOptionValue == 'album' ? true : false}}
+												 ,p_limit           =>  {{appsmith.store.page_size}}
+									       ,p_offset          =>  {{this.params.offset || 0}}
 												 );
