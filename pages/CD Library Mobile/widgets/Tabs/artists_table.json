@@ -23,7 +23,8 @@
         {"key": "primaryColumns.total_pages.computedValue"},
         {"key": "primaryColumns.total_albums.computedValue"},
         {"key": "primaryColumns.total_tracks.computedValue"},
-        {"key": "primaryColumns.total_artists.computedValue"}
+        {"key": "primaryColumns.total_artists.computedValue"},
+        {"key": "primaryColumns.artist.fontStyle"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -60,7 +61,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1694357126304,
+    "columnUpdatedAt": 1694521879623,
     "defaultSelectedRowIndices": [0],
     "widgetName": "artists_table",
     "defaultPageSize": 0,
@@ -78,7 +79,8 @@
     ],
     "dynamicPropertyPathList": [
         {"key": "onRowSelected"},
-        {"key": "tableData"}
+        {"key": "tableData"},
+        {"key": "primaryColumns.artist.fontStyle"}
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
@@ -89,6 +91,7 @@
         "artist": 297,
         "_Albums": 92,
         "step": 70,
+        "customColumn1": 60,
         "status": 85
     },
     "parentRowSpace": 10,
@@ -218,30 +221,31 @@
             "verticalAlignment": "CENTER"
         },
         "artist": {
+            "computedValue": "{{artists_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.add_emoji(currentRow[\"artist\"],currentRow[\"favourite\"])))}}",
+            "isEditable": false,
+            "alias": "artist",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "artist",
+            "isDisabled": false,
+            "validation": {},
             "isCellVisible": true,
             "isDerived": false,
-            "computedValue": "{{artists_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"artist\"]+(currentRow[\"favourite\"] ? '⭐' : '')))}}",
             "textSize": "1rem",
             "allowCellWrapping": false,
             "index": 8,
             "isDiscardVisible": true,
             "isVisible": true,
             "label": "Artist",
+            "fontStyle": "{{artists_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.column_emphasis(currentIndex,currentRow.page_number,currentRow.total_pages,artists_table.tableData.length,'artist')))}}",
             "columnType": "text",
             "horizontalAlignment": "LEFT",
             "isCellEditable": false,
-            "isEditable": false,
             "width": 150,
             "enableFilter": true,
             "sticky": "",
-            "alias": "artist",
-            "enableSort": true,
-            "isSaveVisible": true,
             "originalId": "artist",
-            "id": "artist",
-            "isDisabled": false,
-            "verticalAlignment": "CENTER",
-            "validation": {}
+            "verticalAlignment": "CENTER"
         },
         "album_count": {
             "computedValue": "{{artists_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"album_count\"]))}}",

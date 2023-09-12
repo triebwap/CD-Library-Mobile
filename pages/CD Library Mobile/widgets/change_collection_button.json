@@ -23,14 +23,13 @@
     "animateLoading": true,
     "parentColumnSpace": 19.8125,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 28,
+    "leftColumn": 47,
     "dynamicBindingPathList": [
-        {"key": "text"},
         {"key": "tooltip"},
         {"key": "buttonColor"},
         {"key": "borderRadius"}
     ],
-    "text": "{{appsmith.store.collection_name}}",
+    "text": "Owner",
     "isDisabled": false,
     "key": "eonruxonh6",
     "isDeprecated": false,

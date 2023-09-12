@@ -66,7 +66,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1694357132034,
+    "columnUpdatedAt": 1694521904904,
     "defaultSelectedRowIndices": [0],
     "widgetName": "tracks_table",
     "defaultPageSize": 0,
@@ -453,7 +453,7 @@
             "verticalAlignment": "CENTER"
         },
         "track": {
-            "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]+'. '+currentRow[\"track\"]+(currentRow[\"favourite\"] ? '⭐' : '')))}}",
+            "computedValue": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"track_number\"]+'. '+JS_global_mobile.add_emoji(currentRow[\"track\"],currentRow[\"favourite\"])))}}",
             "isEditable": false,
             "alias": "track",
             "enableSort": true,
@@ -470,7 +470,7 @@
             "isDiscardVisible": true,
             "isVisible": true,
             "label": "Track",
-            "fontStyle": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.track_emphasis(tracks_table.selectedRowIndex,currentIndex,currentRow[\"play\"][0].play_url)))}}",
+            "fontStyle": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.column_emphasis(currentIndex,currentRow.page_number,currentRow.total_pages,tracks_table.tableData.length,'track')))}}",
             "textColor": "{{tracks_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.track_text_colour(tracks_table.selectedRowIndex,currentIndex,currentRow[\"play\"][0].play_url)))}}",
             "columnType": "text",
             "horizontalAlignment": "LEFT",

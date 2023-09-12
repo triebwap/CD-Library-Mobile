@@ -89,14 +89,14 @@ export default {
 		this.set_collection_owner()
 		switch (view_select.selectedOptionValue) {
 			case 'artist':  
-				get_artist_objects.run({offset: this.get_offset()})
+				get_artist_objects.run()
 				.then(() => this.initialise_selected()); break
 			case 'album':
 				get_albums.run()
-				.then(() => get_tracks.run({offset: this.get_offset()}))
+				.then(() => get_tracks.run({album_id: albums_table.selectedRow.album_id}))
 				.then(() => this.initialise_selected()); break
 			case 'track':
-				get_tracks.run({offset: this.get_offset()})
+				get_tracks.run()
 				.then(() => this.initialise_selected())
 		}
 	},
@@ -126,25 +126,28 @@ export default {
 		}		
 	},
 	on_row_selected(type) {
-		type='track'
-		var index, page_number, total_pages, tableData, selected_row_id
+		var index, page_number, total_pages
+		function navigate() {
+			if (index+1 == appsmith.store.page_size && page_number != total_pages && type == view_select.selectedOptionValue) this.data_page_navigation('next')
+		  else if (index == 0 && page_number != 1 && type == view_select.selectedOptionValue) this.data_page_navigation('previous')
+		}
     switch (type) {
       case 'artist': 
-				storeValue('selected_artist',artists_table.selectedRow.artist_id); break		
+				index = artists_table.selectedRowIndex
+				page_number = artists_table.selectedRow.page_number
+				total_pages = artists_table.selectedRow.total_pages; break		
       case 'album':
-				storeValue('selected_album',albums_table.selectedRow.album_id); break		
+				index = albums_table.selectedRowIndex
+				page_number = albums_table.selectedRow.page_number
+				total_pages = albums_table.selectedRow.total_pages
+				navigate()
+				//get_tracks.run({album_id: albums_table.selectedRow.album_id})
+				; break		
 	    case 'track':
 				index = tracks_table.selectedRowIndex
 				page_number = tracks_table.selectedRow.page_number
 				total_pages = tracks_table.selectedRow.total_pages
-				tableData = tracks_table.tableData
-				selected_row_id = tracks_table.selectedRow.track_id
 	  }
-		if (index+1 == appsmith.store.page_size && page_number != total_pages) {
-		  this.data_page_navigation('next')
-		} else if (index == 0 && page_number != 1) {
-		  this.data_page_navigation('previous')
-		} else storeValue('selected_'+type,selected_row_id) 
 	},
 	toggle_favourites() {
 		switch(Tabs.selectedTab) {
@@ -186,8 +189,8 @@ export default {
 		else return string.charAt(0).toLowerCase()+string.slice(1)
 	},
 	favourite_check() {
-		get_artist_objects.run({offset: this.get_offset()})
-		.then(() => showAlert((/true/).test(favourites_RadioGroup.selectedOptionValue) ? 'Favourites Only Selected' : 'All Selected','success'))
+		this.select_data()
+		showAlert((/true/).test(favourites_RadioGroup.selectedOptionValue) ? 'Favourites Only Selected' : 'All Selected','success')
 	},
 	modal_close_button(modal) {
 		closeModal(modal)
@@ -485,7 +488,13 @@ export default {
 				get_artist_objects.run({offset: offset}); break
 			case 'album':
 				offset = get_new_offset((albums_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
-				get_albums.run({offset: offset}); break
+				get_albums.run({offset: offset})
+				.then(() => {
+					if (direction == 'next') storeValue('selected_album',get_albums.data.map(row => row.get_albums_desktop)[0][0].album_id)
+				  else if (direction == 'previous') storeValue('selected_album',albums_table.tableData[albums_table.tableData.length-1].album_id)
+					.then(() => get_tracks.run({album_id: appsmith.store.selected_album}))
+				})
+				.then(() => showAlert('Fetched '+direction+' '+appsmith.store.page_size+' records: page '+get_albums.data.map(row => row.get_albums_desktop)[0][0].page_number+' of '+albums_table.tableData[0].total_pages,'success')); break
 			case 'track':
 				offset = get_new_offset((tracks_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
 				get_tracks.run({offset: offset})
@@ -493,7 +502,26 @@ export default {
 					showAlert('Fetched '+direction+' '+appsmith.store.page_size+' records: page '+get_tracks.data.map(row => row.get_tracks_desktop)[0][0].page_number+' of '+tracks_table.tableData[0].total_pages,'success')
 				  if (direction == 'next') storeValue('selected_track',tracks_table.tableData[0].track_id)
 				  else if (direction == 'previous') storeValue('selected_track',tracks_table.tableData[tracks_table.tableData.length-1].track_id)
-			})
+			  })
 		}
-	}
+	},
+	column_emphasis(currentIndex,page_number,total_pages,length,type) {
+    return ((currentIndex == 0  && page_number != 1) || (currentIndex == length-1 && page_number != total_pages)) && type == view_select.selectedOptionValue  ? 'BOLD' : 'NORMAL'
+  },
+	pages_text() {
+    function text(page_number,total_pages) {
+  	  return 'Page '+page_number+' of '+total_pages
+		}
+    switch (view_select.selectedOptionValue) {
+			case 'artist': return text(artists_table.selectedRow.page_number,artists_table.selectedRow.total_pages)
+			case 'album': return text(albums_table.selectedRow.page_number,albums_table.selectedRow.total_pages)
+			case 'track': return text(tracks_table.selectedRow.page_number,tracks_table.selectedRow.total_pages)
+		}
+  },
+	pages_text_visible() {
+    return view_select.selectedOptionValue == this.get_tab()
+  },
+	add_emoji(key,favourite){
+    return view_select.selectedOptionValue == 'artist' && favourite ? key+'⭐' : key
+  }
 }

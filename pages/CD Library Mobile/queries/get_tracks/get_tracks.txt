@@ -1,6 +1,6 @@
 SELECT get_tracks_desktop(p_collection_id   =>  {{appsmith.store.collection_id}}
 												 ,p_favourites_only =>  {{favourites_RadioGroup.selectedOptionValue}}
-												 ,p_albums          => '{{JS_global_mobile.row_selected('album')}}'
+												 ,p_albums          => '[{"album_id": {{this.params.album_id}}}]'
 												 ,p_track_view      =>  {{view_select.selectedOptionValue == 'track' ? true : false}}
 												 ,p_limit           =>  {{appsmith.store.page_size}}
 									       ,p_offset          =>  {{this.params.offset || 0}}
