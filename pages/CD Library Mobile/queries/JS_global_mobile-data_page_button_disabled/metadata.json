@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "column_emphasis",
-    "fullyQualifiedName": "JS_global_mobile.column_emphasis",
+    "name": "data_page_button_disabled",
+    "fullyQualifiedName": "JS_global_mobile.data_page_button_disabled",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -22,19 +22,7 @@
       "selfReferencingDataPaths": [],
       "jsArguments": [
         {
-          "name": "currentIndex"
-        },
-        {
-          "name": "page_number"
-        },
-        {
-          "name": "total_pages"
-        },
-        {
-          "name": "length"
-        },
-        {
-          "name": "type"
+          "name": "direction"
         }
       ]
     },
@@ -52,7 +40,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.column_emphasis",
+  "id": "CD Library Mobile_JS_global_mobile.data_page_button_disabled",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_65005229e65340677fc45b05"
+  "gitSyncId": "6363b42e956dd31e95b0b466_65018958c22f263c03232f9b"
 }

@@ -25,7 +25,7 @@
     "animateLoading": true,
     "parentColumnSpace": 6.84375,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 22,
+    "leftColumn": 27,
     "dynamicBindingPathList": [
         {"key": "borderRadius"},
         {"key": "isDisabled"},
@@ -34,7 +34,7 @@
     "isDisabled": "{{tracks_table.selectedRowIndex < 0 || tracks_table.selectedRow.play == null}}",
     "key": "szlp46t114",
     "isDeprecated": false,
-    "rightColumn": 28,
+    "rightColumn": 33,
     "iconName": "play",
     "widgetId": "37sw8lxeba",
     "minWidth": 50,

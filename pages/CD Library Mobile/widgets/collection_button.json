@@ -1,15 +1,16 @@
 {
-    "resetFormOnClick": false,
     "boxShadow": "none",
-    "widgetName": "change_collection_button",
+    "mobileBottomRow": 8,
+    "widgetName": "collection_button",
     "onClick": "{{JS_global_mobile.change_collection_button()}}",
     "buttonColor": "{{appsmith.store.colours.blue}}",
     "dynamicPropertyPathList": [
-        {"key": "onClick"},
-        {"key": "buttonColor"}
+        {"key": "buttonColor"},
+        {"key": "isDisabled"},
+        {"key": "onClick"}
     ],
-    "displayName": "Button",
-    "iconSVG": "/static/media/icon.cca026338f1c8eb6df8ba03d084c2fca.svg",
+    "displayName": "Icon button",
+    "iconSVG": "https://appcdn.appsmith.com/static/media/icon.80fc7466c0d7181ec0271de7fda795ec.svg",
     "searchTags": [
         "click",
         "submit"
@@ -18,35 +19,33 @@
     "bottomRow": 4,
     "tooltip": "Change Collection Owner. Currently {{appsmith.store.collection_name}}",
     "parentRowSpace": 10,
-    "type": "BUTTON_WIDGET",
+    "type": "ICON_BUTTON_WIDGET",
     "hideCard": false,
+    "mobileRightColumn": 48,
     "animateLoading": true,
-    "parentColumnSpace": 19.8125,
+    "parentColumnSpace": 6.84375,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 47,
+    "leftColumn": 52,
     "dynamicBindingPathList": [
-        {"key": "tooltip"},
         {"key": "buttonColor"},
-        {"key": "borderRadius"}
+        {"key": "borderRadius"},
+        {"key": "tooltip"}
     ],
-    "text": "Owner",
-    "isDisabled": false,
-    "key": "eonruxonh6",
+    "isDisabled": "",
+    "key": "oomyx2bx1x",
     "isDeprecated": false,
     "rightColumn": 58,
-    "isDefaultClickDisabled": true,
-    "widgetId": "7rnztkd861",
+    "iconName": "person",
+    "widgetId": "yc1wfqxn18",
+    "minWidth": 50,
     "isVisible": true,
-    "recaptchaType": "V3",
     "version": 1,
     "parentId": "0",
     "renderMode": "CANVAS",
     "isLoading": false,
-    "originalTopRow": 8,
-    "disabledWhenInvalid": false,
+    "mobileTopRow": 4,
+    "responsiveBehavior": "hug",
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "originalBottomRow": 12,
-    "buttonVariant": "TERTIARY",
-    "iconAlign": "left",
-    "placement": "CENTER"
+    "mobileLeftColumn": 44,
+    "buttonVariant": "TERTIARY"
 }

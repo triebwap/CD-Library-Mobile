@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "row_selected",
-    "fullyQualifiedName": "JS_global_mobile.row_selected",
+    "name": "data_page_button_tooltip",
+    "fullyQualifiedName": "JS_global_mobile.data_page_button_tooltip",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -22,10 +22,9 @@
       "selfReferencingDataPaths": [],
       "jsArguments": [
         {
-          "name": "type"
+          "name": "direction"
         }
-      ],
-      "isAsync": false
+      ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -39,10 +38,9 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": [],
-    "createdAt": "2023-07-17T11:01:35Z"
+    "userPermissions": []
   },
-  "id": "CD Library Mobile_JS_global_mobile.row_selected",
+  "id": "CD Library Mobile_JS_global_mobile.data_page_button_tooltip",
   "deleted": false,
-  "gitSyncId": "6363b42e956dd31e95b0b466_64b51f8fe6af6206b5a58baa"
+  "gitSyncId": "6363b42e956dd31e95b0b466_65018694c22f263c03232f68"
 }

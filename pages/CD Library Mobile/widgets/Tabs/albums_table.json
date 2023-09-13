@@ -29,8 +29,7 @@
         {"key": "primaryColumns.total_pages.computedValue"},
         {"key": "primaryColumns.total_tracks.computedValue"},
         {"key": "tableData"},
-        {"key": "defaultSelectedRowIndex"},
-        {"key": "primaryColumns.album.fontStyle"}
+        {"key": "defaultSelectedRowIndex"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -193,7 +192,7 @@
             "isDiscardVisible": true,
             "isVisible": true,
             "label": "Album",
-            "fontStyle": "{{albums_table.processedTableData.map((currentRow, currentIndex) => ( JS_global_mobile.column_emphasis(currentIndex,currentRow.page_number,currentRow.total_pages,albums_table.tableData.length,'album')))}}",
+            "fontStyle": "",
             "textColor": "",
             "columnType": "text",
             "horizontalAlignment": "LEFT",
