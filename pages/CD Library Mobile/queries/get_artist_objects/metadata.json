@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT get_artist_objects(p_collection_id   => {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_favourites_only => {{favourites_RadioGroup.selectedOptionValue}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_limit           => {{appsmith.store.page_size}}\n\t\t\t\t\t\t\t\t\t       ,p_offset          => {{this.params.offset || 0}}\n\t\t\t\t\t\t\t\t\t\t\t\t )",
+      "body": "SELECT get_artist_objects(p_collection_id   => {{appsmith.store.collection_id}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_favourites_only => {{favourites_Checkbox.isChecked}}\n\t\t\t\t\t\t\t\t\t\t\t\t ,p_limit           => {{appsmith.store.page_size}}\n\t\t\t\t\t\t\t\t\t       ,p_offset          => {{this.params.offset || 0}}\n\t\t\t\t\t\t\t\t\t\t\t\t )",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -38,7 +38,7 @@
     "jsonPathKeys": [
       "appsmith.store.collection_id",
       "appsmith.store.page_size",
-      "favourites_RadioGroup.selectedOptionValue",
+      "favourites_Checkbox.isChecked",
       "this.params.offset || 0"
     ],
     "userSetOnLoad": true,

@@ -1,6 +1,6 @@
 SELECT get_albums_desktop(p_collection_id   =>  {{appsmith.store.collection_id}}
 												 ,p_artists         => '[{"artist_id": {{this.params.artist_id}}}]'
-												 ,p_favourites_only =>  {{favourites_RadioGroup.selectedOptionValue}}
+												 ,p_favourites_only =>  {{favourites_Checkbox.isChecked}}
 												 ,p_album_view      =>  {{view_select.selectedOptionValue == 'album' ? true : false}}
 												 ,p_limit           =>  {{appsmith.store.page_size}}
 									       ,p_offset          =>  {{this.params.offset || 0}}

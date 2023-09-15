@@ -34,7 +34,7 @@
     "text": "{{JS_global_mobile.title_text('artist')}}",
     "key": "ykgijalkar",
     "isDeprecated": false,
-    "rightColumn": 33,
+    "rightColumn": 31,
     "textAlign": "LEFT",
     "dynamicHeight": "AUTO_HEIGHT",
     "widgetId": "6dybel370b",
@@ -45,10 +45,10 @@
     "parentId": "0",
     "renderMode": "CANVAS",
     "isLoading": false,
-    "originalTopRow": 11,
+    "originalTopRow": 8,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 15,
+    "originalBottomRow": 12,
     "fontSize": "{{JS_global_mobile.scale_font(!!artists_table.selectedRow.artist ?artists_table.selectedRow.artist.length : 0)}}",
     "minDynamicHeight": 4
 }

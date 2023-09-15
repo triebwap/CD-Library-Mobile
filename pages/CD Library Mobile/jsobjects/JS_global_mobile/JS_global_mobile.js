@@ -174,7 +174,7 @@ export default {
 	},
 	favourite_check() {
 		this.select_data()
-		showAlert((/true/).test(favourites_RadioGroup.selectedOptionValue) ? 'Favourites Only Selected' : 'All Selected','success')
+		showAlert(favourites_Checkbox.isChecked ? 'Favourites Only Selected' : 'All Selected','success')
 	},
 	modal_close_button(modal) {
 		closeModal(modal)

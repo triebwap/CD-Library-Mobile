@@ -130,7 +130,7 @@
     "key": "3zq68vbmhg",
     "backgroundColor": "#FFFFFF",
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 61,
     "dynamicHeight": "AUTO_HEIGHT",
     "widgetId": "syc4l4g3jx",
     "accentColor": "{{JS_global_mobile.tab_accent_colour()}}",
