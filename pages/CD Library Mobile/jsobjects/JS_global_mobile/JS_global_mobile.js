@@ -514,7 +514,7 @@ export default {
 		}
   },
 	pages_text_visible() {
-    return view_select.selectedOptionValue == this.get_tab()
+    return view_select.selectedOptionValue == this.get_tab() || !get_artist_objects.isLoading
   },
 	add_emoji(key,favourite){
     return view_select.selectedOptionValue == 'artist' && favourite ? key+'⭐' : key
