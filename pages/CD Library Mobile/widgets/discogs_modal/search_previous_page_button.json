@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 4,
-    "bottomRow": 8,
+    "topRow": 5,
+    "bottomRow": 9,
     "tooltip": "{{JS_global_mobile.search_page_button_tooltip('previous')}}",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -46,9 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 4,
     "responsiveBehavior": "hug",
-    "originalTopRow": 5,
+    "originalTopRow": 4,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 30,
-    "originalBottomRow": 9,
+    "originalBottomRow": 8,
     "buttonVariant": "TERTIARY"
 }

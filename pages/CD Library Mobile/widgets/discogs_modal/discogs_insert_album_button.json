@@ -15,8 +15,8 @@
         "click",
         "submit"
     ],
-    "topRow": 4,
-    "bottomRow": 8,
+    "topRow": 5,
+    "bottomRow": 9,
     "tooltip": "Add album [{{search_albums_table.selectedRow.title}}] to collection",
     "parentRowSpace": 10,
     "type": "ICON_BUTTON_WIDGET",
@@ -46,9 +46,9 @@
     "isLoading": false,
     "mobileTopRow": 30,
     "responsiveBehavior": "hug",
-    "originalTopRow": 5,
+    "originalTopRow": 4,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 47,
-    "originalBottomRow": 9,
+    "originalBottomRow": 8,
     "buttonVariant": "TERTIARY"
 }

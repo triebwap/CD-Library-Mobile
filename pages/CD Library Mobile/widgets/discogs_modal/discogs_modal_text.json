@@ -9,7 +9,7 @@
         "label"
     ],
     "topRow": 0,
-    "bottomRow": 4,
+    "bottomRow": 5,
     "type": "TEXT_WIDGET",
     "hideCard": false,
     "animateLoading": true,
@@ -41,7 +41,7 @@
     "originalTopRow": 0,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 5,
+    "originalBottomRow": 4,
     "fontSize": "{{JS_global_mobile.scale_font(JS_global_mobile.discogs_modal_text().length)}}",
     "minDynamicHeight": 4
 }

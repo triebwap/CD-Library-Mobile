@@ -48,7 +48,8 @@ export default {
 			  url: '',
 			  album_art: search_albums_table.selectedRow.cover_image,
 			  favourite: false})
-		  .then(() => {
+			.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
+		  .then(() => 
 			  search_tracks_table.tableData.forEach((element, index) => {
 				  insert_track.run({
 			      album_id: insert_album.data.map(row => row.insert_album)[0].album_id,
@@ -57,17 +58,15 @@ export default {
 			      duration: element.duration.concat(':'),
 			      play: [{"play_url":"","play_name":""}],
 			      favourite: false,
-			      collection_id: appsmith.store.collection_id
-		      })
+			      collection_id: appsmith.store.collection_id})
 				  .catch(() => showAlert('Insert Track Failed: '+insert_track.data.match(/.*/)[0],'error'))
-			  }) 
-			  .then(() => get_artist_objects.run({offset: this.get_offset()}))
-				.then(() => storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0]))
-			  .then(() => storeValue('selected_album',insert_album.data.map(row => row.insert_album)[0].album_id))
-			  .then(() => get_artist_objects.run({offset: this.get_offset()}))
-				.then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
-			})
-		.catch(() => showAlert('Insert Album Failed: '+insert_album.data.match(/.*/)[0],'error'))
+			  }))
+			.then(() => showAlert('Album ['+search_albums_table.selectedRow.title+'] added','success'))
+		  .then(() => storeValue('selected_artist',insert_discogs_artist.data.map(row => row.insert_discogs_artist)[0]))
+			.then(() => storeValue('selected_album',insert_album.data.map(row => row.insert_album)[0].album_id))
+			.then(() => get_artist_objects.run({offset: this.get_offset()}))
+		  .catch(() => showAlert('Loading data...'))
+		  .then(() => get_artist_objects.run({offset: this.get_offset()}))
 	  }
 	},
 	track: {
@@ -127,10 +126,10 @@ export default {
 	},
 	on_row_selected(type) {
     switch (type) {
-      case 'artist': storeValue('selected_artists',artists_table.selectedRows.map(row => row.artist_id)); break
-      case 'album': storeValue('selected_albums',albums_table.selectedRows.map(row => row.album_id))
+      case 'artist': storeValue('selected_artist',artists_table.selectedRow.artist_id); break
+      case 'album': storeValue('selected_album',albums_table.selectedRow.album_id)
 								   .then(() => get_tracks.run({album_id: albums_table.selectedRow.album_id})); break	
-	    case 'track':	storeValue('selected_tracks',tracks_table.selectedRows.map(row => row.track_id))
+	    case 'track':	storeValue('selected_tracks',tracks_table.selectedRow.track_id)
 	  }
 	},
 	toggle_favourites() {
@@ -289,7 +288,7 @@ export default {
 		return index < 0 ? 0 : index
 	},
 	view_select_options() {
-    return get_domain.data.map(row => row.get_domain)[0].sort((a,b) => ((a.value == 'track' && b.value  == 'artist') ? 1 : (a.value == 'track' && b.value  == 'album') ? 1 :-1))
+    return get_domain.data.map(row => row.get_domain)[0]
   },
 	play_button_colour() {
     return tracks_table.selectedRowIndex !=-1 && !!tracks_table.selectedRow.play[0].play_url ?appsmith.store.colours.purple : 'black'
@@ -449,7 +448,7 @@ export default {
 	},
 	tracks_table_data() {
 		if (view_select.selectedOptionValue == 'track' || view_select.selectedOptionValue == 'album') return get_tracks.data.map(row => row.get_tracks_desktop)[0]
-		else return albums_table.selectedRow.tracks
+		else return _.sortBy(albums_table.selectedRow.tracks,'track_number')
 	},
 	data_page_button(direction) {
 		var offset
