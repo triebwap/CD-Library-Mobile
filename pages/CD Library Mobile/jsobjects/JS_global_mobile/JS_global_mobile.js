@@ -228,7 +228,7 @@ export default {
 		return tracks_table.tableData[track_index].play[source_index].play_url
 	},
 	remove_emoji(text) {
-		return text.match(/.*[^\p{Emoji_Presentation}]/gu)[0]
+		return !!text ? text.match(/.*[^\p{Emoji_Presentation}]/gu)[0] : ''
 	},
 	play_button() {
 		storeValue('play_rec',{origin: 'play_button', track: this.track_name(tracks_table.selectedRowIndex),play: tracks_table.selectedRow.play})
@@ -451,7 +451,7 @@ export default {
 		else return _.sortBy(albums_table.selectedRow.tracks,'track_number')
 	},
 	data_page_button(direction) {
-		var offset
+		const offset = get_new_offset((this.get_page_data(view_select.selectedOptionValue,'page_number')-1)*appsmith.store.page_size,direction)
 		function get_new_offset(old_offset,direction) {
 			if (direction == 'next') return old_offset+appsmith.store.page_size
 			else if (direction == 'previous') return old_offset-appsmith.store.page_size
@@ -459,34 +459,20 @@ export default {
 		showAlert('Loading data...')
 		switch (view_select.selectedOptionValue) {
 			case 'artist': 
-				offset = get_new_offset((artists_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
 				get_artist_objects.run({offset: offset}); break
-			case 'album':
-				offset = get_new_offset((albums_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
+			case 'album':		
 				get_albums.run({offset: offset, artist_id: artists_table.selectedRow.artist_id})
 				.then(() => get_tracks.run({album_id: get_albums.data.map(row => row.get_albums_desktop)[0][0].album_id})); break
-			case 'track':
-				offset = get_new_offset((tracks_table.selectedRow.page_number-1)*appsmith.store.page_size,direction)
+			case 'track':		
 				get_tracks.run({offset: offset, album_id: -1})
 		}
 	},
 	data_page_button_tooltip(direction) {
-		var page_number
-		var total_pages
+		const page_number = this.get_page_data(view_select.selectedOptionValue,'page_number') 
+		const total_pages = this.get_page_data(view_select.selectedOptionValue,'total_pages')
 		function page_text(page_number,total_pages) {
 			return 'Go to page '+(page_number)+' of '+total_pages+' '+view_select.selectedOptionValue+' page'+(total_pages >1 ? 's' : '')
 		}   
-		switch (view_select.selectedOptionValue) {
-			case 'artist': 
-				page_number = artists_table.selectedRow.page_number
-				total_pages = artists_table.selectedRow.total_pages; break
-			case 'album': 
-				page_number = albums_table.selectedRow.page_number
-				total_pages = albums_table.selectedRow.total_pages; break
-			case 'track': 
-				page_number = tracks_table.selectedRow.page_number
-				total_pages = tracks_table.selectedRow.total_pages; break
-		}
 		if (direction == 'next' && page_number < total_pages) return page_text(page_number+1,total_pages)
 		else if (direction == 'previous' && page_number > 1) return page_text(page_number-1,total_pages)
 		else return ''
@@ -496,26 +482,31 @@ export default {
 			if (direction == 'next') return page_number == total_pages
 			else if (direction == 'previous') return page_number == 1
 		}
-		switch (view_select.selectedOptionValue) {
-			case 'artist': return is_disabled(direction,artists_table.selectedRow.page_number,artists_table.selectedRow.total_pages)
-			case 'album':  return is_disabled(direction,albums_table.selectedRow.page_number,albums_table.selectedRow.total_pages)
-			case 'track': return is_disabled(direction,tracks_table.selectedRow.page_number,tracks_table.selectedRow.total_pages)
-		}
+		return is_disabled(direction,this.get_page_data(view_select.selectedOptionValue,'page_number'),this.get_page_data(view_select.selectedOptionValue,'total_pages'))
 	},
 	pages_text() {
     function text(page_number,total_pages) {
   	  return 'Page '+page_number+' of '+total_pages
 		}
-    switch (view_select.selectedOptionValue) {
-			case 'artist': return text(artists_table.selectedRow.page_number,artists_table.selectedRow.total_pages)
-			case 'album': return text(albums_table.selectedRow.page_number,albums_table.selectedRow.total_pages)
-			case 'track': return text(tracks_table.selectedRow.page_number,tracks_table.selectedRow.total_pages)
-		}
+		return text(this.get_page_data(view_select.selectedOptionValue,'page_number'),this.get_page_data(view_select.selectedOptionValue,'total_pages'))
   },
 	pages_text_visible() {
     return view_select.selectedOptionValue == this.get_tab() || !get_artist_objects.isLoading
   },
 	add_emoji(key,favourite){
     return view_select.selectedOptionValue == 'artist' && favourite ? key+'⭐' : key
+  },
+	get_page_data(type,item) {
+    switch (type) {
+			case 'artist': 
+				if (item == 'page_number') return artists_table.selectedRow.page_number || artists_table.tableData[0].page_number
+				else if (item == 'total_pages') return artists_table.selectedRow.total_pages || artists_table.tableData[0].total_pages ; break
+			case 'album': 
+				if (item == 'page_number') return albums_table.selectedRow.page_number || albums_table.tableData[0].page_number
+				else if (item == 'total_pages') return albums_table.selectedRow.total_pages || albums_table.tableData[0].total_pages ; break
+			case 'track': 
+				if (item == 'page_number') return tracks_table.selectedRow.page_number || tracks_table.tableData[0].page_number
+				else if (item == 'total_pages') return tracks_table.selectedRow.total_pages || tracks_table.tableData[0].total_pages
+		}
   }
 }
